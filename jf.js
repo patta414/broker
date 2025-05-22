@@ -1,4 +1,4 @@
-let jsondata,pre;
+var jsondata,pre;
 
 init = function(jsondata){
 document.querySelector(".json-formatter-container").style.display = "none"
