@@ -10,7 +10,7 @@ if(window.location.href.match(/ls-tc.de\/de\/aktie/)?true:false){
   console.log("ls-tc");
   fmscript = document.createElement("script");
   fmscript.id = "fmscript";
-  fmscript.src= "https://patta414.github.io/broker/preload.js?v="+verslog
+  fmscript.src= "https://patta414.github.io/broker/ls.js?v="+verslog
   fmscript.type="text/javascript";
   document.head.appendChild(fmscript);
 }
