@@ -11,7 +11,7 @@ fmscript.innerHTML=`body { font-family: sans-serif; }
 pre = document.body.querySelector("pre")
 predata = JSON.parse(pre.innerText)
 pre.style.display = "none"
-v_svg = funAddHtmlE(document.body,"div","","chart",{style:'display: block;width: 800px;height: 400px;'})
+v_svg = funAddHtmlE(document.body,"div","","chart",{style:'display: block;width: 100%;height: 100%;'})
 }
 
 build = function(jsondata) {
