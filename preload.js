@@ -16,7 +16,7 @@ if(window.location.href.match(/ls-tc.de\/de\/aktie/)?true:false){
 }
 
 
-if(window.location.href.match(/ls-tc.de\/de\/aktie/)?true:false) {
+if(window.location.href.match(/query1.finance.yahoo.com/)?true:false) {
   console.log("jahoo.finance")
   fmscript = document.createElement("script");
   fmscript.id = "fmscript";
