@@ -2,7 +2,7 @@ verslog = new Date().getUTCMilliseconds()+Math.floor(Math.random()*1000)
 
 fmscript = document.createElement("script");
 fmscript.id = "d3js";
-fmscript.src="https://d3js.org/d3.v7.min.js;"
+fmscript.src="https://d3js.org/d3.v7.min.js"
 fmscript.type="text/javascript";
 document.head.appendChild(fmscript);
 
