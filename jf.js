@@ -1,4 +1,4 @@
-var jsondata,pre;
+var predata,pre;
 
 init = function(jsondata){
 document.querySelector(".json-formatter-container").style.display = "none"
@@ -9,7 +9,7 @@ fmscript.innerHTML=`body { font-family: sans-serif; }
 		document.head.appendChild(fmscript);
 
 pre = document.body.querySelector("pre")
-jsondata = JSON.parse(pre.innerText)
+predata = JSON.parse(pre.innerText)
 pre.style.display = "none"
 v_svg = funAddHtmlE(document.body,"div","","chart",{style:'display: block;width: 800px;height: 400px;'})
 }
@@ -90,4 +90,4 @@ build = function(jsondata) {
 
 
 init()
-build(jsondata)
+build(predata)
