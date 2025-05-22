@@ -7,7 +7,7 @@ init = function(){
     height = +svg.attr("height");
     margin = { top: 20, right: 30, bottom: 30, left: 50 };
     
-        d3.json("data.json").then(data => {
+        d3.json("data").then(data => {
           const timestamps = data.chart.result[0].timestamp;
           const closes = data.chart.result[0].indicators.quote[0].close;
     
