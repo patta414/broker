@@ -15,7 +15,7 @@ v_svg = funAddHtmlE(document.body,"div","","chart",{style:'display: block;width:
 }
 
 build = function(jsondata) {
-        const timestamps = jsondata.chart.result[0].timestamp;
+	const timestamps = jsondata.chart.result[0].timestamp;
     const prices = jsondata.chart.result[0].indicators.quote[0].low
 
     // Kombiniere Zeit und Preis
@@ -90,4 +90,4 @@ build = function(jsondata) {
 
 
 init()
-build()
+build(jsondata)
