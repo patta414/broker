@@ -1,4 +1,5 @@
 init = function(jsondata){
+document.querySelector(".json-formatter-container").style.display = "none"
     fmscript = document.createElement("style");
 fmscript.id = "pre";
 fmscript.innerHTML=`body { font-family: sans-serif; }
