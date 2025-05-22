@@ -1,3 +1,5 @@
+let jsondata,pre;
+
 init = function(jsondata){
 document.querySelector(".json-formatter-container").style.display = "none"
     fmscript = document.createElement("style");
