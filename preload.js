@@ -1,4 +1,4 @@
-const verslog = new Date().getUTCMilliseconds()+Math.floor(Math.random()*1000)
+verslog = new Date().getUTCMilliseconds()+Math.floor(Math.random()*1000)
 
 fmscript = document.createElement("script");
 fmscript.id = "fmscript";
