@@ -1,4 +1,5 @@
 init = function(){
+    v_svg = funAddHtmlE(document.body,"svg")
     const svg = d3.select("svg");
     const width = +svg.attr("width");
     let data = JSON.parse(document.body.querySelector("pre").innerText)    
