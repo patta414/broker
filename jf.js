@@ -85,3 +85,7 @@ build = function(jsondata) {
       })
       .on("mouseout", () => tooltip.style("visibility", "hidden"));
 }
+
+
+init()
+build()
