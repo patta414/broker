@@ -86,14 +86,14 @@ observeFunction=function(mutationsList, observer){
     val.lastMin30 = 0
     if(val.tra.buyin) {
 	val.parN = "bid"
-	val.lastMin30 = getlastmin(30,val.parN)
+	val.lastMin30 = getlastmin(30,val.parN).duration
         val.devE = (val[val.parN] - val.tra.buyin).toFixed(2)
         val.devP = (val.devE / val.bid * 100).toFixed(2)
         val.prof = (val.devE * val.tra.pcs).toFixed(2)
         out = val.devE + "€ | " + val.devP + " % | " + val.prof + " €"
     }else{
 	val.parN = "mid"
-	val.lastMin30 = getlastmin(30,val.parN)
+	val.lastMin30 = getlastmin(30,val.parN).duration
         val.pcs = (geld / val.ask).toFixed(1)
         val.dst = (val[val.parN] - val.start)
         val.perc = (val.dst / val.start * 100).toFixed(2)
