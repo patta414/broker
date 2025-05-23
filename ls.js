@@ -65,7 +65,9 @@ observeFunction=function(mutationsList, observer){
 	let tra = window.localStorage.getItem(val.wkn)||"{}"
 		tra = JSON.parse(tra)
 	trades[val.wkn] = tra
-    val.achive.push(val);
+	let ac = {...val}
+	delete ac.archive
+    	val.achive.push(ac);
 	try{
 		val.start = Math.max(document.querySelector("svg > text").innerHTML.split("g ")[1].replace(".","").replace(",","."))
 		}catch(err){console.log(err)}
