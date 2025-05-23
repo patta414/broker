@@ -4,7 +4,7 @@ geld = 10000
 t={}
 window.trades = trades;
 window.geld = geld;
-
+minutes = 0.1
 window.t=t;
 
 getlastmin = function(minutes,param){
