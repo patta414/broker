@@ -12,7 +12,7 @@ getlastmin = function(minutes,param){
 	arr = val.achive.filter(el=>el.timestamp>=funDatum.addHours(-(minutes/60)))
 	name = val.parN
 	mini = Math.min(...arr.map(obj=>obj[name]))
-	let line = {...arr.filter(obj=>obj[name] = min)} || {}
+	let line = {...arr.filter(obj=>obj[name] = min)} || [{}]
 	line = line[line.length-1]
 	let duration = (new Date() - line.timestamp) /1000/60
 	let value = val[name]-line[name]
