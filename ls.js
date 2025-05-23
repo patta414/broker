@@ -14,7 +14,7 @@ getlastmin = function(minutes,param){
     mini = Math.min(...arr.map(obj=>obj[name]))
     let ret = arr.filter(obj=>obj[name] = min)
     ret = ret[ret.length-1]
-    ret.duration = new Date() - ret.timestamp 
+    ret.duration = (new Date() - ret.timestamp) /1000/60
     return ret
 }
 
@@ -96,7 +96,7 @@ observeFunction=function(mutationsList, observer){
         val.pcs = (geld / val.ask).toFixed(1)
         val.dst = (val[val.parN] - val.start)
         val.perc = (val.dst / val.start * 100).toFixed(2)
-        out = val.spr + " | " + val.pcs + " pcs | " + val.perc + " % | " + val.dst.toFixed(3)
+        out = val.spr + " | " + val.pcs + " pcs | " + val.perc + " % | " + val.dst.toFixed(3) + " | " + val.lastMin30.toFixed(0) + " min"
     }
 
     
