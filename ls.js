@@ -83,6 +83,7 @@ observeFunction=function(mutationsList, observer){
     val.spr = (((val.bid)-(val.ask))/(val.bid)*100).toFixed(3)
     val.time = elementToObserveOA.innerHTML
     let out = null;
+    val.lastMin30 = 0
     if(val.tra.buyin) {
 	val.parN = "bid"
 	val.lastMin30 = getlastmin(30,val.parN)
