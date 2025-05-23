@@ -106,7 +106,8 @@ observeFunction=function(mutationsList, observer){
     }
 
     val.lastMin30 = getlastmin(30,val.parN)
-    console.log(out,val)
+	srtLast = " | " + val.lastMin30.duration.toFixed(1) + " min" + " | " + val.lastMin30.percent.toFixed(3)
+    console.log(out,srtLast,val)
 }
 if(window.observerActive != true) {window.observerActive = true;
     elem = document.querySelector("div[class^=container")
