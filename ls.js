@@ -8,7 +8,7 @@ window.geld = geld;
 window.t=t;
 
 getlastmin = function(minutes,param){
-  arr = val.achive.filter(el=>el.timestamp>funDatum.addHours(-(minutes*60)))  
+  arr = [...val.achive.filter(el=>el.timestamp>funDatum.addHours(-(minutes*60))) ]
     name = val.parN || param
     mini = Math.min(...arr.map(obj=>obj[name]))
     let ret = arr.filter(obj=>obj[name] = min)
