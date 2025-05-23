@@ -68,6 +68,7 @@ observeFunction=function(mutationsList, observer){
     val.bid = gV(document.querySelector("span[field=bid"));
     val.mid = gV(document.querySelector("span[field=mid"));
     val.ask = gV(document.querySelector("span[field=ask"));
+    val.timestamp = new Date();
     val.spr = (((val.bid)-(val.ask))/(val.bid)*100).toFixed(3)
     val.time = elementToObserveOA.innerHTML
     let out = null;
