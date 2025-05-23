@@ -10,6 +10,7 @@ window.t=t;
 getlastmin = function(minutes,param){
   	minutes = minutes || 30
 	arr = val.achive.filter(el=>el.timestamp>=funDatum.addHours(-(minutes/60)))
+	if(arr.length==0) return
 	name = val.parN
 	mini = Math.min(...arr.map(obj=>obj[name]))
 	let line = arr.filter(obj=>obj[name] = min) || [{}]
