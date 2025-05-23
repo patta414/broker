@@ -18,6 +18,7 @@ getlastmin = function(minutes=30,param){
 	let value = val[name]-line[name]
 	let percent = value / line[name]
 	ret = {duration,value,percent}
+	return ret
 }
 
 
