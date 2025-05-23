@@ -8,16 +8,8 @@ window.geld = geld;
 window.t=t;
 
 getlastmin = function(minutes,param){
-  arr = [...val.achive.filter(el=>el.timestamp>funDatum.addHours(-(minutes*60))) ]
-    name = val.parN || param
-    mini = Math.min(...arr.map(obj=>obj[name]))
-    let ret = arr.filter(obj=>obj[name] = min)
-    ret = ret[ret.length-1]
-	ret.last = {}
-    ret.last.duration = (new Date() - ret.timestamp) /1000/60
-    ret.last.value = val[name]-ret[name]
-    ret.last.perc = ret.value / ret[name]
-    return ret
+  	let duration,value,percent;
+	return {duration,value,percent}
 }
 
 
