@@ -95,6 +95,7 @@ if(window.observerActive != true) {window.observerActive = true;
     arr = document.querySelectorAll("g[class^=highcharts-axis-labels")[1]
 arr = (arr)?arr.childNodes:[]
 //arr.forEach(el=>el.style.display = 'none')
+funChangeDisplayObject(document.querySelector("input").parentElement,"none")
     window.elementToObserveOA = document.querySelector("#page_content > div > div:nth-child(1) > div > div.mpe_bootstrapgrid.col-md-8 > div > div:nth-child(5) > div > span:nth-child(4) > span");
 
 function funAddHtmlE (targetQueryOrObj,typ,innerhtml,id,param_val,event_func,insertFirst){
