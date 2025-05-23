@@ -8,6 +8,7 @@ window.geld = geld;
 window.t=t;
 
 getlastmin = function(minutes,param){
+	let duration,value,percent;
   	minutes = minutes || 30
 	arr = val.achive.filter(el=>el.timestamp>=funDatum.addHours(-(minutes/60)))
 	if(arr.length==0) return {duration,value,percent}
@@ -15,9 +16,9 @@ getlastmin = function(minutes,param){
 	mini = Math.min(...arr.map(obj=>obj[name]))
 	let line = arr.filter(obj=>obj[name] = min) || [{}]
 	line = line[line.length-1]
-	let duration = (new Date() - line.timestamp) /1000/60
-	let value = val[name]-line[name]
-	let percent = value / line[name]
+	 duration = (new Date() - line.timestamp) /1000/60
+	 value = val[name]-line[name]
+	 percent = value / line[name]
 	ret = {duration,value,percent}
 }
 
