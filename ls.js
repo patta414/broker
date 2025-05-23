@@ -100,7 +100,7 @@ observeFunction=function(mutationsList, observer){
         val.dst = (val[val.parN] - val.start)
         val.perc = (val.dst / val.start * 100).toFixed(2)
 	val.lastMin30 = getlastmin(30,val.parN)
-        out = val.spr + " | " + val.pcs + " pcs | " + val.perc + " % | " + val.dst.toFixed(3) + " | " + val.duration.toFixed(0) + " min"
+        out = val.spr + " | " + val.pcs + " pcs | " + val.perc + " % | " + val.dst.toFixed(3) // + " | " + val.duration.toFixed(0) + " min"
     }
 
     
