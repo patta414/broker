@@ -36,9 +36,13 @@ build = function(jsondata) {
       .attr("transform", `translate(${margin.left},${margin.top})`);
 
     //const x = d3.scaleTime()
-    const x = d3.scalePoint()
-      .domain(d3.extent(data, d => d.date))
-      .range([0, width]);
+    //.domain(d3.extent(data, d => d.date))
+    //  .range([0, width]);
+	
+	const x = d3.scalePoint()
+		.domain(data.map(d => d.time)) // nur vorhandene Minuten
+  		.range([0, width]);
+      
 
     const y = d3.scaleLinear()
       .domain([d3.min(data, d => d.price) * 0.995, d3.max(data, d => d.price) * 1.005])
