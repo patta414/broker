@@ -35,7 +35,8 @@ build = function(jsondata) {
       .append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    const x = d3.scaleTime()
+    //const x = d3.scaleTime()
+    const xScale = d3.scalePoint()
       .domain(d3.extent(data, d => d.date))
       .range([0, width]);
 
