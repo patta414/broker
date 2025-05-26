@@ -35,13 +35,13 @@ build = function(jsondata) {
       .append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    //const x = d3.scaleTime()
-    //.domain(d3.extent(data, d => d.date))
-    //  .range([0, width]);
+    const x = d3.scaleTime()
+    .domain(d3.extent(data, d => d.date))
+      .range([0, width]);
 	
-	const x = d3.scalePoint()
-		.domain(data.map(d => d.time)) // nur vorhandene Minuten
-  		.range([0, width]);
+	//const x = d3.scalePoint()
+	//	.domain(data.map(d => d.time)) // nur vorhandene Minuten
+  	//	.range([0, width]);
       
 
     const y = d3.scaleLinear()
