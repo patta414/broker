@@ -13,7 +13,7 @@ getlastmin = function(minutes=30,param){
 	name = val.parN
 	mini = Math.min(...arr.map(obj=>obj[name]))
 	let line = arr.filter(obj=>obj[name] = min) || [{}]
-	line = line[line.length-1]
+	line = line[0]
 	let duration = (new Date() - line.timestamp) /1000/60
 	let value = val[name]-line[name]
 	let percent = value / line[name]
