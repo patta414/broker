@@ -1,0 +1,147 @@
+archiv = {};
+keysObj = JSON.parse(window.localStorage.getItem("keysObj")||"{}")
+for(k in keysObj){
+    window.archiv[k]=JSON.parse(window.localStorage.getItem(k)||"null")
+}
+console.log(archiv)
+classRow = class {
+    //this.row = null;
+    fields={};
+    archivieren = async function(){
+        window.archiv[this.key] = window.archiv[this.key] || []
+        //console.log(this.key,window.archiv[this.key].length)
+        window.archiv[this.key] = window.archiv[this.key].filter(el=>new Date(el.timestamp) >= funDatum.addHours(-(1)));
+        this.archiv = window.archiv[this.key]
+        //console.log(this,this.archiv)
+        //this.archiv = this.archiv.filter(el=>el.timestamp >= funDatum.addHours(-(1/60)));
+        let el= {}
+        this.fieldNames.forEach((n,i)=>{
+            el[n] = this[n]
+        })
+        el.timestamp=new Date()
+        window.archiv[this.key].push({...el})
+        this.store()
+        //console.log(this.archiv.length)
+    }
+    set = function(name){
+        let v = this[name];
+        v = this.ask - this.bid
+        this.fields[name].innerHTML=v
+    };
+    set_spread = function(){
+        let name = "spread"
+        let v = this[name];
+        v = (this.bid - this.ask)/this.ask*100
+        this.fields[name].innerHTML=v.toFixed(2)+" %"
+    };
+    get_last=function(was="bid"){
+        let place = this.fields.updown
+        this.fields.test.innerHTML = ""
+        place.innerHTML = ''
+        let arr = []//20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1];
+        for(i=30;i>0;i=i-2){arr.push(i)}
+        arr.forEach(el=>{
+            let field = this.get_last_per_min(el)
+            print = (field[was]-this[was]) + "<br>"
+            print = field.len +" | "+ field.timestamp+ "<br>"
+            //print = (field[was]-this[was]<0)?"^":"."
+            place.innerHTML += print
+            this.fields.test.innerHTML += ((new Date()-field.timestamp)/1000/60).toFixed(0) + "|"
+        })
+    };
+    get_last_per_min=function(min){
+        let arr = this.archiv.filter(el=>el.timestamp >= funDatum.addHours(-(min/60)));
+        let field = arr.sort((a,b)=>{return a.timestamp - b.timestamp})[0]
+        field.len = arr.length
+        this["last_"+funDatum.fuehrNull(min)] = field
+        return field
+    };
+    store = function(){
+        window.localStorage.setItem(this.key,JSON.stringify(window.archiv[this.key]))
+        window.localStorage.setItem("keysObj",JSON.stringify(window.keysObj))
+    };
+    get_store = async function(){
+        let str = window.localStorage.getItem(this.key)||"[]";
+        return JSON.parse(str)
+    };
+    constructor(mutation){
+        this.row = mutation.target.parentElement.parentElement.parentElement;
+        this.fieldsArr = this.row.querySelectorAll("td");
+        this.valueFields = ["bid","ask","diffE","diffP"]
+        this.fieldNames = [...["wkn" ,"name"],...this.valueFields,"time","a","a",...newFields];
+        this.fieldNames.forEach((n,i)=>{
+            if (i === 7 || i === 8) return;
+            let selector = "div > span"
+            if (n == "wkn") selector = "div"
+            if (n == "name") selector = "div > a"
+            if (newFields.indexOf(n)>-1) selector = "span"
+            let elem = this.fieldsArr[i].querySelector(selector)
+            this[n] = elem.innerHTML
+            this.fields[n] = elem
+        })
+         this.valueFields.forEach(n=>{
+             this[n] = this[n].replace("&nbsp;€","").replace(" %","").replace(".","").replace(",",".")
+             this[n] = Math.min(this[n])
+         })
+        this.fields["name"].title = this.wkn
+        this.key = "_"+this.wkn
+        window.keysObj[this.key]=null
+        //console.log(this)
+        this.archivieren()
+        window.list = window.list||{}
+        window.list[this.key] = this
+
+        this.set_spread()
+        this.get_last()
+        
+        return this
+    }
+} 
+
+observeFunction=function(mutationsList, observer){
+    let r = new classRow(mutationsList[0])
+    //console.log(r.wkn)
+    //window.l=window.l||{}
+    //window.l[r.wkn] = r
+    cons(r)
+}
+
+get_store = function(key){
+    let str = window.localStorage.getItem(key)||"[]";
+    window.archiv[key]=JSON.parse(str)
+    return window.archiv[key]
+};
+
+console.log("ja")
+cons = function(el){
+    console.log(el)
+    cons=function(){}
+}
+let newFields = ['updown','spread','test']
+initWatchlist = function(){
+    if(window.merkinitWatchlist == true) return
+    //window.archiv = window.archiv || {}
+    table = document.querySelector("tbody")
+    rows = table.querySelectorAll("tr")
+    rows.forEach(row=>{
+        fields = row.querySelectorAll("td")
+        get_store("_"+fields[0].children[0].innerHTML)
+        console.log(fields)
+        arr = [0,2,3,4,5,7]
+        arr.forEach(n=>{fields[n].style.display = "none"})
+        newFields.forEach(n=>{let td=funAddHtmlE(row,"td");funAddHtmlE(td,"span",n,n,{title:n})})
+        elementToObserve = fields[6].querySelector("div > span")
+        observer = new MutationObserver(function(mutationsList, observer) {observeFunction(mutationsList, observer)});
+        observer.observe(elementToObserve, {characterData: false, childList: true, attributes: true});
+        
+        
+        //new classRow({target:elementToObserve})
+        
+    })
+    window.merkinitWatchlist = true;
+    
+ }
+
+initWatchlist()
+
+
