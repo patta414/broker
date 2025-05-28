@@ -15,6 +15,14 @@ if(window.location.href.match(/ls-tc.de\/de\/aktie/)?true:false){
   document.head.appendChild(fmscript);
 }
 
+if(window.location.href.match(/ls-tc.de\/de\/watchlist/)?true:false){ 
+  console.log("ls-tc WATCHLIST");
+  fmscript = document.createElement("script");
+  fmscript.id = "lsjs";
+  fmscript.src= "https://patta414.github.io/broker/ls_watchlist.js?v="+verslog
+  fmscript.type="text/javascript";
+  document.head.appendChild(fmscript);
+}
 
 if(window.location.href.match(/query1.finance.yahoo.com/)?true:false) {
   console.log("jahoo.finance")
