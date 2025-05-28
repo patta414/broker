@@ -44,7 +44,7 @@ classRow = class {
             let field = this.get_last_per_min(el)
             print = (field[was]-this[was]) + "<br>"
             print = field.len +" | "+ field.timestamp+ "<br>"
-            //print = (field[was]-this[was]<0)?"^":"."
+            print = (field[was]-this[was]<0)?"^":"."
             place.innerHTML += print
             this.fields.test.innerHTML += ((new Date()-field.timestamp)/1000/60).toFixed(0) + "|"
         })
