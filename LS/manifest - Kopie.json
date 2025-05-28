@@ -1,0 +1,29 @@
+{
+"manifest_version":2,
+"name": "MtMes",
+"description": "API für das MES FactoryMiner",
+"author" : "Patrik Schmidt",
+"version": "0.1",
+"icons": {
+	"16":"icons/16.png",
+	"48":"icons/48.png",
+	"128":"icons/128.png"
+},
+"browser_action": {
+    "default_icon": {"19": "icons/16.png", "38": "icons/48.png"},
+    "default_title": "Factoryminer",
+    "default_popup": "browseraction/popup.html"
+  },
+  "omnibox": {"keyword": "mes"},
+"background": {
+	"scripts":["background.js"]
+	},
+"content_scripts":[{
+	"js": ["js/factoryminer.js"],
+	"matches": ["http://*.factoryminer.com/framework/scripts/*","https://*.factoryminer.com/framework/scripts/*","https://*.factoryminer.com/*"]
+	}],
+"permissions": [
+    "storage",
+    "activeTab", "declarativeContent"
+  ]
+}
