@@ -47,7 +47,7 @@ classRow = class {
     };
     get_last_per_min=function(min){
         let diff = 0.5
-        let arr = this.archiv.filter(el=>el.timestamp >= funDatum.addHours(-(min/60)) && el.timestamp <= funDatum.addHours(-((min+diff)/60)));
+        let arr = this.archiv.filter(el=>el.timestamp >= funDatum.addHours(-(min/60)));
         let field = arr.sort((a,b)=>{return a.timestamp - b.timestamp})[0]
         field.len = arr.length
         this["last_"+funDatum.fuehrNull(min)] = field
