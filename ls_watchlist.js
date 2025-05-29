@@ -35,7 +35,7 @@ classRow = class {
         this.fields.test.innerHTML = ""
         place.innerHTML = ''
         let arr = []//20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1];
-        for(i=30;i>0;i=i-2){arr.push(i)}
+        for(i=10;i>0;i=i-0.5){arr.push(i)}
         arr.forEach(el=>{
             let field = this.get_last_per_min(el)
             print = (field[was]-this[was]) + "<br>"
@@ -46,7 +46,8 @@ classRow = class {
         })
     };
     get_last_per_min=function(min){
-        let arr = this.archiv.filter(el=>el.timestamp >= funDatum.addHours(-(min/60)));
+        let diff = 0.5
+        let arr = this.archiv.filter(el=>el.timestamp >= funDatum.addHours(-(min/60)) && el.timestamp <= funDatum.addHours(-((min+diff)/60)));
         let field = arr.sort((a,b)=>{return a.timestamp - b.timestamp})[0]
         field.len = arr.length
         this["last_"+funDatum.fuehrNull(min)] = field
@@ -112,7 +113,7 @@ cons = function(el){
     console.log(el)
     cons=function(){}
 }
-let newFields = ['updown','spread','test']
+newFields = ['updown','spread','test']
 initWatchlist = function(){
     if(window.merkinitWatchlist == true) return
     //window.archiv = window.archiv || {}
@@ -138,5 +139,3 @@ initWatchlist = function(){
  }
 
 initWatchlist()
-
-
