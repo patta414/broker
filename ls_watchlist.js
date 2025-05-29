@@ -1,4 +1,4 @@
-archiv;
+window.archiv = window.archiv||{};
 classRow = class {
     //this.row = null;
     fields={};
