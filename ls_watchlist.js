@@ -1,17 +1,11 @@
-archiv = {};
-keysObj = JSON.parse(window.localStorage.getItem("keysObj")||"{}")
-for(k in keysObj){
-    window.archiv[k]=JSON.parse(window.localStorage.getItem(k)||"null")
-}
-console.log(archiv)
 classRow = class {
     //this.row = null;
     fields={};
     archivieren = async function(){
-        window.archiv[this.key] = window.archiv[this.key] || []
+        window.archiv[this.key] = window.archiv[this.key] || this.get_store()
         window.archiv[this.key].forEach(el=>el.timestamp = new Date(el.timestamp))
         //console.log(this.key,window.archiv[this.key].length)
-        window.archiv[this.key] = window.archiv[this.key].filter(el=>new Date(el.timestamp) >= funDatum.addHours(-(1)));
+        window.archiv[this.key] = window.archiv[this.key].filter(el=>el.timestamp >= funDatum.addHours(-(1)));
         this.archiv = window.archiv[this.key]
         //console.log(this,this.archiv)
         //this.archiv = this.archiv.filter(el=>el.timestamp >= funDatum.addHours(-(1/60)));
