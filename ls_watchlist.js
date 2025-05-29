@@ -54,7 +54,7 @@ classRow = class {
     };
     store = function(){
         window.localStorage.setItem(this.key,JSON.stringify(window.archiv[this.key]))
-        window.localStorage.setItem("keysObj",JSON.stringify(window.keysObj))
+        //window.localStorage.setItem("keysObj",JSON.stringify(window.keysObj))
     };
     get_store = async function(){
         let str = window.localStorage.getItem(this.key)||"[]";
@@ -81,7 +81,6 @@ classRow = class {
          })
         this.fields["name"].title = this.wkn
         this.key = "_"+this.wkn
-        window.keysObj[this.key]=null
         //console.log(this)
         this.archivieren()
         window.list = window.list||{}
