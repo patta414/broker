@@ -9,6 +9,7 @@ classRow = class {
     fields={};
     archivieren = async function(){
         window.archiv[this.key] = window.archiv[this.key] || []
+        window.archiv[this.key].forEach(el=>el.timestamp = new Date(el.timestamp))
         //console.log(this.key,window.archiv[this.key].length)
         window.archiv[this.key] = window.archiv[this.key].filter(el=>new Date(el.timestamp) >= funDatum.addHours(-(1)));
         this.archiv = window.archiv[this.key]
