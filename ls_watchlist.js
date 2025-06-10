@@ -34,7 +34,7 @@ c.data = function(name,duration){
 
 c.buildChart = function(name,duration){
     //rawData = archiv[name]
-    rawData = this.data(name,duration)
+    rawData = c.data(name,duration)
     const labels = rawData.map(d => new Date(d.timestamp));
     const values = rawData.map(d => d.bid);
     
@@ -84,7 +84,7 @@ c.buildChart = function(name,duration){
 
 c.update = function(name,duration){
     //const neueDaten = archiv[name]
-    const neueDaten = this.data(name,duration)
+    const neueDaten = c.data(name,duration)
     // Labels (Zeitstempel) und Werte (bid) extrahieren
     const labels = neueDaten.map(d => new Date(d.timestamp));
     const values = neueDaten.map(d => d.bid);
