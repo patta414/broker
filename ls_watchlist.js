@@ -1,6 +1,6 @@
 c={
     charts:{},
-    new:"ja",
+    new:"jetzt",
     container:{},
 };
 c.initChartjs = function(){
@@ -28,7 +28,7 @@ c.buildContainer = async function(name,cont){
 }
 
 c.data = function(name,duration){
-    rawData = archiv[name]
+    rawData = archiv[name]||[{}];
     rawData.map(d => new Date(d.timestamp));
     rawData.filter(el=>el.timestamp >= funDatum.addHours(-(duration/60)));
     return rawData
