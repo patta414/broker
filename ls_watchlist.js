@@ -14,7 +14,10 @@ c.init = function(){
     c.buildChart(n)
     }
     c.init=function(){
-        c.update(n)
+        let list = window.list 
+        for(n in list){
+            c.update(n)
+        }
     }
 }
 
