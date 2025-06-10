@@ -1,3 +1,82 @@
+c={
+    charts:{},
+    container:{},
+};
+c.initChartjs = function(){
+    injectRemoteCode("https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js")
+    injectRemoteCode("https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js")
+}
+
+c.buildContainer = function(name){
+    cont=document.querySelector("#main_layout > div > nav > div:nth-child(1) > div")
+    c.container[name] = funAddHtmlE(cont,"canvas","",name+"chart",{style:'width:200px;height:100px;display:block;'},null)
+}
+
+c.buildChart = function(name){
+    rawData = archiv[name]
+    const labels = rawData.map(d => new Date(d.timestamp));
+        const values = rawData.map(d => d.bid);
+    
+        const ctx = document.getElementById(name+'chart').getContext('2d');
+    c.charts[name] = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Bid Preis',
+              data: values,
+              borderColor: 'steelblue',
+              backgroundColor: 'rgba(70,130,180,0.1)',
+              tension: 0.1
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              x: {
+                type: 'time',
+                time: {
+                  unit: 'minute',
+                  tooltipFormat: 'HH:mm:ss'
+                },
+                title: {
+                  display: true,
+                  text: 'Zeit'
+                }
+              },
+              y: {
+                title: {
+                  display: true,
+                  text: 'Bid (€)'
+                }
+              }
+            },
+            plugins: {
+              legend: {
+                display: true
+              }
+            }
+          }
+        });
+}
+
+c.update = function(name){
+    const neueDaten = archiv[name]
+    // Labels (Zeitstempel) und Werte (bid) extrahieren
+    const labels = neueDaten.map(d => new Date(d.timestamp));
+    const values = neueDaten.map(d => d.bid);
+    
+    // Bestehende Daten im Chart ersetzen
+    c.charts[name].data.labels = labels;
+    c.charts[name].data.datasets[0].data = values;
+    
+    // Chart neu rendern
+    c.charts[name].update();
+}
+
+c.initChartjs()
+
+
 window.archiv = window.archiv||{};
 classRow = class {
     //this.row = null;
@@ -121,10 +200,14 @@ initWatchlist = function(){
     rows = table.querySelectorAll("tr")
     rows.forEach(row=>{
         fields = row.querySelectorAll("td")
-        get_store("_"+fields[0].children[0].innerHTML)
+        id="_"+fields[0].children[0].innerHTML
+        get_store(id)
         console.log(fields)
         arr = [0,2,3,4,5,7]
         arr.forEach(n=>{fields[n].style.display = "none"})
+        c.buildContainer(id)
+        c.buildChart(id)
+        //c.update("_893438")
         newFields.forEach(n=>{let td=funAddHtmlE(row,"td");funAddHtmlE(td,"span",n,n,{title:n})})
         elementToObserve = fields[6].querySelector("div > span")
         observer = new MutationObserver(function(mutationsList, observer) {observeFunction(mutationsList, observer)});
