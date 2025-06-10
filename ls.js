@@ -122,8 +122,8 @@ arr = (arr)?arr.childNodes:[]
 //arr.forEach(el=>el.style.display = 'none')
 funChangeDisplayObject(document.querySelector("input").parentElement,"none")
     window.elementToObserveOA = document.querySelector("#page_content > div > div:nth-child(1) > div > div.mpe_bootstrapgrid.col-md-8 > div > div:nth-child(5) > div > span:nth-child(4) > span");
-				   cont = document.querySelector("#page_content > div > div:nth-child(1) > div > div.mpe_bootstrapgrid.col-sm-12.informerhead.informerhead-half.row.col-md-4")
-	window.contSpread = funAddHtmlE(cont,"span","spread","spread")
+				   cont = document.querySelector("#page_content > div > div:nth-child(1) > div");//document.querySelector("#page_content > div > div:nth-child(1) > div > div.mpe_bootstrapgrid.col-sm-12.informerhead.informerhead-half.row.col-md-4")
+	window.contSpread = funAddHtmlE(cont,"span","spread","spread");
 
 function funAddHtmlE (targetQueryOrObj,typ,innerhtml,id,param_val,event_func,insertFirst){
 	try{
