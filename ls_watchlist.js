@@ -7,16 +7,17 @@ c.initChartjs = function(){
     injectRemoteCode("https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js")
 }
 
-c.init = function(){
+c.init = function(name){
     let list = window.list 
-    for(n in list){
+    let n = name
+    //for(n in list){
         if(c.charts[n]==undefined){
             c.buildContainer(n,list[n].fields.cha)
-            c.buildChart(n)
+            c.buildChart(n,10)
         }else{
-            c.update(n)
+            c.update(n,10)
         }
-    }
+    //}
 }
 
 c.buildContainer = function(name,cont){
@@ -24,12 +25,20 @@ c.buildContainer = function(name,cont){
     c.container[name] = funAddHtmlE(cont,"canvas","",name+"chart",{style:'width:200px;height:100px;display:block;'},null)
 }
 
-c.buildChart = function(name){
+c.data = function(name,duration){
     rawData = archiv[name]
+    rawData.map(d => new Date(d.timestamp));
+    rawData.filter(el=>el.timestamp >= funDatum.addHours(-(duration/60)));
+    return rawData
+}
+
+c.buildChart = function(name,duration){
+    //rawData = archiv[name]
+    rawData = this.data(name,duration)
     const labels = rawData.map(d => new Date(d.timestamp));
-        const values = rawData.map(d => d.bid);
+    const values = rawData.map(d => d.bid);
     
-        const ctx = document.getElementById(name+'chart').getContext('2d');
+    const ctx = document.getElementById(name+'chart').getContext('2d');
     c.charts[name] = new Chart(ctx, {
           type: 'line',
           data: {
@@ -73,8 +82,9 @@ c.buildChart = function(name){
         });
 }
 
-c.update = function(name){
-    const neueDaten = archiv[name]
+c.update = function(name,duration){
+    //const neueDaten = archiv[name]
+    const neueDaten = this.data(name,duration)
     // Labels (Zeitstempel) und Werte (bid) extrahieren
     const labels = neueDaten.map(d => new Date(d.timestamp));
     const values = neueDaten.map(d => d.bid);
@@ -181,7 +191,7 @@ classRow = class {
 
         this.set_spread()
         this.get_last()
-        c.init()
+        c.init(this.key)
         return this
     }
 } 
