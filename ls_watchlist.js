@@ -2,7 +2,7 @@ c={
     charts:{},
     new:"jetzt",
     container:{},
-    active:false,
+    active:true,
 };
 c.initChartjs = function(){
     injectRemoteCode("https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js")
