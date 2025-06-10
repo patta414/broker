@@ -14,16 +14,17 @@ c.init = function(name){
     //for(n in list){
         if(c.charts[n]==undefined){
             c.buildContainer(n,list[n].fields.cha)
-            c.buildChart(n,10)
+            
         }else{
             c.update(n,10)
         }
     //}
 }
 
-c.buildContainer = function(name,cont){
+c.buildContainer = async function(name,cont){
     cont=cont||document.querySelector("#main_layout > div > nav > div:nth-child(1) > div")
-    c.container[name] = funAddHtmlE(cont,"canvas","",name+"chart",{style:'width:400px;height:240px;display:block;'},null)
+    c.container[name] = await funAddHtmlE(cont,"canvas","",name+"chart",{style:'width:400px;height:240px;display:block;'},null)
+    c.buildChart(n,10)
 }
 
 c.data = function(name,duration){
