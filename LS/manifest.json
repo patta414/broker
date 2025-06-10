@@ -1,29 +1,34 @@
 {
-"manifest_version":2,
-"name": "LS",
-"description": "API für LS Börse",
-"author" : "Patrik Schmidt",
-"version": "0.1",
-"icons": {
-	"16":"icons/16.png",
-	"48":"icons/48.png",
-	"128":"icons/128.png"
-},
-"browser_action": {
-    "default_icon": {"19": "icons/16.png", "38": "icons/48.png"},
-    "default_title": "LS",
-    "default_popup": "browseraction/popup.html"
+  "manifest_version": 3,
+  "name": "LuS",
+  "description": "API für LS",
+  "author": "Patrik Schmidt",
+  "version": "0.1",
+  "icons": {
+   
   },
-  "omnibox": {"keyword": "mes"},
-"background": {
-	"scripts":["background.js"]
-	},
-"content_scripts":[{
-	"js": ["js/preload.js"],
-	"matches": ["https://www.ls-tc.de/*","http://www.ls-tc.de/*aktie/","https://query1.finance.yahoo.com/v8/finance/*"]
-	}],
-"permissions": [
+  "action": {
+    "default_icon": {},
+    "default_title": "LuS",
+    "default_popup": "popup.html"
+  },
+  "omnibox": {"keyword": "ls"},
+  
+  "content_scripts": [{
+    "js": ["ls.js"],
+    "matches": ["https://www.ls-tc.de/*","http://www.ls-tc.de/*aktie/","https://query1.finance.yahoo.com/v8/finance/*"]
+  }],
+  "permissions": [
     "storage",
-    "activeTab", "declarativeContent"
+    "declarativeContent"
+  ],
+  "host_permissions": ["https://www.ls-tc.de/*","http://www.ls-tc.de/*aktie/","https://query1.finance.yahoo.com/v8/finance/*"],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "resources/inject.js"
+      ],
+      "matches": ["<all_urls>"]
+    }
   ]
 }
