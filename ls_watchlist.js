@@ -1,5 +1,6 @@
 c={
     charts:{},
+    new:"ja",
     container:{},
 };
 c.initChartjs = function(){
