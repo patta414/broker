@@ -7,6 +7,16 @@ c.initChartjs = function(){
     injectRemoteCode("https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js")
 }
 
+c.init = function(){
+    for(n in list){
+    c.buildContainer(n,list[n].fields.cha)
+    c.buildChart(n)
+    }
+    c.init=function(){
+        c.update(n)
+    }
+}
+
 c.buildContainer = function(name,cont){
     cont=cont||document.querySelector("#main_layout > div > nav > div:nth-child(1) > div")
     c.container[name] = funAddHtmlE(cont,"canvas","",name+"chart",{style:'width:200px;height:100px;display:block;'},null)
