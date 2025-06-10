@@ -86,7 +86,7 @@ observeFunction=function(mutationsList, observer){
     val.ask = gV(document.querySelector("span[field=ask"));
     val.timestamp = new Date();
     val.spr = (((val.bid)-(val.ask))/(val.bid)*100).toFixed(3)
-	window.contSpread.innerHTML = val.spr
+	
     val.time = elementToObserveOA.innerHTML
     let out = null;
     if(val.tra.buyin) {
@@ -109,6 +109,7 @@ observeFunction=function(mutationsList, observer){
     val.lastMin30 = getlastmin(30,val.parN)
 	srtLast = " | " + val.lastMin30.duration.toFixed(1) + " min" + " | " + val.lastMin30.percent.toFixed(3)
     console.log(out,srtLast,val)
+window.contSpread.innerHTML = out+srtLast+val
 }
 if(window.observerActive != true) {window.observerActive = true;
     elem = document.querySelector("div[class^=container")
