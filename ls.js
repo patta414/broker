@@ -86,6 +86,7 @@ observeFunction=function(mutationsList, observer){
     val.ask = gV(document.querySelector("span[field=ask"));
     val.timestamp = new Date();
     val.spr = (((val.bid)-(val.ask))/(val.bid)*100).toFixed(3)
+	window.contSpread.innerHTML = val.spr
     val.time = elementToObserveOA.innerHTML
     let out = null;
     if(val.tra.buyin) {
@@ -130,6 +131,7 @@ function funAddHtmlE (targetQueryOrObj,typ,innerhtml,id,param_val,event_func,ins
         for(p in param_val){r.setAttribute(p,param_val[p])}
         for(e in event_func){r.addEventListener(e,eval(event_func[e]))}
         if(insertFirst){t.insertBefore(r, t.firstChild);}else{t.appendChild(r)}
+	window.contSpread = funAddHtmlE(cont,"span","spread","spread")
         return r
 	}catch(err){console.log(err)}
     };
