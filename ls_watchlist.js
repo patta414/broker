@@ -179,7 +179,7 @@ classRow = class {
 
         this.set_spread()
         this.get_last()
-        
+        c.init()
         return this
     }
 } 
