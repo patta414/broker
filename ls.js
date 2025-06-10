@@ -131,6 +131,7 @@ function funAddHtmlE (targetQueryOrObj,typ,innerhtml,id,param_val,event_func,ins
         for(p in param_val){r.setAttribute(p,param_val[p])}
         for(e in event_func){r.addEventListener(e,eval(event_func[e]))}
         if(insertFirst){t.insertBefore(r, t.firstChild);}else{t.appendChild(r)}
+cont = document.querySelector("#page_content > div > div:nth-child(1) > div > div.mpe_bootstrapgrid.col-sm-12.informerhead.informerhead-half.row.col-md-4")
 	window.contSpread = funAddHtmlE(cont,"span","spread","spread")
         return r
 	}catch(err){console.log(err)}
