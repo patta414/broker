@@ -26,6 +26,7 @@ c.buildChart = function(name){
               label: 'Bid Preis',
               data: values,
               borderColor: 'steelblue',
+              pointRadius: 0,
               backgroundColor: 'rgba(70,130,180,0.1)',
               tension: 0.1
             }]
@@ -40,20 +41,20 @@ c.buildChart = function(name){
                   tooltipFormat: 'HH:mm:ss'
                 },
                 title: {
-                  display: true,
+                  display: false,
                   text: 'Zeit'
                 }
               },
               y: {
                 title: {
-                  display: true,
+                  display: false,
                   text: 'Bid (€)'
                 }
               }
             },
             plugins: {
               legend: {
-                display: true
+                display: false
               }
             }
           }
