@@ -192,7 +192,7 @@ cons = function(el){
     console.log(el)
     cons=function(){}
 }
-newFields = ['updown','spread','test']
+newFields = ['cha','updown','spread','test']
 initWatchlist = function(){
     if(window.merkinitWatchlist == true) return
     //window.archiv = window.archiv || {}
