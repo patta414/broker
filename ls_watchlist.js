@@ -7,8 +7,8 @@ c.initChartjs = function(){
     injectRemoteCode("https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js")
 }
 
-c.buildContainer = function(name){
-    cont=document.querySelector("#main_layout > div > nav > div:nth-child(1) > div")
+c.buildContainer = function(name,cont){
+    cont=cont||document.querySelector("#main_layout > div > nav > div:nth-child(1) > div")
     c.container[name] = funAddHtmlE(cont,"canvas","",name+"chart",{style:'width:200px;height:100px;display:block;'},null)
 }
 
@@ -205,13 +205,14 @@ initWatchlist = function(){
         console.log(fields)
         arr = [0,2,3,4,5,7]
         arr.forEach(n=>{fields[n].style.display = "none"})
-        c.buildContainer(id)
-        c.buildChart(id)
-        //c.update("_893438")
+       
         newFields.forEach(n=>{let td=funAddHtmlE(row,"td");funAddHtmlE(td,"span",n,n,{title:n})})
         elementToObserve = fields[6].querySelector("div > span")
         observer = new MutationObserver(function(mutationsList, observer) {observeFunction(mutationsList, observer)});
         observer.observe(elementToObserve, {characterData: false, childList: true, attributes: true});
+        //c.buildContainer(id)
+        //c.buildChart(id)
+
         
         
         //new classRow({target:elementToObserve})
