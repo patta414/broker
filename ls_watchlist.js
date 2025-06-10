@@ -10,12 +10,10 @@ c.initChartjs = function(){
 c.init = function(){
     let list = window.list 
     for(n in list){
-    c.buildContainer(n,list[n].fields.cha)
-    c.buildChart(n)
-    }
-    c.init=function(){
-        let list = window.list 
-        for(n in list){
+        if(c.charts[n]==undefined){
+            c.buildContainer(n,list[n].fields.cha)
+            c.buildChart(n)
+        }else{
             c.update(n)
         }
     }
