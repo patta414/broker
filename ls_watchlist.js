@@ -22,7 +22,7 @@ c.init = function(name){
 
 c.buildContainer = function(name,cont){
     cont=cont||document.querySelector("#main_layout > div > nav > div:nth-child(1) > div")
-    c.container[name] = funAddHtmlE(cont,"canvas","",name+"chart",{style:'width:200px;height:100px;display:block;'},null)
+    c.container[name] = funAddHtmlE(cont,"canvas","",name+"chart",{style:'width:400px;height:240px;display:block;'},null)
 }
 
 c.data = function(name,duration){
