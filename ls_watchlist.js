@@ -16,7 +16,7 @@ c.init = function(name){
     //for(n in list){
         if(c.charts[n]==undefined){
             c.buildContainer(n,list[n].fields.cha)
-            c.buildChart(n,10)
+            c.buildChart(n)
         }else{
             c.update(n,10)
         }
@@ -38,7 +38,8 @@ c.data = function(name,duration){
 
 c.buildChart = function(name,duration){
     //rawData = archiv[name]
-    rawData = c.data(name,duration)
+    //rawData = c.data(name,duration)
+    rawData = [];
     const labels = rawData.map(d => new Date(d.timestamp));
     const values = rawData.map(d => d.bid);
     
