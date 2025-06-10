@@ -8,7 +8,7 @@ c.initChartjs = function(){
     injectRemoteCode("https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js")
     injectRemoteCode("https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js")
 }
-
+console.log("12:19")
 c.init = function(name){
     if(!(this.active)) return
     let list = window.list 
