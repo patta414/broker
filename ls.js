@@ -127,7 +127,7 @@ funChangeDisplayObject(document.querySelector("input").parentElement,"none")
 
 function funAddHtmlE (targetQueryOrObj,typ,innerhtml,id,param_val,event_func,insertFirst){
 	try{
-        t=(typeof(targetQueryOrObj)=='string')?document.querySelector(targetQueryOrObj):targetQueryOrObj
+        let t=(typeof(targetQueryOrObj)=='string')?document.querySelector(targetQueryOrObj):targetQueryOrObj
         let r = document.createElement(typ)
         if(innerhtml) r.innerHTML=innerhtml
         if(id) r.id=id
