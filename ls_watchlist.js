@@ -12,7 +12,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("20") // =======================================
+console.log("21") // =======================================
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -43,13 +43,14 @@ c.data = function(name,duration){
 }
 
 c.refreshAll=function(minutes){
+    c.minutes = minutes||c.minutes
     table = document.querySelector("tbody")
     rows = table.querySelectorAll("tr")
     rows.forEach(row=>{
         fields = row.querySelectorAll("td")
         id="_"+fields[0].children[0].innerHTML
         c.update(id,c.minutes)
-    }
+    })
 }
 
 c.buildChart = function(name,duration){
@@ -276,7 +277,11 @@ initWatchlist = function(){
     funAddHtmlE(place,"button","10","",{},{click:()=>{c.minutes=10;}})
     funAddHtmlE(place,"button","15","",{onclick:()=>{c.minutes=15;}})
     funAddHtmlE(place,"button","20","",{},{click:()=>{c.minutes=20;}})
-    funAddHtmlE(place,"button","30","",{},{click:()=>{c.minutes=30;}})
+    
+    for(i=1;i<=45;i=i+2){
+        const min = i
+        funAddHtmlE(place,"button",min,"",{},{click:()=>{c.minutes=min;}})
+    }
     window.merkinitWatchlist = true;
     
  }
