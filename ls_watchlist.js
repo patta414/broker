@@ -15,7 +15,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("30") // =======================================
+console.log("31") // =======================================
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -142,7 +142,7 @@ c.buildChart = function(name,duration){
             },
             plugins: {
               legend: {
-                display: false
+                display: true
               }
             }
           }
