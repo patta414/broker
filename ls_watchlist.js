@@ -12,7 +12,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("23") // =======================================
+console.log("24") // =======================================
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -48,8 +48,9 @@ c.refreshAll=function(minutes){
     rows = table.querySelectorAll("tr")
     rows.forEach(row=>{
         fields = row.querySelectorAll("td")
-        id="_"+fields[0].children[0].innerHTML
-        c.update(id,c.minutes)
+        observeFunction([{target:fields[6].querySelector("div > span")}])
+        //id="_"+fields[0].children[0].innerHTML
+        //c.update(id,c.minutes)
     })
 }
 
@@ -274,16 +275,15 @@ initWatchlist = function(){
     let place = document.querySelector("#main_layout > div > nav > div:nth-child(1) > div")
     funAddHtmlE(place,"br")
     funAddHtmlE(place,"button","clear","",{},{click:()=>{localStorage.clear();}})
-    funAddHtmlE(place,"button","10","",{},{click:()=>{c.minutes=10;}})
-    funAddHtmlE(place,"button","15","",{onclick:()=>{c.minutes=15;}})
-    funAddHtmlE(place,"button","20","",{},{click:()=>{c.minutes=20;}})
-    
+    //funAddHtmlE(place,"button","10","",{},{click:()=>{c.minutes=10;}})
+    //funAddHtmlE(place,"button","15","",{onclick:()=>{c.minutes=15;}})
+    //funAddHtmlE(place,"button","20","",{},{click:()=>{c.minutes=20;}})
     for(i=1;i<=45;i=i+2){
         const min = i
         funAddHtmlE(place,"button",min,"",{},{click:()=>{c.refreshAll(min);}})
     }
     window.merkinitWatchlist = true;
-    
+    c.refreshAll()
  }
 
 initWatchlist()
