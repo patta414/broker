@@ -33,6 +33,7 @@ c.init = function(name){
 c.buildContainer = async function(name,cont){
     cont=cont||document.querySelector("#main_layout > div > nav > div:nth-child(1) > div")
     cont.innerHTML = ""
+    cont.removeAttribute("title") 
     c.container[name] = await funAddHtmlE(cont,"canvas","",name+"chart",{style:'width:400px;height:240px;display:block;'},null)
     
 }
