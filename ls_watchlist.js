@@ -11,7 +11,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("2")
+console.log("3")
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
