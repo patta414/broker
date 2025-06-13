@@ -15,7 +15,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("31") // =======================================
+console.log("32") // =======================================
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -106,6 +106,7 @@ c.buildChart = function(name,duration){
     const labels = rawData.map(d => new Date(d.timestamp));
     const values = rawData.map(d => d.bid);
     const ctx = document.getElementById(name+'chart').getContext('2d');
+    const leg = (name=='liste')?true:false;
     c.charts[name] = new Chart(ctx, {
           type: 'line',
           data: {
@@ -142,7 +143,7 @@ c.buildChart = function(name,duration){
             },
             plugins: {
               legend: {
-                display: true
+                display: leg
               }
             }
           }
