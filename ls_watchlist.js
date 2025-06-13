@@ -12,7 +12,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("12") // =======================================
+console.log("13") // =======================================
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -135,17 +135,21 @@ classRow = class {
         this.fields[name].innerHTML=v
     };
     set_spread = function(){
-        let tre = "<br>"
+        let fld = this.fields[name]
+        ad = function(str,name){
+            funAddHtmlE(fld,"p",str,"",{class:"valueField",title:name})
+        }
+//        let tre = "<br>"
         let name = "spread"
         let v = this[name];
         v = (this.bid - this.ask)/this.ask*100
-        let str = ""
-        str += "spread= "+v.toFixed(3)+" %"+tre
-        str += "spread= "+(this.bid - this.ask).toFixed(3)+" €"+tre
-        str += "ask= "+v.ask+" €"+tre
-        str += "bid= "+v.bid+" €"+tre
 
-        this.fields[name].innerHTML=str
+        ad(v.toFixed(3)+" %","spread")
+        ad((this.bid - this.ask).toFixed(3)+" €","spread")
+        ad(this.ask+" €","ask")
+        ad(this.bid+" €","bid= ")
+
+        //fld.innerHTML=str
     };
     get_last=function(was="bid"){
         let place = this.fields.updown
