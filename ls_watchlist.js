@@ -3,6 +3,7 @@ c={
     new:"jetzt",
     container:{},
     active:false,
+    minutes:35,
 };
 c.initChartjs = function(){
     injectRemoteCode("https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js",()=>{
@@ -22,7 +23,7 @@ c.init = function(name){
             c.buildContainer(n,list[n].fields.cha)
             c.buildChart(n)
         }else{
-            c.update(n,10)
+            c.update(n,c.minutes)
         }
     //}
 }
@@ -35,8 +36,8 @@ c.buildContainer = async function(name,cont){
 
 c.data = function(name,duration){
     rawData = archiv[name]||[{}];
-    rawData.map(d => new Date(d.timestamp));
-    rawData.filter(el=>el.timestamp >= funDatum.addHours(-(duration/60)));
+    //rawData.map(d => new Date(d.timestamp));
+    rawData.filter(el=>new Date(el.timestamp) >= funDatum.addHours(-(duration/60)));
     return rawData
 }
 
