@@ -6,12 +6,14 @@ c={
 };
 c.initChartjs = function(){
     injectRemoteCode("https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js",()=>{
+        console.log("ja")
         injectRemoteCode("https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js",()=>{
             window.c.active=true
+            console.log("ja")
         })
     })
 }
-console.log("3")
+console.log("4")
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
