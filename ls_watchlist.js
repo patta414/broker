@@ -12,7 +12,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("22") // =======================================
+console.log("23") // =======================================
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -49,7 +49,7 @@ c.refreshAll=function(minutes){
     rows.forEach(row=>{
         fields = row.querySelectorAll("td")
         id="_"+fields[0].children[0].innerHTML
-        c.init(id,c.minutes)
+        c.update(id,c.minutes)
     })
 }
 
