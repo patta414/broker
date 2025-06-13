@@ -12,7 +12,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("18") // =======================================
+console.log("19") // =======================================
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -173,7 +173,7 @@ classRow = class {
         return field
     };
     store = function(){
-        obj = [...window.archiv[this.key]]
+        let obj = [...window.archiv[this.key]]
         obj = obj.map(el=>{el.cha = null;return el})
         window.localStorage.setItem(this.key,JSON.stringify(obj))
         //window.localStorage.setItem("keysObj",JSON.stringify(window.keysObj))
