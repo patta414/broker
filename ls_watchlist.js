@@ -12,7 +12,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("6")
+console.log("7")
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -37,7 +37,7 @@ c.buildContainer = async function(name,cont){
 c.data = function(name,duration){
     rawData = archiv[name]||[{}];
     //rawData.map(d => new Date(d.timestamp));
-    rawData.filter(el=>new Date(el.timestamp) >= funDatum.addHours(-(duration/60)));
+    rawData = rawData.filter(el=>new Date(el.timestamp) >= funDatum.addHours(-(duration/60)));
     return rawData
 }
 
