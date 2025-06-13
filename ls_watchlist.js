@@ -10,10 +10,11 @@ c.initChartjs = function(){
         injectRemoteCode("https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js",()=>{
             window.c.active=true;
             c.refreshAll();
+            c.refreshAll();
         })
     })
 }
-console.log("25") // =======================================
+console.log("26") // =======================================
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -284,7 +285,6 @@ initWatchlist = function(){
         funAddHtmlE(place,"button",min,"",{},{click:()=>{c.refreshAll(min);}})
     }
     window.merkinitWatchlist = true;
-    c.refreshAll()
  }
 
 initWatchlist()
