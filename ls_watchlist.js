@@ -12,7 +12,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("14") // =======================================
+console.log("15") // =======================================
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -135,8 +135,8 @@ classRow = class {
         this.fields[name].innerHTML=v
     };
     set_spread = function(){
-        let fld = this.fields[name]
         let name = "spread"
+        let fld = this.fields[name]
         ad = function(str,name){
             funAddHtmlE(fld,"p",str,"",{class:"valueField",title:name})
         }
