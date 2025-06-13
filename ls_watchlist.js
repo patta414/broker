@@ -29,8 +29,42 @@ c.init = function(name){
             c.update(n,c.minutes)
         }
     //}
+    c.all()
 }
-
+c.all = function(){
+    place = document.querySelector("#main_layout > div > div:nth-child(7) > div")
+    place.style = "width: 80%;"
+    c.buildContainer("liste",place)
+    c.buildChart("liste")
+    let liste = c.liste//['_RENK73','_703000','_HAG000']
+    name = "liste"
+    liste.forEach((n,i)=>{
+        let arr = c.data(n,c.minutes)
+        let actu = arr[arr.length-1]
+        let firs = arr[0]//arr.length-1]
+        act={
+            min:Math.min(...arr.map(el=>el.bid)),
+            max:Math.max(...arr.map(el=>el.bid))
+        }
+        act.bid = act.min//(act.max+act.min)/2
+        console.log(act)
+        arr.map(el=>el.bidPerc = (el.bid-act.bid)/act.bid)
+        let neueDaten = arr
+        // Labels (Zeitstempel) und Werte (bid) extrahieren
+        labels = neueDaten.map(d => new Date(d.timestamp));
+        values = neueDaten.map(d => d.bidPerc);
+            
+            // Bestehende Daten im Chart ersetzen
+        
+        c.charts[name].data.datasets[i]={...c.charts[name].data.datasets[0]}
+        c.charts[name].data.datasets[i].data = values;
+        c.charts[name].data.datasets[i].label = arr[0].name
+        c.charts[name].data.datasets[i].borderColor = colors.get(i)
+    })
+    c.charts[name].data.labels = labels;
+            // Chart neu rendern
+    c.charts[name].update();
+}
 c.buildContainer = async function(name,cont){
     cont=cont||document.querySelector("#main_layout > div > nav > div:nth-child(1) > div")
     cont.innerHTML = ""
