@@ -4,6 +4,7 @@ c={
     container:{},
     active:false,
     minutes:35,
+    liste:[],
 };
 c.initChartjs = function(){
     injectRemoteCode("https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js",()=>{
@@ -14,7 +15,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("26") // =======================================
+console.log("27") // =======================================
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -259,6 +260,7 @@ initWatchlist = function(){
         fields = row.querySelectorAll("td")
         id="_"+fields[0].children[0].innerHTML
         get_store(id)
+        c.liste.push(id)
         console.log(fields)
         arr = [0,2,3,4,5,7]
         arr.forEach(n=>{fields[n].style.display = "none"})
