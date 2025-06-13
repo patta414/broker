@@ -15,7 +15,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("32") // =======================================
+console.log("33") // =======================================
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -36,7 +36,7 @@ c.all = function(list){
     c.last = new Date()
     c.allfunadd = function(){
         place = document.querySelector("#main_layout > div > div:nth-child(7) > div")
-        place.style = "width: 80%;"
+        place.style = "width: 80%;heigth: 600px"
         c.allfunadd = ()=>{}
         c.buildContainer("liste",place)
         c.buildChart("liste")
