@@ -36,7 +36,7 @@ c.all = function(list){
     c.last = new Date()
     c.allfunadd = function(){
         place = document.querySelector("#main_layout > div > div:nth-child(7) > div")
-        place.style = "width: 80%;heigth: 600px"
+        place.style = "width: 80%; height: 800px;"
         c.allfunadd = ()=>{}
         c.buildContainer("liste",place)
         c.buildChart("liste")
