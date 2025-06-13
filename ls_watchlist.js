@@ -12,7 +12,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("11") // =======================================
+console.log("12") // =======================================
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -142,8 +142,8 @@ classRow = class {
         let str = ""
         str += "spread= "+v.toFixed(3)+" %"+tre
         str += "spread= "+(this.bid - this.ask).toFixed(3)+" €"+tre
-        str += "ask= "+v.ask.toFixed(3)+" €"+tre
-        str += "bid= "+v.bid.toFixed(3)+" €"+tre
+        str += "ask= "+v.ask+" €"+tre
+        str += "bid= "+v.bid+" €"+tre
 
         this.fields[name].innerHTML=str
     };
