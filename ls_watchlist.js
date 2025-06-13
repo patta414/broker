@@ -12,7 +12,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("16") // =======================================
+console.log("17") // =======================================
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -140,6 +140,7 @@ classRow = class {
         let ad = function(str,name){
             funAddHtmlE(fld,"p",str,"",{class:"valueField",title:name})
         }
+        fld.innerHTML = ""
         let v = this[name];
         v = (this.bid - this.ask)/this.ask*100
         
