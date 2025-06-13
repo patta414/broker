@@ -12,7 +12,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("8")
+console.log("9") // =======================================
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -47,9 +47,9 @@ c.buildChart = function(name,duration){
     rawData = [];
     const labels = rawData.map(d => new Date(d.timestamp));
     const values = rawData.map(d => d.bid);
-    const palce = document.getElementById(name+'chart')
+    const place = document.getElementById(name+'chart')
         place.innerHTML = ''
-    const ctx = palce.getContext('2d');
+    const ctx = place.getContext('2d');
     c.charts[name] = new Chart(ctx, {
           type: 'line',
           data: {
