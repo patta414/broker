@@ -280,7 +280,7 @@ initWatchlist = function(){
     
     for(i=1;i<=45;i=i+2){
         const min = i
-        funAddHtmlE(place,"button",min,"",{},{click:()=>{c.minutes=min;}})
+        funAddHtmlE(place,"button",min,"",{},{click:()=>{c.refreshAll(min);}})
     }
     window.merkinitWatchlist = true;
     
