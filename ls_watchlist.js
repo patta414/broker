@@ -3,7 +3,7 @@ c={
     new:"jetzt",
     container:{},
     active:false,
-    minutes:35,
+    minutes:15,
     liste:[],
 };
 c.initChartjs = function(){
@@ -15,7 +15,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("27") // =======================================
+console.log("28") // =======================================
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -29,14 +29,14 @@ c.init = function(name){
             c.update(n,c.minutes)
         }
     //}
-    c.all()
+    c.all([n])
 }
-c.all = function(){
+c.all = function(list){
     place = document.querySelector("#main_layout > div > div:nth-child(7) > div")
     place.style = "width: 80%;"
     c.buildContainer("liste",place)
     c.buildChart("liste")
-    let liste = c.liste//['_RENK73','_703000','_HAG000']
+    let liste = list || c.liste//['_RENK73','_703000','_HAG000']
     name = "liste"
     liste.forEach((n,i)=>{
         let arr = c.data(n,c.minutes)
@@ -47,7 +47,7 @@ c.all = function(){
             max:Math.max(...arr.map(el=>el.bid))
         }
         act.bid = act.min//(act.max+act.min)/2
-        console.log(act)
+        //console.log(act)
         arr.map(el=>el.bidPerc = (el.bid-act.bid)/act.bid)
         let neueDaten = arr
         // Labels (Zeitstempel) und Werte (bid) extrahieren
