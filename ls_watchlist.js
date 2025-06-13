@@ -12,7 +12,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("9") // =======================================
+console.log("10") // =======================================
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -30,6 +30,7 @@ c.init = function(name){
 
 c.buildContainer = async function(name,cont){
     cont=cont||document.querySelector("#main_layout > div > nav > div:nth-child(1) > div")
+    cont.innerHTML = ""
     c.container[name] = await funAddHtmlE(cont,"canvas","",name+"chart",{style:'width:400px;height:240px;display:block;'},null)
     
 }
@@ -47,9 +48,7 @@ c.buildChart = function(name,duration){
     rawData = [];
     const labels = rawData.map(d => new Date(d.timestamp));
     const values = rawData.map(d => d.bid);
-    const place = document.getElementById(name+'chart')
-        place.innerHTML = ''
-    const ctx = place.getContext('2d');
+    const ctx = document.getElementById(name+'chart').getContext('2d');
     c.charts[name] = new Chart(ctx, {
           type: 'line',
           data: {
@@ -136,10 +135,17 @@ classRow = class {
         this.fields[name].innerHTML=v
     };
     set_spread = function(){
+        let tre = "<br>"
         let name = "spread"
         let v = this[name];
         v = (this.bid - this.ask)/this.ask*100
-        this.fields[name].innerHTML=v.toFixed(2)+" %"
+        let str = ""
+        str += "spread= "+v.toFixed(3)+" %"+tre
+        str += "spread= "+(this.bid - this.ask).toFixeded(3)+" €"+tre
+        str += "ask= "+v.ask.toFixed(3)+" €"+tre
+        str += "bid= "+v.bid.toFixed(3)+" €"+tre
+
+        this.fields[name].innerHTML=str
     };
     get_last=function(was="bid"){
         let place = this.fields.updown
@@ -224,7 +230,7 @@ cons = function(el){
     console.log(el)
     cons=function(){}
 }
-newFields = ['cha','updown','spread','test']
+newFields = ['cha','spread','updown','test']
 initWatchlist = function(){
     if(window.merkinitWatchlist == true) return
     //window.archiv = window.archiv || {}
