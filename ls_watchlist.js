@@ -12,7 +12,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("19") // =======================================
+console.log("20") // =======================================
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -40,6 +40,16 @@ c.data = function(name,duration){
     //rawData.map(d => new Date(d.timestamp));
     rawData = rawData.filter(el=>new Date(el.timestamp) >= funDatum.addHours(-(duration/60)));
     return rawData
+}
+
+c.refreshAll=function(minutes){
+    table = document.querySelector("tbody")
+    rows = table.querySelectorAll("tr")
+    rows.forEach(row=>{
+        fields = row.querySelectorAll("td")
+        id="_"+fields[0].children[0].innerHTML
+        c.update(id,c.minutes)
+    }
 }
 
 c.buildChart = function(name,duration){
@@ -260,6 +270,13 @@ initWatchlist = function(){
         //new classRow({target:elementToObserve})
         
     })
+    let place = document.querySelector("#main_layout > div > nav > div:nth-child(1) > div")
+    funAddHtmlE(place,"br")
+    funAddHtmlE(place,"button","clear","",{},{click:()=>{localStorage.clear();}})
+    funAddHtmlE(place,"button","10","",{},{click:()=>{c.minutes=10;}})
+    funAddHtmlE(place,"button","15","",{onclick:()=>{c.minutes=15;}})
+    funAddHtmlE(place,"button","20","",{},{click:()=>{c.minutes=20;}})
+    funAddHtmlE(place,"button","30","",{},{click:()=>{c.minutes=30;}})
     window.merkinitWatchlist = true;
     
  }
