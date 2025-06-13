@@ -15,7 +15,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("28") // =======================================
+console.log("29") // =======================================
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -32,13 +32,17 @@ c.init = function(name){
     c.all([n])
 }
 c.all = function(list){
+    if(c.last>=funDatum.addHours(-10/60/60)) return
+    c.last = new Date()
     place = document.querySelector("#main_layout > div > div:nth-child(7) > div")
     place.style = "width: 80%;"
     c.buildContainer("liste",place)
     c.buildChart("liste")
-    let liste = list || c.liste//['_RENK73','_703000','_HAG000']
+    let cliste = c.liste//['_RENK73','_703000','_HAG000']
+    let liste = list || c.liste    
     name = "liste"
-    liste.forEach((n,i)=>{
+    cliste.forEach((n,ind)=>{
+        let i = ind//cliste.indexOf(n)
         let arr = c.data(n,c.minutes)
         let actu = arr[arr.length-1]
         let firs = arr[0]//arr.length-1]
