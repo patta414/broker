@@ -6,6 +6,24 @@ c={
     minutes:15,
     liste:[],
 };
+
+tra ={
+    init:function(){
+        this.trades = window.localStorage.getItem("trades")||"{}"
+        this.trades = JSON.parse(this.trades)
+    },
+    add:function(key,buyin,pcs){
+    	this.trades[key] = {
+            buyin:buyin,
+            pcs:pcs
+        }
+        window.localStorage.setItem("trades",JSON.stringify(tra.trades))
+        //window.localStorage.setItem(wkn,JSON.stringify(trades[wkn]))
+    	//t.get()
+    },
+}
+tra.init()
+
 c.initChartjs = function(){
     injectRemoteCode("https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js",()=>{
         injectRemoteCode("https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js",()=>{
@@ -15,7 +33,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("37") // =======================================
+console.log("38") // =======================================
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -54,7 +72,7 @@ c.all = function(list){
             max:Math.max(...arr.map(el=>el.bid))
         }
         act.bid = act.min//(act.max+act.min)/2
-        act.bid = actu.bid-actu.diffE
+        act.bid = (tra.trades[n])?tra.trades[n].buyin:(actu.bid-actu.diffE)
         //console.log(act)
         arr.map(el=>el.bidPerc = (el.bid-act.bid)/act.bid)
         let neueDaten = arr
@@ -158,10 +176,13 @@ c.update = function(name,duration){
     // Labels (Zeitstempel) und Werte (bid) extrahieren
     const labels = neueDaten.map(d => new Date(d.timestamp));
     const values = neueDaten.map(d => d.bid);
+    const line = neueDaten.map(d => (tra.trades[n])?tra.trades[n].buyin:null)
     
     // Bestehende Daten im Chart ersetzen
     c.charts[name].data.labels = labels;
     c.charts[name].data.datasets[0].data = values;
+    c.charts[name].data.datasets[1] = c.charts[name].data.datasets[1]
+    c.charts[name].data.datasets[1].data = line;
     
     // Chart neu rendern
     c.charts[name].update();
