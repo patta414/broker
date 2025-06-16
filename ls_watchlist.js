@@ -6,7 +6,7 @@ c={
     minutes:15,
     liste:[],
 };
-
+console.log("40") // =======================================
 tra ={
     init:function(){
         this.trades = window.localStorage.getItem("trades")||"{}"
@@ -37,7 +37,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("39") // =======================================
+
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -300,8 +300,6 @@ classRow = class {
          })
         this.fields["name"].title = this.wkn
         this.key = "_"+this.wkn
-        const key = this.key
-        funAddHtmlE(this.fieldsArr[7],"button","buyIn","",{onclick:"tra.input('"+this.key+"')"})
         //console.log(this)
         this.archivieren()
         window.list = window.list||{}
@@ -342,6 +340,7 @@ initWatchlist = function(){
     rows.forEach(row=>{
         fields = row.querySelectorAll("td")
         id="_"+fields[0].children[0].innerHTML
+        funAddHtmlE(fields[8],"button","buyIn","",{onclick:"tra.input('"+id+"')"})
         get_store(id)
         c.liste.push(id)
         console.log(fields)
