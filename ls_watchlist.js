@@ -196,7 +196,7 @@ c.update = function(name,duration){
     const labels = neueDaten.map(d => new Date(d.timestamp));
     const values = neueDaten.map(d => d.bid);
     let lineval = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyin:null)
-    
+    let lineout = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyout:null)
     // Bestehende Daten im Chart ersetzen
     c.charts[name].data.labels = labels;
     c.charts[name].data.datasets[0].data = values;
