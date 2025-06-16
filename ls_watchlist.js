@@ -15,7 +15,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("33") // =======================================
+console.log("34") // =======================================
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -65,7 +65,7 @@ c.all = function(list){
         
         c.charts[name].data.datasets[i]={...c.charts[name].data.datasets[0]}
         c.charts[name].data.datasets[i].data = values;
-        c.charts[name].data.datasets[i].label = arr[0].name
+        c.charts[name].data.datasets[i].label = (arr[0])?arr[0].name:"nix"
         c.charts[name].data.datasets[i].borderColor = colors.get(i)
     })
     c.charts[name].data.labels = labels;
