@@ -176,13 +176,13 @@ c.update = function(name,duration){
     // Labels (Zeitstempel) und Werte (bid) extrahieren
     const labels = neueDaten.map(d => new Date(d.timestamp));
     const values = neueDaten.map(d => d.bid);
-    const line = neueDaten.map(d => (tra.trades[n])?tra.trades[n].buyin:null)
+    let lineval = neueDaten.map(d => (tra.trades[n])?tra.trades[n].buyin:null)
     
     // Bestehende Daten im Chart ersetzen
     c.charts[name].data.labels = labels;
     c.charts[name].data.datasets[0].data = values;
     c.charts[name].data.datasets[1] = c.charts[name].data.datasets[1]
-    c.charts[name].data.datasets[1].data = line;
+    c.charts[name].data.datasets[1].data = lineval;
     
     // Chart neu rendern
     c.charts[name].update();
