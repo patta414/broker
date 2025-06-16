@@ -6,7 +6,7 @@ c={
     minutes:15,
     liste:[],
 };
-console.log("45") // =======================================
+console.log("46") // =======================================
 tra ={
     init:function(){
         this.trades = window.localStorage.getItem("trades")||"{}"
@@ -202,7 +202,9 @@ c.update = function(name,duration){
     c.charts[name].data.datasets[0].data = values;
     c.charts[name].data.datasets[1] = {...c.charts[name].data.datasets[0]}
     c.charts[name].data.datasets[1].data = lineval;
-    
+    c.charts[name].data.datasets[2] = {...c.charts[name].data.datasets[0]}
+    c.charts[name].data.datasets[2].data = lineout;
+    c.charts[name].data.datasets[2].borderColor = "lightgrey"
     // Chart neu rendern
     c.charts[name].update();
 }
