@@ -15,7 +15,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("35") // =======================================
+console.log("37") // =======================================
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -54,6 +54,7 @@ c.all = function(list){
             max:Math.max(...arr.map(el=>el.bid))
         }
         act.bid = act.min//(act.max+act.min)/2
+        act.bid = actu.bid-actu.diffE
         //console.log(act)
         arr.map(el=>el.bidPerc = (el.bid-act.bid)/act.bid)
         let neueDaten = arr
@@ -75,8 +76,9 @@ c.all = function(list){
 c.buildContainer = async function(name,cont){
     cont=cont||document.querySelector("#main_layout > div > nav > div:nth-child(1) > div")
     cont.innerHTML = ""
-    cont.removeAttribute("title") 
-    c.container[name] = await funAddHtmlE(cont,"canvas","",name+"chart",{style:'width:400px;height:240px;display:block;'},null)
+    cont.removeAttribute("title")
+    let heig = (name == "liste")?600:240;
+    c.container[name] = await funAddHtmlE(cont,"canvas","",name+"chart",{style:'width:400px;height:'+heig+';display:block;'},null)
     
 }
 
