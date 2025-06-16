@@ -21,6 +21,10 @@ tra ={
         //window.localStorage.setItem(wkn,JSON.stringify(trades[wkn]))
     	//t.get()
     },
+    input:function(name){
+        buyin = window.prompt(archiv[name][0].name+" buyin")
+        this.add(name,buyin)
+    },
 }
 tra.init()
 
@@ -33,7 +37,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("38") // =======================================
+console.log("39") // =======================================
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -181,8 +185,8 @@ c.update = function(name,duration){
     // Bestehende Daten im Chart ersetzen
     c.charts[name].data.labels = labels;
     c.charts[name].data.datasets[0].data = values;
-    //c.charts[name].data.datasets[1] = c.charts[name].data.datasets[1]
-    //c.charts[name].data.datasets[1].data = lineval;
+    c.charts[name].data.datasets[1] = {...c.charts[name].data.datasets[0]}
+    c.charts[name].data.datasets[1].data = lineval;
     
     // Chart neu rendern
     c.charts[name].update();
@@ -230,6 +234,11 @@ classRow = class {
         ad(this.ask+" €","ask")
         ad(this.bid+" €","bid")
     };
+    add=function(){
+        name = this.key
+        buyin = window.prompt(archiv[name][0].name+" buyin")
+        tra.add(name,buyin)
+    }
     get_last=function(was="bid"){
         let place = this.fields.updown
         this.fields.test.innerHTML = ""
@@ -291,6 +300,8 @@ classRow = class {
          })
         this.fields["name"].title = this.wkn
         this.key = "_"+this.wkn
+        const key = this.key
+        funAddHtmlE(this.fieldsArr[7],"button","buyIn","",{onclick:"tra.input('"+this.key+"')"})
         //console.log(this)
         this.archivieren()
         window.list = window.list||{}
