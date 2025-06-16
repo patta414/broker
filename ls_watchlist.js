@@ -6,7 +6,7 @@ c={
     minutes:15,
     liste:[],
 };
-console.log("40") // =======================================
+console.log("41") // =======================================
 tra ={
     init:function(){
         this.trades = window.localStorage.getItem("trades")||"{}"
@@ -180,7 +180,7 @@ c.update = function(name,duration){
     // Labels (Zeitstempel) und Werte (bid) extrahieren
     const labels = neueDaten.map(d => new Date(d.timestamp));
     const values = neueDaten.map(d => d.bid);
-    let lineval = neueDaten.map(d => (tra.trades[n])?tra.trades[n].buyin:null)
+    let lineval = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyin:null)
     
     // Bestehende Daten im Chart ersetzen
     c.charts[name].data.labels = labels;
