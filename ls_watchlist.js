@@ -6,7 +6,7 @@ c={
     minutes:15,
     liste:[],
 };
-console.log("43") // =======================================
+console.log("45") // =======================================
 tra ={
     init:function(){
         this.trades = window.localStorage.getItem("trades")||"{}"
@@ -21,13 +21,21 @@ tra ={
         //window.localStorage.setItem(wkn,JSON.stringify(trades[wkn]))
     	//t.get()
     },
-    input:function(name){
+    input:function(name,type="add"){
         buyin = window.prompt(archiv[name][0].name+" buyin")
-        this.add(name,buyin)
+        this[type](name,buyin)
+    },
+    out:function(name,buyout){
+        this.trades[name] = {
+            buyin:null,
+            buyout:buyout,
+        }
+        window.localStorage.setItem("trades",JSON.stringify(tra.trades))
     },
     del:function(name){
         this.trades[name] = {
             buyin:null,
+            buyout:null,
         }
         window.localStorage.setItem("trades",JSON.stringify(tra.trades))
     },
@@ -348,6 +356,7 @@ initWatchlist = function(){
         fields = row.querySelectorAll("td")
         id="_"+fields[0].children[0].innerHTML
         funAddHtmlE(fields[8],"button","buyIn","",{onclick:"tra.input('"+id+"')"})
+        funAddHtmlE(fields[8],"button","out","",{onclick:"tra.input('"+id+"','out')"})
         funAddHtmlE(fields[8],"button","del","",{onclick:"tra.del('"+id+"')"})
         get_store(id)
         c.liste.push(id)
