@@ -6,7 +6,7 @@ c={
     minutes:15,
     liste:[],
 };
-console.log("46") // =======================================
+console.log("47") // =======================================
 tra ={
     init:function(){
         this.trades = window.localStorage.getItem("trades")||"{}"
@@ -90,7 +90,7 @@ c.all = function(list){
             max:Math.max(...arr.map(el=>el.bid))
         }
         act.bid = act.min//(act.max+act.min)/2
-        act.bid = (tra.trades[n])?tra.trades[n].buyin:(actu.bid-actu.diffE)
+        if(actu) act.bid = (tra.trades[n])?tra.trades[n].buyin:(actu.bid-actu.diffE)
         //console.log(act)
         arr.map(el=>el.bidPerc = (el.bid-act.bid)/act.bid)
         let neueDaten = arr
