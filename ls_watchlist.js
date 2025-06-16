@@ -6,7 +6,7 @@ c={
     minutes:15,
     liste:[],
 };
-console.log("42") // =======================================
+console.log("43") // =======================================
 tra ={
     init:function(){
         this.trades = window.localStorage.getItem("trades")||"{}"
@@ -26,7 +26,7 @@ tra ={
         this.add(name,buyin)
     },
     del:function(name){
-        this.trades[key] = {
+        this.trades[name] = {
             buyin:null,
         }
         window.localStorage.setItem("trades",JSON.stringify(tra.trades))
