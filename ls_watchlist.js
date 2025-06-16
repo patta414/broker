@@ -181,8 +181,8 @@ c.update = function(name,duration){
     // Bestehende Daten im Chart ersetzen
     c.charts[name].data.labels = labels;
     c.charts[name].data.datasets[0].data = values;
-    c.charts[name].data.datasets[1] = c.charts[name].data.datasets[1]
-    c.charts[name].data.datasets[1].data = lineval;
+    //c.charts[name].data.datasets[1] = c.charts[name].data.datasets[1]
+    //c.charts[name].data.datasets[1].data = lineval;
     
     // Chart neu rendern
     c.charts[name].update();
