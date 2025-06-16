@@ -15,7 +15,7 @@ c.initChartjs = function(){
         })
     })
 }
-console.log("34") // =======================================
+console.log("35") // =======================================
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -232,7 +232,14 @@ classRow = class {
     };
     store = function(){
         let obj = [...window.archiv[this.key]]
-        obj = obj.map(el=>{el.cha = null;return el})
+        obj = obj.map(el=>{
+            newFields.forEach(n=>{
+                delete el[n]
+            })
+            //delete el.cha;
+            //delete el.spread;
+            //delete el.test;
+            return el})
         window.localStorage.setItem(this.key,JSON.stringify(obj))
         //window.localStorage.setItem("keysObj",JSON.stringify(window.keysObj))
     };
