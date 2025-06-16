@@ -6,7 +6,7 @@ c={
     minutes:15,
     liste:[],
 };
-console.log("41") // =======================================
+console.log("42") // =======================================
 tra ={
     init:function(){
         this.trades = window.localStorage.getItem("trades")||"{}"
@@ -24,6 +24,12 @@ tra ={
     input:function(name){
         buyin = window.prompt(archiv[name][0].name+" buyin")
         this.add(name,buyin)
+    },
+    del:function(name){
+        this.trades[key] = {
+            buyin:null,
+        }
+        window.localStorage.setItem("trades",JSON.stringify(tra.trades))
     },
 }
 tra.init()
@@ -146,6 +152,7 @@ c.buildChart = function(name,duration){
           },
           options: {
             responsive: true,
+            animation: false,
             scales: {
               x: {
                 type: 'time',
@@ -341,6 +348,7 @@ initWatchlist = function(){
         fields = row.querySelectorAll("td")
         id="_"+fields[0].children[0].innerHTML
         funAddHtmlE(fields[8],"button","buyIn","",{onclick:"tra.input('"+id+"')"})
+        funAddHtmlE(fields[8],"button","del","",{onclick:"tra.del('"+id+"')"})
         get_store(id)
         c.liste.push(id)
         console.log(fields)
