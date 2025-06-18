@@ -362,7 +362,7 @@ initWatchlist = function(){
         funAddHtmlE(fields[8],"button","del","",{onclick:"tra.del('"+id+"')"})
         get_store(id)
         c.liste.push(id)
-        console.log(fields)
+        //console.log(fields)
         arr = [0,2,3,4,5,7]
         arr.forEach(n=>{fields[n].style.display = "none"})
        
