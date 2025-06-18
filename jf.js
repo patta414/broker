@@ -1,17 +1,17 @@
 var predata,pre;
 
 init = function(jsondata){
-document.querySelector(".json-formatter-container").style.display = "none"
-    fmscript = document.createElement("style");
-fmscript.id = "pre";
-fmscript.innerHTML=`body { font-family: sans-serif; }
-    svg { background: #f4f4f4; border: 1px solid #ccc; }` 
-		document.head.appendChild(fmscript);
-
-pre = document.body.querySelector("pre")
-predata = JSON.parse(pre.innerText)
-pre.style.display = "none"
-v_svg = funAddHtmlE(document.body,"div","","chart",{style:'display: block;width: '+window.innerHeight+'px;height: '+window.innerWidth+'px;'})
+	document.querySelector(".json-formatter-container").style.display = "none"
+	fmscript = document.createElement("style");
+	fmscript.id = "pre";
+	fmscript.innerHTML=`body { font-family: sans-serif; }
+	    svg { background: #f4f4f4; border: 1px solid #ccc; }` 
+			document.head.appendChild(fmscript);
+	
+	pre = document.body.querySelector("pre")
+	predata = JSON.parse(pre.innerText)
+	pre.style.display = "none"
+	v_svg = funAddHtmlE(document.body,"div","","chart",{style:'display: block;width: '+window.innerHeight+'px;height: '+window.innerWidth+'px;'})
 }
 
 build = function(jsondata) {
@@ -95,4 +95,41 @@ build = function(jsondata) {
 
 
 init()
-build(predata)
+//build(predata)
+
+c={
+    charts:{},
+    new:"jetzt",
+    container:{},
+    active:false,
+    minutes:15,
+    liste:[],
+};
+
+c.initChartjs = function(){
+    injectRemoteCode("https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js",()=>{
+        injectRemoteCode("https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js",()=>{
+            window.c.active=true;
+            c.refreshAll();
+            c.refreshAll();
+        })
+    })
+}
+
+c.initChartjs()
+c.init = function(name){
+    if(!(this.active)) return
+    let list = window.list 
+    let n = name
+    //for(n in list){
+        if(c.charts[n]==undefined){
+            c.buildContainer(n,list[n].fields.cha)
+            c.buildChart(n)
+        }else{
+            c.update(n,c.minutes)
+        }
+    //}
+    c.all([n])
+}
+c.refreshAll = function(){
+}
