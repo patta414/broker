@@ -113,7 +113,6 @@ c.initChartjs = function(){
         injectRemoteCode("https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js",()=>{
             window.c.active=true;
             c.refreshAll();
-            c.refreshAll();
         })
     })
 }
@@ -143,43 +142,8 @@ c.init = function(name){
     c.all([n])
 }
 c.refreshAll = function(){
-	const timestamps = jsondata.chart.result[0].timestamp;
-    	const prices = jsondata.chart.result[0].indicators.quote[0].low
-	
-	// Kombiniere Zeit und Preis
-	const data = timestamps.map((ts, i) => ({
-		date: new Date(ts * 1000),
-		price: prices[i]
-	})).filter(d => d.price !== null); // filtere ungültige Werte
-	
-	const chartData = {
-	    labels: data.map(d => d.date.toLocaleTimeString()),
-	    datasets: [{
-	      label: 'Preis',
-	      data: data.map(d => d.price),
-	      borderColor: 'rgb(75, 192, 192)',
-	      tension: 0.1
-	    }]
-	  };
-		
-	  // Chart erstellen
-	  const ctx = document.getElementById('myChart').getContext('2d');
-	  new Chart(ctx, {
-	    type: 'line',
-	    data: chartData,
-	    options: {
-	      responsive: true,
-	      scales: {
-		x: {
-		  title: { display: true, text: 'Zeit' }
-		},
-		y: {
-		  title: { display: true, text: 'Preis' }
-		}
-	      }
-	    }
-	  });
-	
+	c.buildContainer("test")
+	c.buildChart("test")
 }
 
 c.buildContainer = async function(name,cont){
@@ -229,6 +193,5 @@ c.buildChart = function(name,data){
   });
 }
 
-c.buildContainer("test")
-c.buildChart("test")
+
 
