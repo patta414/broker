@@ -1,3 +1,5 @@
+//https://query1.finance.yahoo.com/v8/finance/chart/RHM.DE?interval=1m
+
 var predata,pre;
 
 init = function(jsondata){
@@ -116,6 +118,15 @@ c.initChartjs = function(){
     })
 }
 
+c.buildContainer = async function(name,cont){
+    cont=cont||document.querySelector("#main_layout > div > nav > div:nth-child(1) > div")
+    cont.innerHTML = ""
+    cont.removeAttribute("title")
+    let heig = (name == "liste")?600:240;
+    c.container[name] = await funAddHtmlE(cont,"canvas","",name+"chart",{style:'width:400px;height:'+heig+';display:block;'},null)
+    
+}
+
 c.initChartjs()
 c.init = function(name){
     if(!(this.active)) return
@@ -132,4 +143,92 @@ c.init = function(name){
     c.all([n])
 }
 c.refreshAll = function(){
+	const timestamps = jsondata.chart.result[0].timestamp;
+    	const prices = jsondata.chart.result[0].indicators.quote[0].low
+	
+	// Kombiniere Zeit und Preis
+	const data = timestamps.map((ts, i) => ({
+		date: new Date(ts * 1000),
+		price: prices[i]
+	})).filter(d => d.price !== null); // filtere ungültige Werte
+	
+	const chartData = {
+	    labels: data.map(d => d.date.toLocaleTimeString()),
+	    datasets: [{
+	      label: 'Preis',
+	      data: data.map(d => d.price),
+	      borderColor: 'rgb(75, 192, 192)',
+	      tension: 0.1
+	    }]
+	  };
+		
+	  // Chart erstellen
+	  const ctx = document.getElementById('myChart').getContext('2d');
+	  new Chart(ctx, {
+	    type: 'line',
+	    data: chartData,
+	    options: {
+	      responsive: true,
+	      scales: {
+		x: {
+		  title: { display: true, text: 'Zeit' }
+		},
+		y: {
+		  title: { display: true, text: 'Preis' }
+		}
+	      }
+	    }
+	  });
+	
 }
+
+c.buildContainer = async function(name,cont){
+    cont=cont||document.querySelector("body")
+    cont.innerHTML = ""
+    cont.removeAttribute("title")
+    let heig = (name == "liste")?600:240;
+    c.container[name] = await funAddHtmlE(cont,"canvas","",name+"chart",{style:'width:400px;height:'+heig+';display:block;'},null)
+    
+}
+
+
+c.buildChart = function(name,data){
+   jsondata = predata
+    timestamps = jsondata.chart.result[0].timestamp;
+    prices = jsondata.chart.result[0].indicators.quote[0].low
+    data = timestamps.map((ts, i) => ({
+      date: new Date(ts * 1000),
+      price: prices[i]
+    })).filter(d => d.price !== null);
+    
+    chartData = {
+        labels: data.map(d => d.date.toLocaleTimeString()),
+        datasets: [{
+          label: 'Preis',
+          data: data.map(d => d.price),
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        }]
+      };
+
+   const ctx = document.getElementById(name+'chart').getContext('2d');
+  c.charts[name] = new Chart(ctx, {
+    type: 'line',
+    data: chartData,
+    options: {
+      responsive: true,
+      scales: {
+        x: {
+          title: { display: true, text: 'Zeit' }
+        },
+        y: {
+          title: { display: true, text: 'Preis' }
+        }
+      }
+    }
+  });
+}
+
+c.buildContainer("test")
+c.buildChart("test")
+
