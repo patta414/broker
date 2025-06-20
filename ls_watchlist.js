@@ -250,6 +250,11 @@ classRow = class {
         ad((this.bid - this.ask).toFixed(3)+" €","spread")
         ad(this.ask+" €","ask")
         ad(this.bid+" €","bid")
+        let lineval = (tra.trades[this.key])?tra.trades[this.key].buyin:null;
+        let lineout = (tra.trades[this.key])?tra.trades[this.key].buyout:null;
+        if(lineval) ad(((this.bid-lineval)/this.bid)+" %","IN")
+        if(lineout) ad(((this.bid-lineout)/this.bid)+" %","OUT")
+        
     };
     add=function(){
         name = this.key
