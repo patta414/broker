@@ -6,7 +6,7 @@ c={
     minutes:15,
     liste:[],
 };
-console.log("47") // =======================================
+console.log("48") // =======================================
 tra ={
     init:function(){
         this.trades = window.localStorage.getItem("trades")||"{}"
@@ -209,6 +209,7 @@ c.update = function(name,duration){
     c.charts[name].update();
 }
 
+window.followFunctionTest=function(el){}
 
 window.archiv = window.archiv||{};
 classRow = class {
@@ -239,8 +240,8 @@ classRow = class {
     set_spread = function(){
         let name = "spread"
         let fld = this.fields[name]
-        let ad = function(str,name){
-            funAddHtmlE(fld,"p",str,"",{class:"valueField",title:name})
+        let ad = function(str,name,sty=""){
+            funAddHtmlE(fld,"p",str,"",{class:"valueField",title:name,style:sty})
         }
         fld.innerHTML = ""
         let v = this[name];
@@ -252,9 +253,9 @@ classRow = class {
         ad(this.bid+" €","bid")
         let lineval = (tra.trades[this.key])?tra.trades[this.key].buyin:null;
         let lineout = (tra.trades[this.key])?tra.trades[this.key].buyout:null;
-        if(lineval) ad(((this.bid-lineval)/this.bid)+" %","IN")
-        if(lineout) ad(((this.bid-lineout)/this.bid)+" %","OUT")
-        
+        if(lineval) ad(((this.bid-lineval)/this.bid*100).toFixed(2)+" %","IN","background: lightgrey;")
+        if(lineout) ad(((this.bid-lineout)/this.bid*100).toFixed(2)+" %","OUT","background: lightgrey;")
+        followFunctionTest(this)
     };
     add=function(){
         name = this.key
