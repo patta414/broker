@@ -174,8 +174,12 @@ c.buildButtons=function(){
 names = ['Rheinmetall','RWE','Hensoldt','Renk'].forEach(n=>{
     funAddHtmlE(cont,"button",n,n,{onclick:"c.getPerName('"+n+"')"})
 })
-	cont = funAddHtmlE(ocont,"div")
+    cont = funAddHtmlE(ocont,"div")
     names = ['1m','1h','1d'].forEach(n=>{
+    funAddHtmlE(cont,"button",n,n,{onclick:"params.interval='"+n+"'"})
+})
+	cont = funAddHtmlE(ocont,"div")
+    predata.chart.result[0].meta.validRanges.forEach(n=>{
     funAddHtmlE(cont,"button",n,n,{onclick:"params.range='"+n+"'"})
 })
 }
