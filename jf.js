@@ -2,6 +2,11 @@
 
 var predata,pre;
 
+params = {
+	days:"",
+	interval:"1m",
+}
+
 init = function(jsondata){
 	document.querySelector(".json-formatter-container").style.display = "none"
 	fmscript = document.createElement("style");
@@ -192,6 +197,30 @@ c.buildChart = function(name,data){
     }
   });
 }
-
-
+c.update = function(name,jsondata){
+    let timestamps = jsondata.chart.result[0].timestamp;
+    let prices = jsondata.chart.result[0].indicators.quote[0].low
+    let data = timestamps.map((ts, i) => ({
+      date: new Date(ts * 1000),
+      price: prices[i]
+    })).filter(d => d.price !== null);
+    
+    const labels = data.map(d => d.date.toLocaleTimeString());
+    const values = data.map(d => d.price);
+    
+    
+    //let lineval = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyin:null)
+    //let lineout = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyout:null)
+    // Bestehende Daten im Chart ersetzen
+    c.charts[name].data.labels = labels;
+    c.charts[name].data.datasets[0].data = values;
+    // Chart neu rendern
+    c.charts[name].update();
+}
+c.getPerName = function(name){
+	sym = await fetch("https://query1.finance.yahoo.com/v1/finance/search?q="+name).then(d=>d.json()).then(d=>d.quotes.filter(el=>el.exchange=='GER')[0].symbol)
+	jsd = await fetch("https://query1.finance.yahoo.com/v8/finance/chart/"+sym+"?"+params.interval+"&"+params.days).then(d=>d.json())
+	//c.buildContainer("test2",document.body)
+	c.update("test",jsd)
+}
 
