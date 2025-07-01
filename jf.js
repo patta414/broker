@@ -10,7 +10,7 @@ params = {
 names = ['Rheinmetall','RWE','Hensoldt','Renk',"Nordex","NVIDIA","Siemens","Siemens energy"]
 
 init = function(jsondata){
-	document.querySelector(".json-formatter-container").style.display = "none"
+	//document.querySelector(".json-formatter-container").style.display = "none"
 	fmscript = document.createElement("style");
 	fmscript.id = "pre";
 	fmscript.innerHTML=`body { font-family: sans-serif; }
