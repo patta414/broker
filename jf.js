@@ -7,6 +7,8 @@ params = {
 	interval:"1m",
 }
 
+names = ['Rheinmetall','RWE','Hensoldt','Renk',"Nordex","NVIDIA","Siemens","Siemens energy"]
+
 init = function(jsondata){
 	document.querySelector(".json-formatter-container").style.display = "none"
 	fmscript = document.createElement("style");
@@ -171,7 +173,7 @@ c.buildButtons=function(){
 	let ocont = miss?funAddHtmlE(document.body,"div","","Buttons"):document.getElementById("Buttons")
     ocont.innerHTML = ''
 	cont = funAddHtmlE(ocont,"div")
-names = ['Rheinmetall','RWE','Hensoldt','Renk'].forEach(n=>{
+names.forEach(n=>{
     funAddHtmlE(cont,"button",n,n,{onclick:"c.getPerName('"+n+"')"})
 })
     cont = funAddHtmlE(ocont,"div")
