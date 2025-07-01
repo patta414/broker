@@ -128,6 +128,12 @@ c.buildContainer = async function(name,cont){
     cont.removeAttribute("title")
     let heig = (name == "liste")?600:240;
     c.container[name] = await funAddHtmlE(cont,"canvas","",name+"chart",{style:'width:400px;height:'+heig+';display:block;'},null)
+
+    cont = document.body
+    n = "Rheinmetall";funAddHtmlE(cont,"button",n,n,{onclick:"c.getPerName('"+n+"')"})
+    n = "RWE";funAddHtmlE(cont,"button",n,n,{onclick:"c.getPerName('"+n+"')"})
+    n = "Hensoldt";funAddHtmlE(cont,"button",n,n,{onclick:"c.getPerName('"+n+"')"})
+    n = "Renk";funAddHtmlE(cont,"button",n,n,{onclick:"c.getPerName('"+n+"')"})
     
 }
 
@@ -217,7 +223,7 @@ c.update = function(name,jsondata){
     // Chart neu rendern
     c.charts[name].update();
 }
-c.getPerName = function(name){
+c.getPerName = async function(name){
 	sym = await fetch("https://query1.finance.yahoo.com/v1/finance/search?q="+name).then(d=>d.json()).then(d=>d.quotes.filter(el=>el.exchange=='GER')[0].symbol)
 	jsd = await fetch("https://query1.finance.yahoo.com/v8/finance/chart/"+sym+"?"+params.interval+"&"+params.days).then(d=>d.json())
 	//c.buildContainer("test2",document.body)
