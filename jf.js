@@ -129,11 +129,8 @@ c.buildContainer = async function(name,cont){
     let heig = (name == "liste")?600:240;
     c.container[name] = await funAddHtmlE(cont,"canvas","",name+"chart",{style:'width:400px;height:'+heig+';display:block;'},null)
 
-    cont = document.body
-    n = "Rheinmetall";funAddHtmlE(cont,"button",n,n,{onclick:"c.getPerName('"+n+"')"})
-    n = "RWE";funAddHtmlE(cont,"button",n,n,{onclick:"c.getPerName('"+n+"')"})
-    n = "Hensoldt";funAddHtmlE(cont,"button",n,n,{onclick:"c.getPerName('"+n+"')"})
-    n = "Renk";funAddHtmlE(cont,"button",n,n,{onclick:"c.getPerName('"+n+"')"})
+ 
+   
     
 }
 
@@ -163,7 +160,10 @@ c.buildContainer = async function(name,cont){
     cont.removeAttribute("title")
     let heig = (name == "liste")?600:240;
     c.container[name] = await funAddHtmlE(cont,"canvas","",name+"chart",{style:'width:400px;height:'+heig+';display:block;'},null)
-    
+       cont = document.body
+names = ['Rheinmetall','RWE','Hensoldt','Renk'].forEach(n=>{
+    funAddHtmlE(cont,"button",n,n,{onclick:"c.getPerName('"+n+"')"})
+})
 }
 
 
