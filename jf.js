@@ -3,7 +3,7 @@
 var predata,pre;
 
 params = {
-	days:"",
+	range:"1d",
 	interval:"1m",
 }
 
@@ -160,13 +160,25 @@ c.buildContainer = async function(name,cont){
     cont.removeAttribute("title")
     let heig = (name == "liste")?600:240;
     c.container[name] = await funAddHtmlE(cont,"canvas","",name+"chart",{style:'width:400px;height:'+heig+';display:block;'},null)
-       cont = document.body
+
+	c.buildButtons()
+
+
+}
+
+c.buildButtons=function(){
+    let miss = document.getElementById("Buttons")==null
+	let ocont = miss?funAddHtmlE(document.body,"div","","Buttons"):document.getElementById("Buttons")
+    ocont.innerHTML = ''
+	cont = funAddHtmlE(ocont,"div")
 names = ['Rheinmetall','RWE','Hensoldt','Renk'].forEach(n=>{
     funAddHtmlE(cont,"button",n,n,{onclick:"c.getPerName('"+n+"')"})
 })
+	cont = funAddHtmlE(ocont,"div")
+    names = ['1m','1h','1d'].forEach(n=>{
+    funAddHtmlE(cont,"button",n,n,{onclick:"params.range='"+n+"'"})
+})
 }
-
-
 c.buildChart = function(name,data){
    jsondata = predata
     timestamps = jsondata.chart.result[0].timestamp;
@@ -225,7 +237,11 @@ c.update = function(name,jsondata){
 }
 c.getPerName = async function(name){
 	sym = await fetch("https://query1.finance.yahoo.com/v1/finance/search?q="+name).then(d=>d.json()).then(d=>d.quotes.filter(el=>el.exchange=='GER')[0].symbol)
-	jsd = await fetch("https://query1.finance.yahoo.com/v8/finance/chart/"+sym+"?"+params.interval+"&"+params.days).then(d=>d.json())
+	c.link="https://query1.finance.yahoo.com/v8/finance/chart/"+sym+"?"
+	for(n in params){
+		c.link+=n+"="+params[n]+"&"
+	}
+	jsd = await fetch(c.link).then(d=>d.json())
 	//c.buildContainer("test2",document.body)
 	c.update("test",jsd)
 }
