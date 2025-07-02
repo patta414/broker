@@ -8,7 +8,7 @@ c={
     percent:window.localStorage.getItem("percent")||0.2,
     allActive:false,
 };
-console.log("50") // =======================================
+console.log("51") // =======================================
 tra ={
     init:function(){
         this.trades = window.localStorage.getItem("trades")||"{}"
@@ -412,7 +412,7 @@ initWatchlist = function(){
     let place = document.querySelector("#main_layout > div > nav > div:nth-child(1) > div")
     funAddHtmlE(place,"br")
     funAddHtmlE(place,"button","clear","",{},{click:()=>{localStorage.clear();}})
-    funAddHtmlE(place,"Percent","Percent","",{},{click:()=>{c.inputPercent();}})
+    funAddHtmlE(place,"button","Percent","",{},{click:()=>{tra.inputPercent();}})
     //funAddHtmlE(place,"button","10","",{},{click:()=>{c.minutes=10;}})
     //funAddHtmlE(place,"button","15","",{onclick:()=>{c.minutes=15;}})
     //funAddHtmlE(place,"button","20","",{},{click:()=>{c.minutes=20;}})
