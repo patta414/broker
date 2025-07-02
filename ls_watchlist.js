@@ -8,7 +8,7 @@ c={
     percent:window.localStorage.getItem("percent")||0.2,
     allActive:false,
 };
-console.log("51") // =======================================
+console.log("52") // =======================================
 tra ={
     init:function(){
         this.trades = window.localStorage.getItem("trades")||"{}"
@@ -209,6 +209,7 @@ c.update = function(name,duration){
     let lineout = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyout:null)
     let perc =(tra.trades[name])?tra.trades[name].percent:null
         perc = perc|| c.percent
+        perc = perc*1
     let base = (tra.trades[name])?tra.trades[name].buyin:null
         base = base||values[values.length-1]
     let tolP = neueDaten.map(d => base * (100+perc)/100)
