@@ -5,6 +5,7 @@ c={
     active:false,
     minutes:15,
     liste:[],
+    c.percent:0.2,
 };
 console.log("48") // =======================================
 tra ={
@@ -197,6 +198,12 @@ c.update = function(name,duration){
     const values = neueDaten.map(d => d.bid);
     let lineval = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyin:null)
     let lineout = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyout:null)
+    let perc =(tra.trades[name])?tra.trades[name].percent:null
+        perc = perc|| c.percent
+    let base = (tra.trades[name])?tra.trades[name].buyin:values[values.length-1]
+    let tolP = neueDaten.map(d => base * (100+perc)/100)
+    let tolM = neueDaten.map(d => base * (100-perc)/100)
+    //console.log(tolP)
     // Bestehende Daten im Chart ersetzen
     c.charts[name].data.labels = labels;
     c.charts[name].data.datasets[0].data = values;
@@ -205,6 +212,12 @@ c.update = function(name,duration){
     c.charts[name].data.datasets[2] = {...c.charts[name].data.datasets[0]}
     c.charts[name].data.datasets[2].data = lineout;
     c.charts[name].data.datasets[2].borderColor = "lightgrey"
+    c.charts[name].data.datasets[3] = {...c.charts[name].data.datasets[0]}
+    c.charts[name].data.datasets[3].data = tolP;
+    c.charts[name].data.datasets[3].borderColor = "lightgrey"
+    c.charts[name].data.datasets[4] = {...c.charts[name].data.datasets[0]}
+    c.charts[name].data.datasets[4].data = tolM;
+    c.charts[name].data.datasets[4].borderColor = "lightgrey"
     // Chart neu rendern
     c.charts[name].update();
 }
