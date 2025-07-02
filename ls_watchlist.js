@@ -202,7 +202,8 @@ c.update = function(name,duration){
     let lineout = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyout:null)
     let perc =(tra.trades[name])?tra.trades[name].percent:null
         perc = perc|| c.percent
-    let base = (tra.trades[name])?tra.trades[name].buyin:values[values.length-1]
+    let base = (tra.trades[name])?tra.trades[name].buyin:null
+        base = base||values[values.length-1]
     let tolP = neueDaten.map(d => base * (100+perc)/100)
     let tolM = neueDaten.map(d => base * (100-perc)/100)
     //console.log(tolP)
