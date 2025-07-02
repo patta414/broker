@@ -5,9 +5,10 @@ c={
     active:false,
     minutes:15,
     liste:[],
-    c.percent:0.2,
+    percent:0.2,
+    allActive:false,
 };
-console.log("48") // =======================================
+console.log("49") // =======================================
 tra ={
     init:function(){
         this.trades = window.localStorage.getItem("trades")||"{}"
@@ -69,6 +70,7 @@ c.init = function(name){
     c.all([n])
 }
 c.all = function(list){
+    if(!(c.allActive)) return
     if(c.last>=funDatum.addHours(-10/60/60)) return
     c.last = new Date()
     c.allfunadd = function(){
