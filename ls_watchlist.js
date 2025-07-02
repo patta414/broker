@@ -344,7 +344,7 @@ classRow = class {
             this.fields[n] = elem
         })
          this.valueFields.forEach(n=>{
-             this[n] = this[n].replace("&nbsp;€","").replace(" %","").replace(".","").replace(",",".")
+             this[n] = this[n].replace("&nbsp;€","").replace("&nbsp;Pkt.","").replace(" %","").replace(".","").replace(",",".")
              this[n] = Math.min(this[n])
          })
         this.fields["name"].title = this.wkn
