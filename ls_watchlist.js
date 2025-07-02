@@ -224,9 +224,11 @@ c.update = function(name,duration){
     c.charts[name].data.datasets[2].borderColor = "lightgrey"
     c.charts[name].data.datasets[3] = {...c.charts[name].data.datasets[0]}
     c.charts[name].data.datasets[3].data = tolP;
+    c.charts[name].data.datasets[i].label = base + " + " + perc
     c.charts[name].data.datasets[3].borderColor = "lightgrey"
     c.charts[name].data.datasets[4] = {...c.charts[name].data.datasets[0]}
     c.charts[name].data.datasets[4].data = tolM;
+    c.charts[name].data.datasets[i].label = base + " - " + perc
     c.charts[name].data.datasets[4].borderColor = "lightgrey"
     // Chart neu rendern
     c.charts[name].update();
