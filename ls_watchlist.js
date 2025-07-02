@@ -5,10 +5,10 @@ c={
     active:false,
     minutes:15,
     liste:[],
-    percent:0.2,
+    percent:window.localStorage.getItem("percent")||0.2,
     allActive:false,
 };
-console.log("49") // =======================================
+console.log("50") // =======================================
 tra ={
     init:function(){
         this.trades = window.localStorage.getItem("trades")||"{}"
@@ -25,7 +25,14 @@ tra ={
     },
     input:function(name,type="add"){
         buyin = window.prompt(archiv[name][0].name+" buyin")
+        buyin = (buyin)?buyin.replace(",","."):null
         this[type](name,buyin)
+    },
+    inputPercent:function(){
+        let prc = window.prompt("Percent")
+        prc = (prc)?prc.replace(",","."):0.2
+        window.localStorage.setItem("percent",prc)
+        c.percent = prc
     },
     out:function(name,buyout){
         this.trades[name] = {
@@ -403,6 +410,7 @@ initWatchlist = function(){
     let place = document.querySelector("#main_layout > div > nav > div:nth-child(1) > div")
     funAddHtmlE(place,"br")
     funAddHtmlE(place,"button","clear","",{},{click:()=>{localStorage.clear();}})
+    funAddHtmlE(place,"Percent","Percent","",{},{click:()=>{c.inputPercent();}})
     //funAddHtmlE(place,"button","10","",{},{click:()=>{c.minutes=10;}})
     //funAddHtmlE(place,"button","15","",{onclick:()=>{c.minutes=15;}})
     //funAddHtmlE(place,"button","20","",{},{click:()=>{c.minutes=20;}})
