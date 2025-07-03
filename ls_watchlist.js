@@ -9,7 +9,7 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("58") // =======================================
+console.log("59") // =======================================
 tra ={
     init:function(){
         this.trades = window.localStorage.getItem("trades")||"{}"
@@ -222,6 +222,8 @@ c.update = function(name,duration){
         base = base||values[values.length-1]
     let percVal = values[values.length-1] / base
     let devi = percVal > (100+c.deviPercVal*1)/100 || percVal < (100-c.deviPercVal*1)/100
+    let color = (percVal < 1) ?"red":"steelblue"
+    if(percVal>1) color = "green"
     if(devi){
         lineval = lineval.map(d=>null)
         lineout = lineout.map(d=>null)
@@ -233,6 +235,7 @@ c.update = function(name,duration){
     // Bestehende Daten im Chart ersetzen
     c.charts[name].data.labels = labels;
     c.charts[name].data.datasets[0].data = values;
+    c.charts[name].data.datasets[0].borderColor = color
     c.charts[name].data.datasets[1] = {...c.charts[name].data.datasets[0]}
     c.charts[name].data.datasets[1].data = lineval;
     c.charts[name].data.datasets[1].borderColor = "black"
