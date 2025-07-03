@@ -9,7 +9,7 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("percent")||0.5,
 };
-console.log("53") // =======================================
+console.log("54") // =======================================
 tra ={
     init:function(){
         this.trades = window.localStorage.getItem("trades")||"{}"
@@ -234,7 +234,7 @@ c.update = function(name,duration){
     c.charts[name].data.datasets[0].data = values;
     c.charts[name].data.datasets[1] = {...c.charts[name].data.datasets[0]}
     c.charts[name].data.datasets[1].data = lineval;
-     c.charts[name].data.datasets[2].borderColor = "black"
+    c.charts[name].data.datasets[1].borderColor = "black"
     c.charts[name].data.datasets[2] = {...c.charts[name].data.datasets[0]}
     c.charts[name].data.datasets[2].data = lineout;
     c.charts[name].data.datasets[2].borderColor = "lightgrey"
