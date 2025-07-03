@@ -7,8 +7,9 @@ c={
     liste:[],
     percent:window.localStorage.getItem("percent")||0.2,
     allActive:false,
+    deviPercVal:window.localStorage.getItem("percent")||0.5,
 };
-console.log("52") // =======================================
+console.log("53") // =======================================
 tra ={
     init:function(){
         this.trades = window.localStorage.getItem("trades")||"{}"
@@ -33,6 +34,12 @@ tra ={
         prc = (prc)?prc.replace(",","."):0.2
         window.localStorage.setItem("percent",prc)
         c.percent = prc
+    },
+    inputdeviPercVal:function(){
+        let prc = window.prompt("deviPercVal")
+        prc = (prc)?prc.replace(",","."):0.5
+        window.localStorage.setItem("deviPercVal",prc)
+        c.deviPercVal = prc
     },
     out:function(name,buyout){
         this.trades[name] = {
@@ -212,6 +219,13 @@ c.update = function(name,duration){
         perc = perc*1
     let base = (tra.trades[name])?tra.trades[name].buyin:null
         base = base||values[values.length-1]
+    let percVal = base * (100+perc)/100
+    let devi = percVal > c.deviPercVal
+    if(devi){
+        lineval = lineval.map(d=>null)
+        lineout = lineout.map(d=>null)
+        base = values[values.length-1]
+    }
     let tolP = neueDaten.map(d => base * (100+perc)/100)
     let tolM = neueDaten.map(d => base * (100-perc)/100)
     //console.log(tolP)
@@ -220,6 +234,7 @@ c.update = function(name,duration){
     c.charts[name].data.datasets[0].data = values;
     c.charts[name].data.datasets[1] = {...c.charts[name].data.datasets[0]}
     c.charts[name].data.datasets[1].data = lineval;
+     c.charts[name].data.datasets[2].borderColor = "black"
     c.charts[name].data.datasets[2] = {...c.charts[name].data.datasets[0]}
     c.charts[name].data.datasets[2].data = lineout;
     c.charts[name].data.datasets[2].borderColor = "lightgrey"
