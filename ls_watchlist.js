@@ -7,9 +7,9 @@ c={
     liste:[],
     percent:window.localStorage.getItem("percent")||0.2,
     allActive:false,
-    deviPercVal:window.localStorage.getItem("percent")||0.5,
+    deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("57") // =======================================
+console.log("58") // =======================================
 tra ={
     init:function(){
         this.trades = window.localStorage.getItem("trades")||"{}"
@@ -38,6 +38,7 @@ tra ={
     inputdeviPercVal:function(){
         let prc = window.prompt("deviPercVal")
         prc = (prc)?prc.replace(",","."):0.5
+        prc=prc*1
         window.localStorage.setItem("deviPercVal",prc)
         c.deviPercVal = prc
     },
