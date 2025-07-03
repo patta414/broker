@@ -9,7 +9,7 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("percent")||0.5,
 };
-console.log("54") // =======================================
+console.log("55") // =======================================
 tra ={
     init:function(){
         this.trades = window.localStorage.getItem("trades")||"{}"
@@ -219,8 +219,8 @@ c.update = function(name,duration){
         perc = perc*1
     let base = (tra.trades[name])?tra.trades[name].buyin:null
         base = base||values[values.length-1]
-    let percVal = base * (100+perc)/100
-    let devi = percVal > c.deviPercVal
+    let percVal = values[values.length-1] / base
+    let devi = percVal > (100+c.deviPercVal)/100 || percVal < (100-c.deviPercVal)/100
     if(devi){
         lineval = lineval.map(d=>null)
         lineout = lineout.map(d=>null)
