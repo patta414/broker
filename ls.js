@@ -147,4 +147,4 @@ gV = function(field){
 }
 
 observeFunction()
-window.scrollTo(0, 215);
+window.scrollTo(0, 45);
