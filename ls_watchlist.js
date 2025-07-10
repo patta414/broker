@@ -23,7 +23,7 @@ tra ={
     	//t.get()
     },
     input:function(name,type="buyin"){
-        let value = this.trades[name][type]
+        let value = (this.trades[name])?this.trades[name][type]:""
         if(type=="linehelp") value = list[name].bid
         buyin = window.prompt(archiv[name][0].name+" - "+type,value)
         buyin = (buyin)?buyin.replace(",","."):null
