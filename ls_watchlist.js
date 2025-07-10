@@ -9,11 +9,11 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("67") // =======================================
+console.log("68") // =======================================
 cl = true
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
-        funAlert(a,b)
+        funAlert(b,a)
         console.log(a+"\n",b,c)
     }
     if(!(cl)) return
@@ -50,14 +50,18 @@ checkLogic = function(wkn){
 
     if(t.buyin){
         let ind = a.length-1 
-        if(t.buyin>=a[ind].bid && t.buyin<a[ind-1].bid) alrt(l.name,"Hat gerade den Einstiegskurs überschritten")   
+        if(t.buyin>=a[ind].bid && t.buyin<a[ind-1].bid) alrt(l.name,"Hat gerade den Einstiegskurs erreicht")   
         //arr = l
     }
 
     if(t.linehelp){
-        let ind = a.length-1 
-        if(t.buyin>=a[ind].bid && t.buyin<a[ind-1].bid) alrt(l.name,"Hat gerade die Hilfslinie überschritten")
-        if(t.buyin<=a[ind].bid && t.buyin>a[ind-1].bid) alrt(l.name,"Hat gerade die Hilfslinie unterschritten")
+        let ind = a.length-1
+        let comp = t.buyin
+        if(comp>=a[ind].bid && comp<a[ind-1].bid) alrt(l.name,"Hat gerade die Hilfslinie überschritten")
+        if(comp<=a[ind].bid && comp>a[ind-1].bid) alrt(l.name,"Hat gerade die Hilfslinie unterschritten")
+        comp = t.linehelp*1.02
+            if(comp>=a[ind].bid && comp<a[ind-1].bid) alrt(l.name,"Hat gerade +++ 2% Hilfslinie")
+            //if(comp<=a[ind].bid && comp>a[ind-1].bid) alrt(l.name,"Hat gerade --- 2% Hilfslinie")
     }
     
     let base = t.linehelp||t.buyin||l.bid
@@ -79,6 +83,7 @@ checkLogic = function(wkn){
     //if(send) funAlert(title,msg)
     
 }
+
 
 
 tra ={
