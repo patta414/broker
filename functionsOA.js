@@ -3161,9 +3161,9 @@ try{
 
 funAlert = function(meldung="",titel=""){
     if (Notification.permission === "granted") {
-      new Notification("Titel", {
-        body: "Dies ist eine Browser-Meldung.",
-        //icon: "https://example.com/icon.png" // optional
+      new Notification(titel, {
+        body:meldung,
+        icon: "https://example.com/icon.png" // optional
       });
     } else if (Notification.permission !== "denied") {
       Notification.requestPermission().then(permission => {
@@ -3175,5 +3175,4 @@ funAlert = function(meldung="",titel=""){
       });
     }
 }
-
 
