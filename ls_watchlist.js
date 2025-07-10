@@ -9,7 +9,7 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("62") // =======================================
+console.log("63") // =======================================
 tra ={
     init:function(){
         this.trades = window.localStorage.getItem("trades")||"{}"
@@ -39,6 +39,12 @@ tra ={
         prc=prc*1
         window.localStorage.setItem("deviPercVal",prc)
         c.deviPercVal = prc
+    },
+    setHelpLine:(value){
+        for(n in list){
+            let l = list[n];
+            this.linehelp(l.key,value||l.bid)
+        }
     },
     out:function(name,buyout){
         this.trades[name].buyout=buyout
@@ -441,6 +447,7 @@ initWatchlist = function(){
     funAddHtmlE(place,"button","clear","",{},{click:()=>{localStorage.clear();}})
     funAddHtmlE(place,"button","Per","",{},{click:()=>{tra.inputPercent();}})
     funAddHtmlE(place,"button","Dev","",{},{click:()=>{tra.inputdeviPercVal();}})
+    funAddHtmlE(place,"button","setHelpL","",{},{click:()=>{tra.setHelpLine();}})
     //funAddHtmlE(place,"button","10","",{},{click:()=>{c.minutes=10;}})
     //funAddHtmlE(place,"button","15","",{onclick:()=>{c.minutes=15;}})
     //funAddHtmlE(place,"button","20","",{},{click:()=>{c.minutes=20;}})
