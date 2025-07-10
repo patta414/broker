@@ -58,9 +58,7 @@ checkLogic = function(wkn){
     //console.log(title,minL.bid,dev_min,t_min,minL)
     //if(send) funAlert(title,msg)
 }
-for(n in list){
-    checkLogic(n)
-}
+
 
 tra ={
     init:function(){
