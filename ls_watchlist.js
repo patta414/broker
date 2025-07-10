@@ -59,6 +59,7 @@ tra ={
         window.localStorage.setItem("trades",JSON.stringify(tra.trades))
     },
     linehelp:function(name,linehelp){
+        this.trades[name] =  this.trades[name] || {}
         this.trades[name].linehelp = linehelp
         window.localStorage.setItem("trades",JSON.stringify(tra.trades))
     },
