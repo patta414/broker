@@ -25,7 +25,7 @@ tra ={
     	//t.get()
     },
     input:function(name,type="add"){
-        buyin = window.prompt(archiv[name][0].name+" buyin")
+        buyin = window.prompt(archiv[name][0].name+" - "+type,this.trades[name][type])
         buyin = (buyin)?buyin.replace(",","."):null
         this[type](name,buyin)
     },
@@ -53,7 +53,12 @@ tra ={
         this.trades[name] = {
             buyin:null,
             buyout:null,
+            linehelp:null,
         }
+        window.localStorage.setItem("trades",JSON.stringify(tra.trades))
+    },
+    help:function(name,linehelp){
+        this.trades[name].linehelp = linehelp
         window.localStorage.setItem("trades",JSON.stringify(tra.trades))
     },
 }
@@ -215,6 +220,7 @@ c.update = function(name,duration){
     const values = neueDaten.map(d => d.bid);
     let lineval = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyin:null)
     let lineout = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyout:null)
+    let linehelp = neueDaten.map(d => (tra.trades[name])?tra.trades[name].linehelp:null)
     let perc =(tra.trades[name])?tra.trades[name].percent:null
         perc = perc|| c.percent
         perc = perc*1
@@ -250,6 +256,11 @@ c.update = function(name,duration){
     c.charts[name].data.datasets[4].data = tolM;
     c.charts[name].data.datasets[4].label = base + " - " + perc
     c.charts[name].data.datasets[4].borderColor = "lightgrey"
+    
+    c.charts[name].data.datasets[5] = {...c.charts[name].data.datasets[0]}
+    c.charts[name].data.datasets[5].data = linehelp;
+    c.charts[name].data.datasets[5].label = linehelp[0];
+    c.charts[name].data.datasets[5].borderColor = "lightgrey"
     // Chart neu rendern
     c.charts[name].update();
 }
@@ -319,7 +330,7 @@ classRow = class {
             print = field.len +" | "+ field.timestamp+ "<br>"
             print = (field[was]-this[was]<0)?"^":"."
             place.innerHTML += print
-            this.fields.test.innerHTML += ((new Date()-field.timestamp)/1000/60).toFixed(0) + "|"
+            //this.fields.test.innerHTML += ((new Date()-field.timestamp)/1000/60).toFixed(0) + "|"
         })
     };
     get_last_per_min=function(min){
@@ -411,6 +422,7 @@ initWatchlist = function(){
         funAddHtmlE(fields[8],"button","buyIn","",{onclick:"tra.input('"+id+"')"})
         funAddHtmlE(fields[8],"button","out","",{onclick:"tra.input('"+id+"','out')"})
         funAddHtmlE(fields[8],"button","del","",{onclick:"tra.del('"+id+"')"})
+        funAddHtmlE(fields[8],"button","help","",{onclick:"tra.input('"+id+"','helpline')"})
         get_store(id)
         c.liste.push(id)
         //console.log(fields)
