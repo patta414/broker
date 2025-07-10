@@ -9,7 +9,59 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("64") // =======================================
+console.log("65") // =======================================
+cl = false
+checkLogic = function(wkn){
+    if(!(cl)) return
+    let msg="",title,send=false,dev_min,dev_max,mind;
+    let l = list[wkn]
+    let t = tra.trades[wkn]||{}
+    let a = archiv[wkn] || []
+    
+    let minL = a.findLast(e=>e.bid==(Math.min(...a.map(el=>el.bid))))
+    let maxL = a.findLast(e=>e.bid==(Math.max(...a.map(el=>el.bid))))
+
+    
+    let dev_help = t.linehelp
+        dev_help = (l.bid-dev_help)/dev_help*100
+    if(t.buyin){
+        dev_min = t.buyin
+        dev_min = ((minL.bid-dev_min)/dev_min*100).toFixed(2)
+        t_min = (new Date(new Date() - minL.timestamp)/1000/60).toFixed()
+        if(t_min > 20) send = true
+        msg += "+++ seit " + t_min +" min um "+dev_min+" %"
+    }
+
+    if(t.buyin){
+        dev_max = t.buyin
+        dev_max = ((maxL.bid-dev_max)/dev_max*100).toFixed(2)
+        t_max = (new Date(new Date()-maxL.timestamp)/1000/60).toFixed()
+        if(t_max > 5) send = true 
+        msg += "\n--- Die aktie fällt seit " + t_max +" min um "+dev_max+" %"
+    }
+    
+    let base = t.linehelp||t.buyin||l.bid
+    let dev = (l.bid-base)/base*100
+    if(t.buyin>0) {
+        if(dev < -0.3){
+            send=true
+            msg += "unter hilfslinie gefallen um "+dev.toFixed(2)+" %"
+        }
+        mind = (l.bid-base)/base*100
+        
+        //msg += "\n"+mind
+    }
+    
+    
+    title = l.name 
+    if(send) console.log(title+"\n",msg)
+    //console.log(title,minL.bid,dev_min,t_min,minL)
+    //if(send) funAlert(title,msg)
+}
+for(n in list){
+    checkLogic(n)
+}
+
 tra ={
     init:function(){
         this.trades = window.localStorage.getItem("trades")||"{}"
@@ -269,7 +321,9 @@ c.update = function(name,duration){
     // Chart neu rendern
     c.charts[name].update();
 }
-window.followFunctionTest=function(el){}
+window.followFunctionTest=function(el){
+    checkLogic("_"+el.wkn)
+}
 
 window.archiv = window.archiv||{};
 classRow = class {
