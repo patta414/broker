@@ -40,7 +40,7 @@ tra ={
         window.localStorage.setItem("deviPercVal",prc)
         c.deviPercVal = prc
     },
-    setHelpLine:(value){
+    setHelpLine:function(value){
         for(n in list){
             let l = list[n];
             this.linehelp(l.key,value||l.bid)
