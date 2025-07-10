@@ -508,7 +508,7 @@ initWatchlist = function(){
     //funAddHtmlE(place,"button","10","",{},{click:()=>{c.minutes=10;}})
     //funAddHtmlE(place,"button","15","",{onclick:()=>{c.minutes=15;}})
     //funAddHtmlE(place,"button","20","",{},{click:()=>{c.minutes=20;}})
-    for(i=1;i<=45;i=i+2){
+    for(i=1;i<=61;i=i+2){
         const min = i
         funAddHtmlE(place,"button",min,"",{},{click:()=>{c.refreshAll(min);}})
     }
