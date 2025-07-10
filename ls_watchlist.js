@@ -9,7 +9,7 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("60") // =======================================
+console.log("61") // =======================================
 tra ={
     init:function(){
         this.trades = window.localStorage.getItem("trades")||"{}"
@@ -422,7 +422,7 @@ initWatchlist = function(){
         funAddHtmlE(fields[8],"button","buyIn","",{onclick:"tra.input('"+id+"')"})
         funAddHtmlE(fields[8],"button","out","",{onclick:"tra.input('"+id+"','out')"})
         funAddHtmlE(fields[8],"button","del","",{onclick:"tra.del('"+id+"')"})
-        funAddHtmlE(fields[8],"button","help","",{onclick:"tra.input('"+id+"','helpline')"})
+        funAddHtmlE(fields[8],"button","help","",{onclick:"tra.input('"+id+"','linehelp')"})
         get_store(id)
         c.liste.push(id)
         //console.log(fields)
