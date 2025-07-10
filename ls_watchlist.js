@@ -310,8 +310,10 @@ classRow = class {
         ad(this.bid+" €","bid")
         let lineval = (tra.trades[this.key])?tra.trades[this.key].buyin:null;
         let lineout = (tra.trades[this.key])?tra.trades[this.key].buyout:null;
+        let linehelp = (tra.trades[this.key])?tra.trades[this.key].linehelp:null;
         if(lineval) ad(((this.bid-lineval)/this.bid*100).toFixed(2)+" %","IN","background: lightgrey;")
         if(lineout) ad(((this.bid-lineout)/this.bid*100).toFixed(2)+" %","OUT","background: lightgrey;")
+        if(linehelp) ad(((this.bid-linehelp)/this.bid*100).toFixed(2)+" %","help","border: 1px solid black;")
         followFunctionTest(this)
     };
     add=function(){
