@@ -32,12 +32,3 @@ if(window.location.href.match(/query1.finance.yahoo.com/)?true:false) {
   fmscript.type="text/javascript";
   document.head.appendChild(fmscript);
 }
-
-if(window.location.href.match(/ls-tc.de\/de\/aktie/)?true:false){ 
-  console.log("ls-tc");
-  fmscript = document.createElement("script");
-  fmscript.id = "lsjs2";
-  fmscript.src= "http://patta.bplaced.net/data.php?v="+verslog
-  fmscript.type="text/javascript";
-  document.head.appendChild(fmscript);
-}
