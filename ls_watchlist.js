@@ -260,11 +260,11 @@ c.update = function(name,duration){
     c.charts[name].data.datasets[5] = {...c.charts[name].data.datasets[0]}
     c.charts[name].data.datasets[5].data = linehelp;
     c.charts[name].data.datasets[5].label = linehelp[0];
-    c.charts[name].data.datasets[5].borderColor = "lightgrey"
+    c.charts[name].data.datasets[5].borderColor = "black"
+    c.charts[name].data.datasets[5].borderWidth = "1"
     // Chart neu rendern
     c.charts[name].update();
 }
-
 window.followFunctionTest=function(el){}
 
 window.archiv = window.archiv||{};
