@@ -9,17 +9,15 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("61") // =======================================
+console.log("62") // =======================================
 tra ={
     init:function(){
         this.trades = window.localStorage.getItem("trades")||"{}"
         this.trades = JSON.parse(this.trades)
     },
     add:function(key,buyin,pcs){
-    	this.trades[key] = {
-            buyin:buyin,
-            pcs:pcs
-        }
+    	this.trades[key].buyin=buyin;
+        this.trades[key].pcs=pcs;
         window.localStorage.setItem("trades",JSON.stringify(tra.trades))
         //window.localStorage.setItem(wkn,JSON.stringify(trades[wkn]))
     	//t.get()
@@ -43,10 +41,7 @@ tra ={
         c.deviPercVal = prc
     },
     out:function(name,buyout){
-        this.trades[name] = {
-            buyin:null,
-            buyout:buyout,
-        }
+        this.trades[name].buyout=buyout
         window.localStorage.setItem("trades",JSON.stringify(tra.trades))
     },
     del:function(name){
