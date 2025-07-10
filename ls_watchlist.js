@@ -9,7 +9,7 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("65") // =======================================
+console.log("66") // =======================================
 cl = false
 checkLogic = function(wkn){
     if(!(cl)) return
