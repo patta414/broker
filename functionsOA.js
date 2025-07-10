@@ -3159,6 +3159,21 @@ try{
 }catch(err){}
 
 
-
+funAlert = function(meldung="",titel=""){
+    if (Notification.permission === "granted") {
+      new Notification("Titel", {
+        body: "Dies ist eine Browser-Meldung.",
+        //icon: "https://example.com/icon.png" // optional
+      });
+    } else if (Notification.permission !== "denied") {
+      Notification.requestPermission().then(permission => {
+        if (permission === "granted") {
+          new Notification(titel, {
+            body: meldung,
+          });
+        }
+      });
+    }
+}
 
 
