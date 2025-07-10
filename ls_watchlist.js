@@ -9,7 +9,7 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("59") // =======================================
+console.log("60") // =======================================
 tra ={
     init:function(){
         this.trades = window.localStorage.getItem("trades")||"{}"
@@ -57,7 +57,7 @@ tra ={
         }
         window.localStorage.setItem("trades",JSON.stringify(tra.trades))
     },
-    help:function(name,linehelp){
+    linehelp:function(name,linehelp){
         this.trades[name].linehelp = linehelp
         window.localStorage.setItem("trades",JSON.stringify(tra.trades))
     },
