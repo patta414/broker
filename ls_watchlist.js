@@ -9,12 +9,16 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("66") // =======================================
-cl = false
+console.log("67") // =======================================
+cl = true
 checkLogic = function(wkn){
+    let alrt = function(a,b,c){
+        funAlert(a,b)
+        console.log(a+"\n",b,c)
+    }
     if(!(cl)) return
     let msg="",title,send=false,dev_min,dev_max,mind;
-    let l = list[wkn]
+    let l = list[wkn]||[{}]
     let t = tra.trades[wkn]||{}
     let a = archiv[wkn] || []
     
@@ -24,27 +28,43 @@ checkLogic = function(wkn){
     
     let dev_help = t.linehelp
         dev_help = (l.bid-dev_help)/dev_help*100
+    
+    
     if(t.buyin){
+        //cl = false
         dev_min = t.buyin
         dev_min = ((minL.bid-dev_min)/dev_min*100).toFixed(2)
         t_min = (new Date(new Date() - minL.timestamp)/1000/60).toFixed()
-        if(t_min > 20) send = true
+        if(t_min < 10) send = true
         msg += "+++ seit " + t_min +" min um "+dev_min+" %"
-    }
-
-    if(t.buyin){
+        
         dev_max = t.buyin
         dev_max = ((maxL.bid-dev_max)/dev_max*100).toFixed(2)
         t_max = (new Date(new Date()-maxL.timestamp)/1000/60).toFixed()
         if(t_max > 5) send = true 
         msg += "\n--- Die aktie fällt seit " + t_max +" min um "+dev_max+" %"
+    
+        
+    
+    }
+
+    if(t.buyin){
+        let ind = a.length-1 
+        if(t.buyin>=a[ind].bid && t.buyin<a[ind-1].bid) alrt(l.name,"Hat gerade den Einstiegskurs überschritten")   
+        //arr = l
+    }
+
+    if(t.linehelp){
+        let ind = a.length-1 
+        if(t.buyin>=a[ind].bid && t.buyin<a[ind-1].bid) alrt(l.name,"Hat gerade die Hilfslinie überschritten")
+        if(t.buyin<=a[ind].bid && t.buyin>a[ind-1].bid) alrt(l.name,"Hat gerade die Hilfslinie unterschritten")
     }
     
     let base = t.linehelp||t.buyin||l.bid
     let dev = (l.bid-base)/base*100
     if(t.buyin>0) {
         if(dev < -0.3){
-            send=true
+            //send=true
             msg += "unter hilfslinie gefallen um "+dev.toFixed(2)+" %"
         }
         mind = (l.bid-base)/base*100
@@ -52,11 +72,12 @@ checkLogic = function(wkn){
         //msg += "\n"+mind
     }
     
-    
+    //console.log(minL,maxL)
     title = l.name 
-    if(send) console.log(title+"\n",msg)
+    //if(send) console.log(title+"\n",msg)
     //console.log(title,minL.bid,dev_min,t_min,minL)
     //if(send) funAlert(title,msg)
+    
 }
 
 
