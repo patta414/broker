@@ -129,7 +129,7 @@ tra ={
         }
     },
     buyout:function(name,buyout){
-        this.trades[key]=this.trades[key]||{}
+        this.trades[name]=this.trades[name]||{}
         this.trades[name].buyout=buyout
         window.localStorage.setItem("trades",JSON.stringify(tra.trades))
     },
