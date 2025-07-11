@@ -9,7 +9,7 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("73") // =======================================
+console.log("74") // =======================================
 cl = true
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -95,6 +95,7 @@ tra ={
         this.trades = JSON.parse(this.trades)
     },
     buyin:function(key,buyin,pcs){
+        this.trades[key]=this.trades[key]||{}
     	this.trades[key].buyin=buyin;
         this.trades[key].pcs=pcs;
         window.localStorage.setItem("trades",JSON.stringify(tra.trades))
@@ -128,6 +129,7 @@ tra ={
         }
     },
     buyout:function(name,buyout){
+        this.trades[key]=this.trades[key]||{}
         this.trades[name].buyout=buyout
         window.localStorage.setItem("trades",JSON.stringify(tra.trades))
     },
