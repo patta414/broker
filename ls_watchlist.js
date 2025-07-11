@@ -60,11 +60,11 @@ checkLogic = function(wkn){
     if(t.linehelp){
         let ind = a.length-1
         let comp = t.buyin
-        if(comp>=a[ind].bid && comp<a[ind-1].bid) alrt(l.name,"Hat gerade die Hilfslinie überschritten")
-        if(comp<=a[ind].bid && comp>a[ind-1].bid) alrt(l.name,"Hat gerade die Hilfslinie unterschritten")
+        if(comp>=a[ind].bid && comp<a[ind-1].bid && comp<a[ind-2].bid && comp<a[ind-3].bid) alrt(l.name,"Hat gerade die Hilfslinie überschritten")
+        if(comp<=a[ind].bid && comp>a[ind-1].bid && comp<a[ind-2].bid && comp<a[ind-3].bid) alrt(l.name,"Hat gerade die Hilfslinie unterschritten")
         comp = t.linehelp*1.02
-            if(comp>=a[ind].bid && comp<a[ind-1].bid) alrt(l.name,"Hat gerade +++ 2% Hilfslinie")
-            //if(comp<=a[ind].bid && comp>a[ind-1].bid) alrt(l.name,"Hat gerade --- 2% Hilfslinie")
+            if(comp>=a[ind].bid && comp<a[ind-1].bid && comp<a[ind-2].bid && comp<a[ind-3].bid) alrt(l.name,"Hat gerade +++ 2% Hilfslinie")
+            //if(comp<=a[ind].bid && comp>a[ind-1].bid && comp<a[ind-2].bid && comp<a[ind-3].bid) alrt(l.name,"Hat gerade --- 2% Hilfslinie")
     }
     
     let base = t.linehelp||t.buyin||l.bid
