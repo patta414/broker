@@ -9,7 +9,7 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("69") // =======================================
+console.log("70") // =======================================
 cl = true
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -23,7 +23,8 @@ checkLogic = function(wkn){
     let a = archiv[wkn] || false
     
     if(!(a)) return
-
+    if(!(l)) return
+    
     let minL = a.findLast(e=>e.bid==(Math.min(...a.map(el=>el.bid))))
     let maxL = a.findLast(e=>e.bid==(Math.max(...a.map(el=>el.bid))))
 
