@@ -9,7 +9,7 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("71") // =======================================
+console.log("72") // =======================================
 cl = true
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -53,7 +53,7 @@ checkLogic = function(wkn){
 
     if(t.buyin){
         let ind = a.length-1 
-        if(t.buyin>=a[ind].bid && t.buyin<a[ind-1].bid) alrt(l.name,"Hat gerade den Einstiegskurs erreicht")   
+        if(t.buyin>=a[ind].bid && t.buyin<a[ind-1].bid && t.buyin<a[ind-2].bid && t.buyin<a[ind-3].bid) alrt(l.name,"Hat gerade den Einstiegskurs erreicht")   
         //arr = l
     }
 
