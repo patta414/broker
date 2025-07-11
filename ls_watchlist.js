@@ -318,8 +318,8 @@ c.update = function(name,duration){
         lineout = lineout.map(d=>null)
         base = values[values.length-1]
     }
-    let tolP = neueDaten.map(d => base * (100+perc)/100)
-    let tolM = neueDaten.map(d => base * (100-perc)/100)
+    let tolP = (name != '_LUSDAX')?neueDaten.map(d => base * (100+perc)/100):neueDaten.map(d =>null)
+    let tolM = (name != '_LUSDAX')?neueDaten.map(d => base * (100-perc)/100):neueDaten.map(d =>null)
     //console.log(tolP)
     // Bestehende Daten im Chart ersetzen
     c.charts[name].data.labels = labels;
