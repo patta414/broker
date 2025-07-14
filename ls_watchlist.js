@@ -9,7 +9,7 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("74") // =======================================
+console.log("75") // =======================================
 cl = true
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -512,7 +512,6 @@ initWatchlist = function(){
         funAddHtmlE(fields[8],"button","out","",{onclick:"tra.input('"+id+"','buyout')"})
         funAddHtmlE(fields[8],"button","del","",{onclick:"tra.del('"+id+"')"})
         funAddHtmlE(fields[8],"button","help","",{onclick:"tra.input('"+id+"','linehelp')"})
-        funAddHtmlE(fields[8],"button","help","",{onclick:"obj = {};for(n in tra.trades){el = tra.trades[n];if(el.buyin>0) obj[n] = el;};console.log(obj)"})
         get_store(id)
         c.liste.push(id)
         //console.log(fields)
@@ -537,6 +536,7 @@ initWatchlist = function(){
     funAddHtmlE(place,"button","Per","",{},{click:()=>{tra.inputPercent();}})
     funAddHtmlE(place,"button","Dev","",{},{click:()=>{tra.inputdeviPercVal();}})
     funAddHtmlE(place,"button","setHelpL","",{},{click:()=>{tra.setHelpLine();}})
+    funAddHtmlE(fields[8],"button","OBJ","",{onclick:"obj = {};for(n in tra.trades){el = tra.trades[n];if(el.buyin>0) obj[n] = el;};console.log(obj)"})
     //funAddHtmlE(place,"button","10","",{},{click:()=>{c.minutes=10;}})
     //funAddHtmlE(place,"button","15","",{onclick:()=>{c.minutes=15;}})
     //funAddHtmlE(place,"button","20","",{},{click:()=>{c.minutes=20;}})
