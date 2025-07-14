@@ -512,6 +512,7 @@ initWatchlist = function(){
         funAddHtmlE(fields[8],"button","out","",{onclick:"tra.input('"+id+"','buyout')"})
         funAddHtmlE(fields[8],"button","del","",{onclick:"tra.del('"+id+"')"})
         funAddHtmlE(fields[8],"button","help","",{onclick:"tra.input('"+id+"','linehelp')"})
+        funAddHtmlE(fields[8],"button","help","",{onclick:"obj = {};for(n in tra.trades){el = tra.trades[n];if(el.buyin>0) obj[n] = el;};console.log(obj)"})
         get_store(id)
         c.liste.push(id)
         //console.log(fields)
