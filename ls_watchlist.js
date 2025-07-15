@@ -9,7 +9,7 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("77") // =======================================
+console.log("78") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -551,6 +551,23 @@ initWatchlist = function(){
  }
 
 formPercent = function(id){
+    let wkn = id
+    let l = list[wkn]||[{}]
+    let t = tra.trades[wkn]||{}
+    if(!(t.buyin)) return
+    place = formular.standard()
+    funAddHtmlE(place,"div","buyin= "+t.buyin)
+    place = funAddHtmlE(place,"div")
+    let arr = []
+    for(ii=0;ii<=9;ii++){
+        let line = {base:ii}
+        for(i=6;i>=-6;i--){
+        //    line.base=ii
+            line[" * "+i+",x"] = (t.buyin*1+(t.buyin*(i+(ii/10))/100)).toFixed(2)+" | "
+        }
+        arr.push(line)
+    }
+    funAddTableArrObj(place,arr)
     
 }
 
