@@ -9,7 +9,7 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("78") // =======================================
+console.log("79") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -91,15 +91,21 @@ checkLogic = function(wkn){
 
 
 tra ={
+    store:function(name){
+        tra.trades[name].name = list[name].name
+        window.localStorage.setItem("trades",JSON.stringify(tra.trades))
+    },
     init:function(){
         this.trades = window.localStorage.getItem("trades")||"{}"
         this.trades = JSON.parse(this.trades)
     },
-    buyin:function(key,buyin,pcs){
-        this.trades[key]=this.trades[key]||{}
-    	this.trades[key].buyin=buyin;
-        this.trades[key].pcs=pcs;
-        window.localStorage.setItem("trades",JSON.stringify(tra.trades))
+    buyin:function(name,buyin,pcs){
+        this.trades[name]=this.trades[key]||{}
+    	this.trades[name].buyin=buyin;
+        this.trades[name].pcs=pcs;
+        this.trades[name].buyout=null;
+        
+        this.store(name)
         //window.localStorage.setItem(wkn,JSON.stringify(trades[wkn]))
     	//t.get()
     },
@@ -132,7 +138,8 @@ tra ={
     buyout:function(name,buyout){
         this.trades[name]=this.trades[name]||{}
         this.trades[name].buyout=buyout
-        window.localStorage.setItem("trades",JSON.stringify(tra.trades))
+        this.trades[name].buyin=null
+        this.store(name)
     },
     del:function(name){
         this.trades[name] = {
@@ -140,12 +147,12 @@ tra ={
             buyout:null,
             linehelp:null,
         }
-        window.localStorage.setItem("trades",JSON.stringify(tra.trades))
+        this.store(name)
     },
     linehelp:function(name,linehelp){
         this.trades[name] =  this.trades[name] || {}
         this.trades[name].linehelp = linehelp
-        window.localStorage.setItem("trades",JSON.stringify(tra.trades))
+        this.store(name)
     },
 }
 tra.init()
