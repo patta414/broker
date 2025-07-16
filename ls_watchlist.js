@@ -100,7 +100,7 @@ tra ={
         this.trades = JSON.parse(this.trades)
     },
     buyin:function(name,buyin,pcs){
-        this.trades[name]=this.trades[key]||{}
+        this.trades[name]=this.trades[name]||{}
     	this.trades[name].buyin=buyin;
         this.trades[name].pcs=pcs;
         this.trades[name].buyout=null;
