@@ -9,7 +9,7 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("81") // =======================================
+console.log("82") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -535,11 +535,11 @@ initWatchlist = function(){
         observer.observe(elementToObserve, {characterData: false, childList: true, attributes: true});
         //c.buildContainer(id)
         //c.buildChart(id)
-
+    
         
         
         //new classRow({target:elementToObserve})
-        
+        setTimeout(funTimeCheck, 5000);
     })
     let place = document.querySelector("#main_layout > div > nav > div:nth-child(1) > div")
     funAddHtmlE(place,"br")
@@ -580,7 +580,12 @@ formPercent = function(id){
     
 }
 window.lastrefresh = new Date()
-funTimeCheck=function(){}
-setTimeout(funTimeCheck, 5000);
+funTimeCheck=function(){
+    let lastsec = (new Date() - window.lastrefresh)/1000
+    //console.log(lastsec)
+    if(lastsec>10) window.location.reload()
+    setTimeout(funTimeCheck, 5000);
+};
+
 
 initWatchlist()
