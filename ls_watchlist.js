@@ -9,7 +9,7 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("79") // =======================================
+console.log("80") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -359,7 +359,7 @@ c.update = function(name,duration){
     c.charts[name].update();
 }
 window.followFunctionTest=function(el){
-    checkLogic("_"+el.wkn)
+    
 }
 
 window.archiv = window.archiv||{};
@@ -408,6 +408,7 @@ classRow = class {
         if(lineval) ad(((this.bid-lineval)/this.bid*100).toFixed(2)+" %","IN","background: lightgrey;")
         if(lineout) ad(((this.bid-lineout)/this.bid*100).toFixed(2)+" %","OUT","background: lightgrey;")
         if(linehelp) ad(((this.bid-linehelp)/this.bid*100).toFixed(2)+" %","help","border: 1px solid black;")
+        checkLogic("_"+this.wkn)
         followFunctionTest(this)
     };
     add=function(){
@@ -489,6 +490,7 @@ classRow = class {
 } 
 
 observeFunction=function(mutationsList, observer){
+    window.lastrefresh = new Date()
     let r = new classRow(mutationsList[0])
     //console.log(r.wkn)
     //window.l=window.l||{}
