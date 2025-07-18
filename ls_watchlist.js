@@ -9,7 +9,7 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("80") // =======================================
+console.log("81") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -579,6 +579,8 @@ formPercent = function(id){
     funAddTableArrObj(place,arr)
     
 }
-
+window.lastrefresh = new Date()
+funTimeCheck=function(){}
+setTimeout(funTimeCheck, 5000);
 
 initWatchlist()
