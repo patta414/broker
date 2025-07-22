@@ -9,7 +9,7 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("83") // =======================================
+console.log("84") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -317,8 +317,10 @@ c.update = function(name,duration){
     let perc =(tra.trades[name])?tra.trades[name].percent:null
         perc = perc|| c.percent
         perc = perc*1
-    let base = (tra.trades[name])?tra.trades[name].buyin:tra.trades[name].buyout
+    let base = (tra.trades[name])?tra.trades[name].buyin:null
+        base = base||(tra.trades[name])?tra.trades[name].buyout:null
         base = base||values[values.length-1]
+    
     let percVal = values[values.length-1] / base
     let devi = percVal > (100+c.deviPercVal*1)/100 || percVal < (100-c.deviPercVal*1)/100
     let color = (percVal <= 1) ?"red":"steelblue"
