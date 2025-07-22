@@ -9,7 +9,7 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("87") // =======================================
+console.log("88") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -321,8 +321,11 @@ c.update = function(name,duration){
         base = base||(tra.trades[name])?tra.trades[name].buyout:null
         base = base||values[values.length-1]
 
-    let basesource = (tra.trades[name])?"buyin":null
-        basesource = base||(tra.trades[name])?"buyout":null
+    let basesource = null
+    if(tra.trades[name]){
+        if(tra.trades[name].buyin) basesource = "buyin"
+        if(tra.trades[name].buyout) basesource = "buyout"
+    }
     
     let percVal = values[values.length-1] / base
     let devi = percVal > (100+c.deviPercVal*1)/100 || percVal < (100-c.deviPercVal*1)/100
