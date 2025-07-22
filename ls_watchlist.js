@@ -9,7 +9,7 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("84") // =======================================
+console.log("85") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -323,8 +323,8 @@ c.update = function(name,duration){
     
     let percVal = values[values.length-1] / base
     let devi = percVal > (100+c.deviPercVal*1)/100 || percVal < (100-c.deviPercVal*1)/100
-    let color = (percVal <= 1) ?"red":"steelblue"
-    if(percVal>1) color = "green"
+    let color = (percVal < 1) ?"red":"steelblue"
+    if(percVal>=1) color = "green"
     if(devi){
         lineval = lineval.map(d=>null)
         lineout = lineout.map(d=>null)
