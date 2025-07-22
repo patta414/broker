@@ -9,7 +9,7 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("89") // =======================================
+console.log("90") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -328,6 +328,7 @@ c.update = function(name,duration){
     }
     
     let percVal = values[values.length-1] / base
+    window.last = {percVal,tra.trades[name],base,basesource}
     let devi = percVal > (100+c.deviPercVal*1)/100 || percVal < (100-c.deviPercVal*1)/100
     let color = "steelblue"
         color = (basesource=='buyin' && percVal < 1) ?"red":"green"
