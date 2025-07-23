@@ -9,7 +9,7 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("82") // =======================================
+console.log("83") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -325,9 +325,12 @@ c.update = function(name,duration){
     if(percVal>1) color = "green"
     if(devi){
         lineval = lineval.map(d=>null)
-        lineout = lineout.map(d=>null)
+        
         base = values[values.length-1]
     }
+
+    lineout = lineout.map(d=>null)
+    
     let tolP = (name != '_LUSDAX')?neueDaten.map(d => base * (100+perc)/100):neueDaten.map(d =>null)
     let tolM = (name != '_LUSDAX')?neueDaten.map(d => base * (100-perc)/100):neueDaten.map(d =>null)
     //console.log(tolP)
