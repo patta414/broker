@@ -9,7 +9,7 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("83") // =======================================
+console.log("84") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -586,7 +586,7 @@ window.lastrefresh = new Date()
 funTimeCheck=function(){
     let lastsec = (new Date() - window.lastrefresh)/1000
     //console.log(lastsec)
-    if(lastsec>10) window.location.reload()
+    if(lastsec>10 && (new Date().getHours()>8))  window.location.reload()
     setTimeout(funTimeCheck, 5000);
 };
 
