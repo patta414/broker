@@ -116,7 +116,8 @@ if(window.observerActive != true) {window.observerActive = true;
     elem.parentElement.removeChild(elem)
     elem = document.querySelector("div[class^=row")
     elem.parentElement.removeChild(elem)
-   document.querySelector("image").style.display = 'none'
+   let e2 = document.querySelector("image")
+	if(e2) e2.style.display = 'none'
     arr = document.querySelectorAll("g[class^=highcharts-axis-labels")[1]
 arr = (arr)?arr.childNodes:[]
 //arr.forEach(el=>el.style.display = 'none')
