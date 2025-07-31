@@ -22,7 +22,7 @@ if(window.location.href.match(/ls-tc.de\/de\/aktien/)?true:false){
   fmscript.id = "lsjs";
   fmscript.src= "https://patta414.github.io/broker/ls_watchlist.js?v="+verslog
   fmscript.type="text/javascript";
-  document.head.appendChild(fmscript);;
+  document.head.appendChild("window.merkinitWatchlist = true;"+fmscript);;
 }
 
 if(window.location.href.match(/ls-tc.de\/de\/watchlist/)?true:false){ 
