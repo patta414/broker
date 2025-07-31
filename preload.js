@@ -6,13 +6,23 @@ fmscript.src="https://d3js.org/d3.v7.min.js"
 fmscript.type="text/javascript";
 document.head.appendChild(fmscript);
 
-if(window.location.href.match(/ls-tc.de\/de\/aktie/)?true:false){ 
+if(window.location.href.match(/ls-tc.de\/de\/aktie\//)?true:false){ 
   console.log("ls-tc");
   fmscript = document.createElement("script");
   fmscript.id = "lsjs";
   fmscript.src= "https://patta414.github.io/broker/ls.js?v="+verslog
   fmscript.type="text/javascript";
   document.head.appendChild(fmscript);
+}
+
+if(window.location.href.match(/ls-tc.de\/de\/aktien/)?true:false){ 
+  window.merkinitWatchlist = true;
+  console.log("ls-tc WATCHLIST");
+  fmscript = document.createElement("script");
+  fmscript.id = "lsjs";
+  fmscript.src= "https://patta414.github.io/broker/ls_watchlist.js?v="+verslog
+  fmscript.type="text/javascript";
+  document.head.appendChild(fmscript);;
 }
 
 if(window.location.href.match(/ls-tc.de\/de\/watchlist/)?true:false){ 
