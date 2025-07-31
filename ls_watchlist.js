@@ -3,13 +3,13 @@ c={
     new:"jetzt",
     container:{},
     active:false,
-    minutes:15,
+    minutes:window.localStorage.getItem("minutes")||15,
     liste:[],
     percent:window.localStorage.getItem("percent")||0.2,
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
 };
-console.log("85") // =======================================
+console.log("01") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -514,6 +514,7 @@ cons = function(el){
 }
 newFields = ['cha','spread','updown','test']
 initWatchlist = function(){
+    if(typeof(funAddHtmlE)=='undefined') window.location.reload()
     if(window.merkinitWatchlist == true) return
     //window.archiv = window.archiv || {}
     table = document.querySelector("tbody")
@@ -557,7 +558,7 @@ initWatchlist = function(){
     //funAddHtmlE(place,"button","20","",{},{click:()=>{c.minutes=20;}})
     for(i=1;i<=61;i=i+2){
         const min = i
-        funAddHtmlE(place,"button",min,"",{},{click:()=>{c.refreshAll(min);}})
+        funAddHtmlE(place,"button",min,"",{},{click:()=>{window.localStorage.setItem("minutes",min);c.refreshAll(min);}})
     }
     window.merkinitWatchlist = true;
  }
