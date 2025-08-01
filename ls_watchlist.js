@@ -8,8 +8,9 @@ c={
     percent:window.localStorage.getItem("percent")||0.2,
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
+    storeMinutes:60,
 };
-console.log("01") // =======================================
+console.log("02") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -373,7 +374,7 @@ classRow = class {
         window.archiv[this.key] = window.archiv[this.key] || this.get_store()
         window.archiv[this.key].forEach(el=>el.timestamp = new Date(el.timestamp))
         //console.log(this.key,window.archiv[this.key].length)
-        window.archiv[this.key] = window.archiv[this.key].filter(el=>el.timestamp >= funDatum.addHours(-(1)));
+        window.archiv[this.key] = window.archiv[this.key].filter(el=>el.timestamp >= funDatum.addHours(-(c.storeMinutes/60)));
         this.archiv = window.archiv[this.key]
         //console.log(this,this.archiv)
         //this.archiv = this.archiv.filter(el=>el.timestamp >= funDatum.addHours(-(1/60)));
