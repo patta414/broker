@@ -10,7 +10,7 @@ c={
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
     storeMinutes:60,
 };
-console.log("02") // =======================================
+console.log("03") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -548,7 +548,7 @@ initWatchlist = function(){
     })
     let place = document.querySelector("#main_layout > div > nav > div:nth-child(1) > div")
     funAddHtmlE(place,"br")
-    funAddHtmlE(place,"button","clear","",{},{click:()=>{localStorage.clear();}})
+    funAddHtmlE(place,"button","clear","",{},{click:()=>{c.storeMinutes=30;}})
     funAddHtmlE(place,"button","Per","",{},{click:()=>{tra.inputPercent();}})
     funAddHtmlE(place,"button","Dev","",{},{click:()=>{tra.inputdeviPercVal();}})
     funAddHtmlE(place,"button","setHelpL","",{},{click:()=>{tra.setHelpLine();}})
