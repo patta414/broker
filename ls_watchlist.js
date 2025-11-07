@@ -97,6 +97,8 @@ tra ={
         let {wkn,buyin,qty,helpline} = obj
         if(buyin) this.buyin(wkn,buyin,qty)
         if(helpline) this.linehelp(wkn,helpline)
+        //tra.funAddFromSearch()
+        location.href = location.href.split("?")[0]
     },
     store:function(name){
         tra.trades[name].name = list[name].name
