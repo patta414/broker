@@ -97,7 +97,7 @@ tra ={
         let {wkn,buyin,qty,helpline} = obj
         if(buyin) this.buyin(wkn,buyin,qty)
         if(helpline) this.linehelp(wkn,helpline)
-    }
+    },
     store:function(name){
         tra.trades[name].name = list[name].name
         window.localStorage.setItem("trades",JSON.stringify(tra.trades))
