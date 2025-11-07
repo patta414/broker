@@ -10,6 +10,24 @@ langKEY = 'DE'
 plantKEY = '0067'
 colm = []
 
+funLocSearch=function(){
+    if(!(location.search && localStorage)) return
+    window.localStorage.setItem("locationSearch",location.search)
+	funLocSearch = function (){
+		let search = localStorage.getItem("locationSearch")
+		if(!(search)) return []
+			search = search.replace("?","").split("&")
+		let arr = []//new Map();
+		search.forEach(el=>{
+			let o = el.split("=")
+			//arr.set(o[0],o[1])
+			arr[o[0]]=o[1]
+		})
+	   return arr
+	}
+}
+funLocSearch()
+
 fun_set_plant=function(plant){
 	switch(true){
 		case (/0067/).test(plant):
