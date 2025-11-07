@@ -10,7 +10,7 @@ c={
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
     storeMinutes:60,
 };
-console.log("05") // =======================================
+console.log("06") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -98,7 +98,7 @@ tra ={
         if(buyin) this.buyin(wkn,buyin,qty)
         if(helpline) this.linehelp(wkn,helpline)
         //tra.funAddFromSearch()
-        location.href = location.href.split("?")[0]
+        
     },
     store:function(name){
         tra.trades[name].name = list[name].name
