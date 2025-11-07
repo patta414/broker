@@ -10,7 +10,7 @@ c={
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
     storeMinutes:60,
 };
-console.log("07") // =======================================
+console.log("08") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -95,10 +95,13 @@ tra ={
     funAddFromSearch:function(){
         let obj = funLocSearch()||{}
         let {wkn,buyin,qty,helpline} = obj
-        if(buyin) this.buyin(wkn,buyin,qty)
+        if(buyin && qty) this.buyin(wkn,buyin,qty)
+        if(buyin && qty==0) this.buyout(wkn,buyin)
         if(helpline) this.linehelp(wkn,helpline)
-        localStorage.locationSearch=''
-        location.href = location.href.split("?")[0]
+        if(localStorage.locationSearch){
+            localStorage.locationSearch=''
+            location.href = location.href.split("?")[0]
+        }
         //tra.funAddFromSearch()
         
     },
