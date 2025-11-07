@@ -10,7 +10,7 @@ c={
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
     storeMinutes:60,
 };
-console.log("03") // =======================================
+console.log("04") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
