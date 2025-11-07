@@ -11,7 +11,7 @@ c={
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
     storeMinutes:60,
 };
-console.log("13") // =======================================
+console.log("14") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -133,6 +133,21 @@ tra ={
         buyin = window.prompt(archiv[name][0].name+" - "+type,value)
         buyin = (buyin)?buyin.replace(",","."):null
         this[type](name,buyin)
+    },
+    input:function(name,type="buyin"){
+        let value = (this.trades[name])?this.trades[name][type]:""
+        if(type=="linehelp") value = list[name].bid
+        
+        const form = formular.standard()
+        const vf = funAddHtmlE(form,"input","",type,{value})
+        const ty = type;
+        const n = name
+        const fun = ()=>{
+            this[ty](n,vf.value)
+        }
+        //buyin = window.prompt(archiv[name][0].name+" - "+type,value)
+        //buyin = (buyin)?buyin.replace(",","."):null
+        const but = funAddHtmlE(form,"button","bestätigen","",{},{"click":fun})
     },
     inputPercent:function(){
         let prc = window.prompt("Percent")
