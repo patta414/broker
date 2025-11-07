@@ -1,4 +1,4 @@
-let list;
+let list = {};
 c={
     charts:{},
     new:"jetzt",
@@ -11,7 +11,7 @@ c={
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
     storeMinutes:60,
 };
-console.log("11") // =======================================
+console.log("12") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -108,6 +108,7 @@ tra ={
         
     },
     store:function(name){
+        window.list[name] = window.list[name]||{}
         tra.trades[name].name = list[name].name
         window.localStorage.setItem("trades",JSON.stringify(tra.trades))
     },
