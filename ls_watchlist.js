@@ -10,7 +10,7 @@ c={
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
     storeMinutes:60,
 };
-console.log("04") // =======================================
+console.log("05") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -522,7 +522,6 @@ cons = function(el){
 newFields = ['cha','spread','updown','test']
 initWatchlist = function(){
     if(typeof(funAddHtmlE)=='undefined') window.location.reload()
-    tra.funAddFromSearch()
     if(window.merkinitWatchlist == true) return
     //window.archiv = window.archiv || {}
     table = document.querySelector("tbody")
@@ -568,6 +567,7 @@ initWatchlist = function(){
         const min = i
         funAddHtmlE(place,"button",min,"",{},{click:()=>{window.localStorage.setItem("minutes",min);c.refreshAll(min);}})
     }
+    tra.funAddFromSearch()
     window.merkinitWatchlist = true;
  }
 
