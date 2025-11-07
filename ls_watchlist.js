@@ -1,3 +1,4 @@
+let list;
 c={
     charts:{},
     new:"jetzt",
@@ -10,7 +11,7 @@ c={
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
     storeMinutes:60,
 };
-console.log("10") // =======================================
+console.log("11") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
