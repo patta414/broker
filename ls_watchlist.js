@@ -92,6 +92,12 @@ checkLogic = function(wkn){
 
 
 tra ={
+    funAddFromSearch:function(){
+        let obj = funLocSearch()||{}
+        let {wkn,buyin,qty,helpline} = obj
+        if(buyin) this.buyin(wkn,buyin,qty)
+        if(helpline) this.linehelp(wkn,helpline)
+    }
     store:function(name){
         tra.trades[name].name = list[name].name
         window.localStorage.setItem("trades",JSON.stringify(tra.trades))
@@ -516,6 +522,7 @@ cons = function(el){
 newFields = ['cha','spread','updown','test']
 initWatchlist = function(){
     if(typeof(funAddHtmlE)=='undefined') window.location.reload()
+    tra.funAddFromSearch()
     if(window.merkinitWatchlist == true) return
     //window.archiv = window.archiv || {}
     table = document.querySelector("tbody")
