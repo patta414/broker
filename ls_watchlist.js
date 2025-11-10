@@ -11,7 +11,7 @@ c={
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
     storeMinutes:60,
 };
-console.log("14") // =======================================
+console.log("15") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -139,7 +139,7 @@ tra ={
         if(type=="linehelp") value = list[name].bid
         
         const form = formular.standard()
-        const vf = funAddHtmlE(form,"input","",type,{value})
+        const vf = funAddHtmlE(form,"input","",type,{value,type:"number"})
         const ty = type;
         const n = name
         const fun = ()=>{
