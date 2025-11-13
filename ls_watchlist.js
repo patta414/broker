@@ -11,7 +11,7 @@ c={
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
     storeMinutes:60,
 };
-console.log("15") // =======================================
+console.log("16") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -344,6 +344,7 @@ c.update = function(name,duration){
     // Labels (Zeitstempel) und Werte (bid) extrahieren
     const labels = neueDaten.map(d => new Date(d.timestamp));
     const values = neueDaten.map(d => d.bid);
+    const asks = neueDaten.map(d => d.ask);
     let lineval = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyin:null)
     let lineout = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyout:null)
     let linehelp = neueDaten.map(d => (tra.trades[name])?tra.trades[name].linehelp:null)
@@ -368,29 +369,42 @@ c.update = function(name,duration){
     let tolM = (name != '_LUSDAX')?neueDaten.map(d => base * (100-perc)/100):neueDaten.map(d =>null)
     //console.log(tolP)
     // Bestehende Daten im Chart ersetzen
+    let ind = 0;
     c.charts[name].data.labels = labels;
-    c.charts[name].data.datasets[0].data = values;
-    c.charts[name].data.datasets[0].borderColor = color
-    c.charts[name].data.datasets[1] = {...c.charts[name].data.datasets[0]}
-    c.charts[name].data.datasets[1].data = lineval;
-    c.charts[name].data.datasets[1].borderColor = "black"
-    c.charts[name].data.datasets[2] = {...c.charts[name].data.datasets[0]}
-    c.charts[name].data.datasets[2].data = lineout;
-    c.charts[name].data.datasets[2].borderColor = "lightgrey"
-    c.charts[name].data.datasets[3] = {...c.charts[name].data.datasets[0]}
-    c.charts[name].data.datasets[3].data = tolP;
-    c.charts[name].data.datasets[3].label = base + " + " + perc
-    c.charts[name].data.datasets[3].borderColor = "lightgrey"
-    c.charts[name].data.datasets[4] = {...c.charts[name].data.datasets[0]}
-    c.charts[name].data.datasets[4].data = tolM;
-    c.charts[name].data.datasets[4].label = base + " - " + perc
-    c.charts[name].data.datasets[4].borderColor = "lightgrey"
+    c.charts[name].data.datasets[ind].data = values;
+    c.charts[name].data.datasets[ind].borderColor = color
     
-    c.charts[name].data.datasets[5] = {...c.charts[name].data.datasets[0]}
-    c.charts[name].data.datasets[5].data = linehelp;
-    c.charts[name].data.datasets[5].label = linehelp[0];
-    c.charts[name].data.datasets[5].borderColor = "black"
-    c.charts[name].data.datasets[5].borderWidth = "1"
+    c.charts[name].data.datasets[++ind] = {...c.charts[name].data.datasets[0]}
+    c.charts[name].data.datasets[ind].data = lineval;
+    c.charts[name].data.datasets[ind].borderColor = "black"
+    if(c.asks) {
+        c.charts[name].data.datasets[++ind] = {...c.charts[name].data.datasets[0]}
+        c.charts[name].data.datasets[ind].data = asks;
+        c.charts[name].data.datasets[ind].label = "ask";
+        c.charts[name].data.datasets[ind].borderColor = "black"
+        c.charts[name].data.datasets[ind].borderWidth = "1"
+    }
+    
+    c.charts[name].data.datasets[++ind] = {...c.charts[name].data.datasets[0]}
+    c.charts[name].data.datasets[ind].data = lineout;
+    c.charts[name].data.datasets[ind].borderColor = "lightgrey"
+    c.charts[name].data.datasets[++ind] = {...c.charts[name].data.datasets[0]}
+    c.charts[name].data.datasets[ind].data = tolP;
+    c.charts[name].data.datasets[ind].label = base + " + " + perc
+    c.charts[name].data.datasets[ind].borderColor = "lightgrey"
+    c.charts[name].data.datasets[++ind] = {...c.charts[name].data.datasets[0]}
+    c.charts[name].data.datasets[ind].data = tolM;
+    c.charts[name].data.datasets[ind].label = base + " - " + perc
+    c.charts[name].data.datasets[ind].borderColor = "lightgrey"
+    
+    c.charts[name].data.datasets[++ind] = {...c.charts[name].data.datasets[0]}
+    c.charts[name].data.datasets[ind].data = linehelp;
+    c.charts[name].data.datasets[ind].label = linehelp[0];
+    c.charts[name].data.datasets[ind].borderColor = "black"
+    c.charts[name].data.datasets[ind].borderWidth = "1"
+
+    
+    
     // Chart neu rendern
     c.charts[name].update();
 }
@@ -485,7 +499,8 @@ classRow = class {
             //delete el.spread;
             //delete el.test;
             return el})
-        window.localStorage.setItem(this.key,JSON.stringify(obj))
+        try{window.localStorage.setItem(this.key,JSON.stringify(obj))}catch(err){c.storeMinutes=30;}
+        
         //window.localStorage.setItem("keysObj",JSON.stringify(window.keysObj))
     };
     get_store = async function(){
@@ -581,6 +596,7 @@ initWatchlist = function(){
     let place = document.querySelector("#main_layout > div > nav > div:nth-child(1) > div")
     funAddHtmlE(place,"br")
     funAddHtmlE(place,"button","clear","",{},{click:()=>{c.storeMinutes=30;}})
+    funAddHtmlE(place,"button","asks","",{},{click:()=>{c.asks=true;}})
     funAddHtmlE(place,"button","Per","",{},{click:()=>{tra.inputPercent();}})
     funAddHtmlE(place,"button","Dev","",{},{click:()=>{tra.inputdeviPercVal();}})
     funAddHtmlE(place,"button","setHelpL","",{},{click:()=>{tra.setHelpLine();}})
