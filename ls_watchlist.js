@@ -11,7 +11,7 @@ c={
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
     storeMinutes:60,
 };
-console.log("18") // =======================================
+console.log("19") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -115,6 +115,7 @@ tra ={
             watchlist = ((getCookiesObject()||{}).watchlist||"") + watchlist
             console.log(getCookiesObject());
             console.log(watchlist)
+            alert(watchlist)
             document.cookie = `watchlist=${watchlist}; path=/;`;
         }
         //tra.funAddFromSearch()
