@@ -11,7 +11,7 @@ c={
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
     storeMinutes:60,
 };
-console.log("17") // =======================================
+console.log("18") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -96,13 +96,15 @@ tra ={
     funAddFromSearch:function(){
         console.log("funAddFromSearch",localStorage.locationSearch)
         let obj = funLocSearch()||{}
+        console.log(obj)
         let {wkn,buyin,qty,helpline,watchlist} = obj
         if(buyin && qty) {this.buyin(wkn,buyin,qty);console.log("buyin")}
         if(buyin && qty==0) {this.buyout(wkn,buyin);console.log("out")}
         if(helpline) {this.linehelp(wkn,helpline);console.log("linehelp")}
         
         if(watchlist) {
-            function getCookiesObject() {
+            console.log("watchlist",watchlist)
+            getCookiesObject = function() {
               return document.cookie.split(';').reduce((cookies, cookieStr) => {
                 const [name, value] = cookieStr.trim().split('=');
                 cookies[name] = decodeURIComponent(value);
@@ -111,6 +113,8 @@ tra ={
             }
             
             watchlist = ((getCookiesObject()||{}).watchlist||"") + watchlist
+            console.log(getCookiesObject());
+            console.log(watchlist)
             document.cookie = `watchlist=${watchlist}; path=/;`;
         }
         //tra.funAddFromSearch()
