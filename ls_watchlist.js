@@ -11,7 +11,7 @@ c={
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
     storeMinutes:60,
 };
-console.log("16") // =======================================
+console.log("17") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -102,6 +102,15 @@ tra ={
         if(helpline) {this.linehelp(wkn,helpline);console.log("linehelp")}
         
         if(watchlist) {
+            function getCookiesObject() {
+              return document.cookie.split(';').reduce((cookies, cookieStr) => {
+                const [name, value] = cookieStr.trim().split('=');
+                cookies[name] = decodeURIComponent(value);
+                return cookies;
+              }, {});
+            }
+            
+            watchlist = ((getCookiesObject()||{}).watchlist||"") + watchlist
             document.cookie = `watchlist=${watchlist}; path=/;`;
         }
         //tra.funAddFromSearch()
