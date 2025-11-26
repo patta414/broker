@@ -96,16 +96,19 @@ tra ={
     funAddFromSearch:function(){
         console.log("funAddFromSearch",localStorage.locationSearch)
         let obj = funLocSearch()||{}
-        let {wkn,buyin,qty,helpline} = obj
+        let {wkn,buyin,qty,helpline,watchlist} = obj
         if(buyin && qty) {this.buyin(wkn,buyin,qty);console.log("buyin")}
         if(buyin && qty==0) {this.buyout(wkn,buyin);console.log("out")}
         if(helpline) {this.linehelp(wkn,helpline);console.log("linehelp")}
+        
+        if(watchlist) {
+            document.cookie = `watchlist=${watchlist}; path=/;`;
+        }
+        //tra.funAddFromSearch()
         if(localStorage.locationSearch){
             localStorage.locationSearch=''
             location.href = location.href.split("?")[0]
         }
-        //tra.funAddFromSearch()
-        
     },
     store:function(name){
         window.list = window.list||{}
