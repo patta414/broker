@@ -17,7 +17,7 @@ funLocSearch=function(){
 		let search = localStorage.getItem("locationSearch")
 		if(!(search)) return []
 			search = search.replace("?","").split("&")
-		let arr = []//new Map();
+		let arr = {}//new Map();
 		search.forEach(el=>{
 			let o = el.split("=")
 			//arr.set(o[0],o[1])
