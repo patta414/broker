@@ -11,7 +11,7 @@ c={
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
     storeMinutes:60,
 };
-console.log("20") // =======================================
+console.log("21") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -487,16 +487,26 @@ classRow = class {
         let place = this.fields.updown
         this.fields.test.innerHTML = ""
         place.innerHTML = ''
-        let arr = []//20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1];
-        for(i=10;i>0;i=i-0.5){arr.push(i)}
-        arr.forEach(el=>{
+        let pcs = (tra.trades[this.key])?tra.trades[this.key].pcs:null;
+        if(!(pcs)) return
+         let linehelp = (tra.trades[this.key])?tra.trades[this.key].linehelp:null;
+         let buyin = (tra.trades[this.key])?tra.trades[this.key].buyin:null;
+        linehelp = linehelp * pcs
+        buyin = buyin * pcs
+        funAddHtmlE(place,"div","buyin: " + buyin+" € ")
+        //funAddHtmlE(place,"div","buyin: " + buyin+" € ")
+        //funAddHtmlE(place,"div","buyin: " + buyin+" € ")
+        //let arr = []//20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1];
+        //for(i=10;i>0;i=i-0.5){arr.push(i)}
+        /*arr.forEach(el=>{
             let field = this.get_last_per_min(el)
             print = (field[was]-this[was]) + "<br>"
             print = field.len +" | "+ field.timestamp+ "<br>"
             print = (field[was]-this[was]<0)?"^":"."
             place.innerHTML += print
             //this.fields.test.innerHTML += ((new Date()-field.timestamp)/1000/60).toFixed(0) + "|"
-        })
+        })*/
+        
     };
     get_last_per_min=function(min){
         let diff = 0.5
