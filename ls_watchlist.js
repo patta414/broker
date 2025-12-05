@@ -11,7 +11,7 @@ c={
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
     storeMinutes:60,
 };
-console.log("22") // =======================================
+console.log("23") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -639,6 +639,7 @@ initWatchlist = function(){
     funAddHtmlE(place,"button","all","",{onclick:"tra.table(true,true)"})
     funAddHtmlE(place,"button","other","",{onclick:"tra.table(false,true)"})
     funAddHtmlE(place,"button","own","",{onclick:"tra.table(true,false)"})
+    funAddHtmlE(place,"button","sort","",{onclick:"tra.sort()"})
     tra.funAddFromSearch()
     window.merkinitWatchlist = true;
  }
@@ -683,6 +684,27 @@ tra.table=function(own,other){
         }else{
             r.style.display = 'none'
         }
+    })
+}
+tra.sort=function(){
+    let arr = []
+    rows = table.querySelectorAll("tr")
+    rows.forEach(r=>{
+        let ask = r.querySelector("p[title=ask").innerHTML
+            ask = ask.replace(" €","")*1
+        let wkn = r.querySelector("a").title
+        let key = "_"+wkn
+        let pcs = tra.trades[key].pcs*1
+      
+        if(ask&&pcs) {
+            let price = ask * pcs
+            arr.push({r,price})
+         }
+    })
+    arr.sortByKeyColumns(["price"])
+    arr.forEach(o=>{
+        r = o.r
+        table.insertBefore(r,table.firstChild)
     })
 }
 
