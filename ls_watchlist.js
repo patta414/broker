@@ -10,9 +10,9 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
     storeMinutes:60,
-    autoSort:window.localStorage.getItem("autoSort")||true,
+    autoSort:JSON.parse(window.localStorage.getItem("autoSort")||'true'),
 };
-console.log("24") // =======================================
+console.log("25") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
