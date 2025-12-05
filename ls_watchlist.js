@@ -12,7 +12,7 @@ c={
     storeMinutes:60,
     autoSort:JSON.parse(window.localStorage.getItem("autoSort")||'true'),
 };
-console.log("27") // =======================================
+console.log("28") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -708,8 +708,11 @@ tra.sort=function(){
         r = o.r
         table.insertBefore(r,table.firstChild)
     })
-    rows = document.querySelectorAll('tr a[href]:not([href*="aktie"])');
-    rows.forEach(r=>{table.insertBefore(r,table.firstChild)})
+    let daxs = document.querySelectorAll('tr a[href]:not([href*="aktie"])');
+    daxs.forEach(el=>{
+        let r = el.parentElement.parentElement.parentElement;
+        table.insertBefore(r,table.firstChild)
+    })
 }
 
 
