@@ -11,7 +11,7 @@ c={
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
     storeMinutes:60,
 };
-console.log("21") // =======================================
+console.log("22") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -636,6 +636,9 @@ initWatchlist = function(){
         const min = i
         funAddHtmlE(place,"button",min,"",{},{click:()=>{window.localStorage.setItem("minutes",min);c.refreshAll(min);}})
     }
+    funAddHtmlE(place,"button","all","",{onclick:"tra.table(true,true)"})
+    funAddHtmlE(place,"button","other","",{onclick:"tra.table(false,true)"})
+    funAddHtmlE(place,"button","own","",{onclick:"tra.table(true,false)"})
     tra.funAddFromSearch()
     window.merkinitWatchlist = true;
  }
@@ -667,6 +670,21 @@ funTimeCheck=function(){
     if(lastsec>10 && (new Date().getHours()>=8))  window.location.reload()
     setTimeout(funTimeCheck, 5000);
 };
+tra.table=function(own,other){
+    rows = table.querySelectorAll("tr")
+    rows.forEach(r=>{
+        let wkn = r.querySelector("a").title
+        let key = "_"+wkn
+        let checkOwn = tra.trades[key].pcs*1>0
+        if(checkOwn&&own) {
+            r.style.display = ''
+        }else if(!checkOwn&&other){
+            r.style.display = ''
+        }else{
+            r.style.display = 'none'
+        }
+    })
+}
 
 
 initWatchlist()
