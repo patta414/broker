@@ -10,8 +10,9 @@ c={
     allActive:false,
     deviPercVal:window.localStorage.getItem("deviPercVal")||0.5,
     storeMinutes:60,
+    autoSort:window.localStorage.getItem("autoSort")||true,
 };
-console.log("23") // =======================================
+console.log("24") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -619,6 +620,7 @@ initWatchlist = function(){
         
         //new classRow({target:elementToObserve})
         setTimeout(funTimeCheck, 5000);
+        if(c.autoSort) tra.sort()
     })
     let place = document.querySelector("#main_layout > div > nav > div:nth-child(1) > div")
     funAddHtmlE(place,"br")
