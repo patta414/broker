@@ -12,7 +12,7 @@ c={
     storeMinutes:60,
     autoSort:JSON.parse(window.localStorage.getItem("autoSort")||'true'),
 };
-console.log("29") // =======================================
+console.log("30") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -713,6 +713,7 @@ tra.sort=function(){
         let r = el.parentElement.parentElement.parentElement;
         table.insertBefore(r,table.firstChild)
     })
+    window.scrollTo(0, 0);
 }
 
 
