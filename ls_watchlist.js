@@ -12,7 +12,7 @@ c={
     storeMinutes:60,
     autoSort:JSON.parse(window.localStorage.getItem("autoSort")||'true'),
 };
-console.log("28") // =======================================
+console.log("29") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -696,7 +696,7 @@ tra.sort=function(){
             ask = ask.replace(" €","")*1
         let wkn = r.querySelector("a").title
         let key = "_"+wkn
-        let pcs = tra.trades[key].pcs*1
+        let pcs = (tra.trades[key]||{pcs:0}).pcs*1
       
         if(ask&&pcs) {
             let price = ask * pcs
