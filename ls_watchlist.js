@@ -12,7 +12,7 @@ c={
     storeMinutes:60,
     autoSort:JSON.parse(window.localStorage.getItem("autoSort")||'true'),
 };
-console.log("25") // =======================================
+console.log("26") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -620,7 +620,6 @@ initWatchlist = function(){
         
         //new classRow({target:elementToObserve})
         setTimeout(funTimeCheck, 5000);
-        if(c.autoSort) tra.sort()
     })
     let place = document.querySelector("#main_layout > div > nav > div:nth-child(1) > div")
     funAddHtmlE(place,"br")
@@ -644,6 +643,7 @@ initWatchlist = function(){
     funAddHtmlE(place,"button","sort","",{onclick:"tra.sort()"})
     tra.funAddFromSearch()
     window.merkinitWatchlist = true;
+    if(c.autoSort) tra.sort()
  }
 
 formPercent = function(id){
@@ -692,7 +692,7 @@ tra.sort=function(){
     let arr = []
     rows = table.querySelectorAll("tr")
     rows.forEach(r=>{
-        let ask = r.querySelector("p[title=ask").innerHTML
+        let ask = (r.querySelector("p[title=ask")||{innerHTML:''}).innerHTML
             ask = ask.replace(" €","")*1
         let wkn = r.querySelector("a").title
         let key = "_"+wkn
