@@ -1,5 +1,5 @@
 //https://query1.finance.yahoo.com/v8/finance/chart/RHM.DE?interval=1m
-
+console.log("======= 02 ========")
 var predata,pre;
 
 params = {
@@ -242,7 +242,7 @@ c.update = function(name,jsondata){
     c.charts[name].update();
 }
 c.getPerName = async function(name){
-	sym = await fetch("https://query1.finance.yahoo.com/v1/finance/search?q="+name).then(d=>d.json()).then(d=>d.quotes.filter(el=>el.exchange=='GER')[0].symbol)
+	sym = await fetch("https://query1.finance.yahoo.com/v1/finance/search?q="+name).then(d=>d.json()).then(d=>d.json()).then(d=>{let arr=d.quotes.filter(el=>el.exchange=='GER');arr=(arr.length>0)?arr:d.quotes;return arr[0].symbol})//.then(d=>d.quotes.filter(el=>el.exchange=='GER')[0].symbol)
 	c.link="https://query1.finance.yahoo.com/v8/finance/chart/"+sym+"?"
 	for(n in params){
 		c.link+=n+"="+params[n]+"&"
