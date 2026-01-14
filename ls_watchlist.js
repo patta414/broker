@@ -12,7 +12,7 @@ c={
     storeMinutes:60,
     autoSort:JSON.parse(window.localStorage.getItem("autoSort")||'true'),
 };
-console.log("30") // =======================================
+console.log("31") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -473,9 +473,10 @@ classRow = class {
         let lineval = (tra.trades[this.key])?tra.trades[this.key].buyin:null;
         let lineout = (tra.trades[this.key])?tra.trades[this.key].buyout:null;
         let linehelp = (tra.trades[this.key])?tra.trades[this.key].linehelp:null;
-        if(lineval) ad(((this.bid-lineval)/this.bid*100).toFixed(2)+" %","IN","background: lightgrey;")
-        if(lineout) ad(((this.bid-lineout)/this.bid*100).toFixed(2)+" %","OUT","background: lightgrey;")
-        if(linehelp) ad(((this.bid-linehelp)/this.bid*100).toFixed(2)+" %","help","border: 1px solid black;")
+        //if(lineval) ad(((this.bid-lineval)/this.bid*100).toFixed(2)+" %","IN","background: lightgrey;")
+        if(lineval) ad(((this.bid-lineval)/lineval*100).toFixed(2)+" %","IN","background: lightgrey;")
+        if(lineout) ad(((this.bid-lineout)/lineout*100).toFixed(2)+" %","OUT","background: lightgrey;")
+        if(linehelp) ad(((this.bid-linehelp)/linehelp*100).toFixed(2)+" %","help","border: 1px solid black;")
         checkLogic("_"+this.wkn)
         followFunctionTest(this)
     };
