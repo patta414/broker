@@ -12,7 +12,7 @@ c={
     storeMinutes:60,
     autoSort:JSON.parse(window.localStorage.getItem("autoSort")||'true'),
 };
-console.log("github / ls_watchlist.js ============== V 34") // =======================================
+console.log("github / ls_watchlist.js ============== V 36") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -96,6 +96,7 @@ checkLogic = function(wkn){
 tra ={
     funAddFromSearch:function(){
         console.log("funAddFromSearch",localStorage.locationSearch)
+        
         let obj = funLocSearch()||{}
         console.log(obj)
         let {wkn,buyin,qty,helpline,watchlist} = obj
@@ -125,6 +126,8 @@ tra ={
         }
         //tra.funAddFromSearch()
         if(localStorage.locationSearch){
+            localStorage.locationSearch2=localStorage.locationSearch1;
+            localStorage.locationSearch1=localStorage.locationSearch
             localStorage.locationSearch=''
             location.href = location.href.split("?")[0]
         }
