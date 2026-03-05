@@ -12,7 +12,7 @@ c={
     storeMinutes:60,
     autoSort:JSON.parse(window.localStorage.getItem("autoSort")||'true'),
 };
-console.log("github / ls_watchlist.js ============== V 32") // =======================================
+console.log("github / ls_watchlist.js ============== V 33") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
