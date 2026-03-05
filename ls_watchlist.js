@@ -12,7 +12,7 @@ c={
     storeMinutes:60,
     autoSort:JSON.parse(window.localStorage.getItem("autoSort")||'true'),
 };
-console.log("github / ls_watchlist.js ============== V 36") // =======================================
+console.log("github / ls_watchlist.js ============== V 37") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -727,6 +727,7 @@ tra.sort=function(){
 addToWatchlist = function(strOrArr="") {
     strOrArr = (typeof(strOrArr)=='string')?[strOrArr]:strOrArr
     strOrArr.forEach(wkn=>{
+        wkn=wkn.replace("_","")
         fetch("https://www.ls-tc.de/_rpc/json/.lstc/_shared/base/wlAdd", {
           "headers": {
             "accept": "application/json, text/javascript, */*; q=0.01",
