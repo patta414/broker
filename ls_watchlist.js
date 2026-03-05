@@ -12,7 +12,7 @@ c={
     storeMinutes:60,
     autoSort:JSON.parse(window.localStorage.getItem("autoSort")||'true'),
 };
-console.log("github / ls_watchlist.js ============== V 31") // =======================================
+console.log("github / ls_watchlist.js ============== V 32") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -105,19 +105,22 @@ tra ={
         
         if(watchlist) {
             //console.log("watchlist",watchlist)
-            getCookiesObject = function() {
+           /* getCookiesObject = function() {
               return document.cookie.split(';').reduce((cookies, cookieStr) => {
                 const [name, value] = cookieStr.trim().split('=');
                 cookies[name] = decodeURIComponent(value);
                 return cookies;
               }, {});
-            }
+            }*/
             
-            watchlist = ((getCookiesObject()||{}).watchlist||"") + "," + watchlist
+            /*watchlist = ((getCookiesObject()||{}).watchlist||"") + "," + watchlist
             //console.log(getCookiesObject());
             //console.log(watchlist)
             //alert(watchlist)
             document.cookie = `watchlist=${watchlist}; path=/;`;
+            */
+            window.waarr = watchlist.split(",")
+            console.log(waarr)
         }
         //tra.funAddFromSearch()
         if(localStorage.locationSearch){
@@ -717,5 +720,29 @@ tra.sort=function(){
     window.scrollTo(0, 0);
 }
 
+addToWatchlist = function(strOrArr="") {
+    strOrArr = (typeof(strOrArr)=='string')?[strOrArr]:strOrArr
+    strOrArr.forEach(wkn=>{
+        fetch("https://www.ls-tc.de/_rpc/json/.lstc/_shared/base/wlAdd", {
+          "headers": {
+            "accept": "application/json, text/javascript, */*; q=0.01",
+            "accept-language": "de-DE,de;q=0.9,en-US;q=0.8,en;q=0.7",
+            "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+            "priority": "u=1, i",
+            "sec-ch-ua": "\"Not:A-Brand\";v=\"99\", \"Google Chrome\";v=\"145\", \"Chromium\";v=\"145\"",
+            "sec-ch-ua-mobile": "?0",
+            "sec-ch-ua-platform": "\"Windows\"",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "same-origin",
+            "x-requested-with": "XMLHttpRequest"
+          },
+          "body": "wkn="+wkn,
+          "method": "POST",
+          "mode": "cors",
+          "credentials": "include"
+        });
+    })
+}
 
 initWatchlist()
