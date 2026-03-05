@@ -119,8 +119,8 @@ tra ={
             //alert(watchlist)
             document.cookie = `watchlist=${watchlist}; path=/;`;
             */
-            window.waarr = watchlist.split(",")
-            console.log(waarr)
+            addToWatchlist( watchlist.split(","))
+            
         }
         //tra.funAddFromSearch()
         if(localStorage.locationSearch){
