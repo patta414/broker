@@ -12,7 +12,7 @@ c={
     storeMinutes:60,
     autoSort:JSON.parse(window.localStorage.getItem("autoSort")||'true'),
 };
-console.log("github / ls_watchlist.js ============== V 33") // =======================================
+console.log("github / ls_watchlist.js ============== V 34") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -100,6 +100,7 @@ tra ={
         console.log(obj)
         let {wkn,buyin,qty,helpline,watchlist} = obj
         if(buyin && qty) {this.buyin(wkn,buyin,qty);console.log("buyin")}
+        if(buyin && wkn) addToWatchlist(wkn)
         if(buyin && qty==0) {this.buyout(wkn,buyin);console.log("out")}
         if(helpline) {this.linehelp(wkn,helpline);console.log("linehelp")}
         
