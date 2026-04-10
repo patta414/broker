@@ -12,7 +12,7 @@ c={
     storeMinutes:60,
     autoSort:JSON.parse(window.localStorage.getItem("autoSort")||'true'),
 };
-console.log("github / ls_watchlist.js ============== V 37") // =======================================
+console.log("github / ls_watchlist.js ============== V 38") // =======================================
 cl = false
 checkLogic = function(wkn){
     let alrt = function(a,b,c){
@@ -630,7 +630,8 @@ initWatchlist = function(){
         setTimeout(funTimeCheck, 5000);
     })
     let place = document.querySelector("#main_layout > div > nav > div:nth-child(1) > div")
-    funAddHtmlE(place,"br")
+    
+    place = funAddHtmlE(place,"div")
     funAddHtmlE(place,"button","clear","",{},{click:()=>{c.storeMinutes=30;}})
     funAddHtmlE(place,"button","asks","",{},{click:()=>{c.asks=true;}})
     funAddHtmlE(place,"button","Per","",{},{click:()=>{tra.inputPercent();}})
