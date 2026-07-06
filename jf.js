@@ -189,6 +189,7 @@ names.forEach(n=>{
 })
 }
 c.buildChart = function(name,data){
+	let longname = data.chart.result[0].meta.longName||"FALSCH"
    jsondata = predata
     timestamps = jsondata.chart.result[0].timestamp;
     prices = jsondata.chart.result[0].indicators.quote[0].low
@@ -200,7 +201,7 @@ c.buildChart = function(name,data){
     chartData = {
         labels: data.map(d => d.date.toLocaleTimeString()),
         datasets: [{
-          label: 'Preis',
+          label: longname,
           data: data.map(d => d.price),
           borderColor: 'rgb(75, 192, 192)',
           tension: 0.1
@@ -211,20 +212,11 @@ c.buildChart = function(name,data){
   c.charts[name] = new Chart(ctx, {
     type: 'line',
     data: chartData,
-    options: {
-      responsive: true,
-      scales: {
-        x: {
-          title: { display: true, text: 'Zeit' }
-        },
-        y: {
-          title: { display: true, text: 'Preis' }
-        }
-      }
-    }
+    options: initopt
   });
 }
 c.update = function(name,jsondata){
+	let longname = jsondata.chart.result[0].meta.longName||"FALSCH"
     let timestamps = jsondata.chart.result[0].timestamp;
     let prices = jsondata.chart.result[0].indicators.quote[0].low
     let data = timestamps.map((ts, i) => ({
@@ -283,3 +275,14 @@ c.getPerName = async function(name,add){
 	localStorage.setItem("add",false)
 }
 
+initopt = {
+      responsive: true,
+      scales: {
+        x: {
+          title: { display: true, text: 'Zeit' }
+        },
+        y: {
+          title: { display: true, text: longname }
+        }
+      }
+    }
