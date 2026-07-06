@@ -201,12 +201,7 @@ c.buildChart = function(name,data){
     
     chartData = {
         labels: data.map(d => d.date.toLocaleTimeString()),
-        datasets: [{
-          label: 'LEER',
-          data: data.map(d => d.price),
-          borderColor: 'rgb(75, 192, 192)',
-          tension: 0.1
-        }]
+        datasets: [...initdatas]
       };
 
    const ctx = document.getElementById(name+'chart').getContext('2d');
@@ -229,6 +224,7 @@ c.update = function(name,jsondata){
     const values = data.map(d => d.price);
 
 	c.charts.options = {...initopt};
+	c.charts[name].data = [...initdatas];
     
     //let lineval = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyin:null)
     //let lineout = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyout:null)
@@ -301,3 +297,9 @@ initopt = {
         }
       }
     }
+initdatas = [{
+          label: 'LEER',
+          data: data.map(d => d.price),
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        }]
