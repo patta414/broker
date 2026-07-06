@@ -1,5 +1,5 @@
 //https://query1.finance.yahoo.com/v8/finance/chart/RHM.DE?interval=1m
-console.log("======= 15 ========")
+console.log("======= 16 ========")
 var predata,pre;
 
 params = {
@@ -225,7 +225,7 @@ c.update = function(name,jsondata){
       price: prices[i]
     })).filter(d => d.price !== null);
     
-    const labels = data.map(d => d.date.toLocaleTimeString());
+    const labels = data.map(d => d.date);
     const values = data.map(d => d.price);
 
 	c.charts.options = {...initopt};
@@ -249,8 +249,13 @@ c.add = function(name,jsondata){
       date: new Date(ts * 1000),
       price: prices[i]
     })).filter(d => d.price !== null);
-    const labels = data.map(d => d.date.toLocaleTimeString());
+    const labels = data.map(d => d.date);//d.date.toLocaleTimeString());
     const values = data.map(d => d.price);
+
+	let vals = [];
+	labels.forEach((l,i)=>{
+		vals[c.charts[name].data.labels.indexOf(l)] = l
+	})
     
     
     //let lineval = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyin:null)
@@ -261,7 +266,7 @@ c.add = function(name,jsondata){
 	c.charts[name].options.scales["y"+ind] = {...initopt.scales.y}
 	c.charts[name].options.scales["y"+ind].title.text= longname;
     c.charts[name].data.datasets[ind] = {...c.charts[name].data.datasets[0]}
-	c.charts[name].data.datasets[ind].data = values;
+	c.charts[name].data.datasets[ind].data = vals;//values;
 	c.charts[name].data.datasets[ind].label = longname;
 	c.charts[name].data.datasets[ind].yAxisID= 'y'+ind
     // Chart neu rendern
@@ -288,6 +293,7 @@ initopt = {
       responsive: true,
       scales: {
         x: {
+			type: "time",
           title: { display: true, text: 'Zeit' }
         },
         y: {
