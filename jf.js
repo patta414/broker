@@ -299,7 +299,7 @@ initopt = {
     }
 initdatas = [{
           label: 'LEER',
-          data: null,
+          data: [],
           borderColor: 'rgb(75, 192, 192)',
           tension: 0.1
         }]
