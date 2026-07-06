@@ -1,5 +1,5 @@
 //https://query1.finance.yahoo.com/v8/finance/chart/RHM.DE?interval=1m
-console.log("======= 20 ========")
+console.log("======= 21 ========")
 var predata,pre;
 
 params = {
@@ -201,7 +201,13 @@ c.buildChart = function(name,data){
     
     chartData = {
         labels: data.map(d => d.date.toLocaleTimeString()),
-        datasets: [...initdatas]
+        datasets: [{
+          label: 'LEER',
+          data: [],
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        }]
+
       };
 
    const ctx = document.getElementById(name+'chart').getContext('2d');
@@ -224,7 +230,13 @@ c.update = function(name,jsondata){
     const values = data.map(d => d.price);
 
 	c.charts.options = {...initopt};
-	c.charts[name].data = [...initdatas];
+	c.charts[name].data.datasets = [{
+          label: 'LEER',
+          data: [],
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        }]
+;
     
     //let lineval = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyin:null)
     //let lineout = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyout:null)
