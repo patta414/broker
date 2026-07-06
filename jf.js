@@ -1,5 +1,5 @@
 //https://query1.finance.yahoo.com/v8/finance/chart/RHM.DE?interval=1m
-console.log("======= 07 ========")
+console.log("======= 08 ========")
 var predata,pre;
 
 params = {
@@ -189,7 +189,6 @@ names.forEach(n=>{
 })
 }
 c.buildChart = function(name,data){
-	let longname = data.chart.result[0].meta.longName||"FALSCH"
    jsondata = predata
     timestamps = jsondata.chart.result[0].timestamp;
     prices = jsondata.chart.result[0].indicators.quote[0].low
