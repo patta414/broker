@@ -1,5 +1,5 @@
 //https://query1.finance.yahoo.com/v8/finance/chart/RHM.DE?interval=1m
-console.log("======= 19 ========")
+console.log("======= 20 ========")
 var predata,pre;
 
 params = {
