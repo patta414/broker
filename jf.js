@@ -1,5 +1,5 @@
 //https://query1.finance.yahoo.com/v8/finance/chart/RHM.DE?interval=1m
-console.log("======= 16 ========")
+console.log("======= 18 ========")
 var predata,pre;
 
 params = {
@@ -220,7 +220,7 @@ c.update = function(name,jsondata){
       price: prices[i]
     })).filter(d => d.price !== null);
     
-    const labels = data.map(d => d.date);
+    const labels = data.map(d => funDatum.formatSQLDateTime(d.date));
     const values = data.map(d => d.price);
 
 	c.charts.options = {...initopt};
@@ -245,7 +245,7 @@ c.add = function(name,jsondata){
       date: new Date(ts * 1000),
       price: prices[i]
     })).filter(d => d.price !== null);
-    const labels = data.map(d => d.date);//d.date.toLocaleTimeString());
+    const labels = data.map(d => funDatum.formatSQLDateTime(d.date));//d.date.toLocaleTimeString());
     const values = data.map(d => d.price);
 
 	let vals = [];
@@ -289,7 +289,7 @@ initopt = {
       responsive: true,
       scales: {
         x: {
-			type: "time",
+			//type: "time",
           title: { display: true, text: 'Zeit' }
         },
         y: {
