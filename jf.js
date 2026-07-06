@@ -1,5 +1,5 @@
 //https://query1.finance.yahoo.com/v8/finance/chart/RHM.DE?interval=1m
-console.log("======= 27 ========")
+console.log("======= 28 ========")
 var predata,pre;
 
 params = {
@@ -232,10 +232,11 @@ c.update = function(name,jsondata){
     })).filter(d => d.price !== null);
     const labels = data.map(d => funDatum.formatSQLDateTime(d.date));
     const values = data.map(d => d.price);
-
+	
 	c.charts[name].options = {...initopt};
 	c.charts[name].data.datasets = [{
           label: 'LEER',
+			min:labels.sort()[0],
           data: [],
           borderColor: 'rgb(75, 192, 192)',
           tension: 0.1
@@ -277,7 +278,9 @@ c.add = function(name,jsondata){
 	let ind = c.charts[name].data.datasets.length
 	c.charts[name].options.scales["y"+ind] = {...initopt.scales.y}
 	c.charts[name].options.scales["y"+ind].title.text= longname;
-    c.charts[name].data.datasets[ind] = {...c.charts[name].data.datasets[0]}
+    c.charts[name].data.datasets[ind] = {...initdatas,
+										min:labels.sort()[0],
+										}
 	c.charts[name].data.datasets[ind].data = data2;//vals;//values;
 	c.charts[name].data.datasets[ind].label = longname;
 	c.charts[name].data.datasets[ind].borderColor = colors.get(ind)
