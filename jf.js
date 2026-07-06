@@ -1,5 +1,5 @@
 //https://query1.finance.yahoo.com/v8/finance/chart/RHM.DE?interval=1m
-console.log("======= 08 ========")
+console.log("======= 09 ========")
 var predata,pre;
 
 params = {
@@ -239,7 +239,7 @@ c.update = function(name,jsondata){
     c.charts[name].update();
 }
 c.add = function(name,jsondata){
-	
+	let longname = jsondata.chart.result[0].meta.longName||"FALSCH"
     let timestamps = jsondata.chart.result[0].timestamp;
     let prices = jsondata.chart.result[0].indicators.quote[0].low
     let data = timestamps.map((ts, i) => ({
@@ -256,6 +256,8 @@ c.add = function(name,jsondata){
     // Bestehende Daten im Chart ersetzen
     //c.charts[name].data.labels = labels;
 	let ind = c.charts[name].data.datasets.length
+	c.charts.test.options.scales["y"+ind] = {...c.charts.test.options.scales["y"]}
+	c.charts.test.options.scales["y"+ind].title.text= longname;
     c.charts[name].data.datasets[ind] = {...c.charts[name].data.datasets[0]}
 	c.charts[name].data.datasets[ind].data = values;
     // Chart neu rendern
