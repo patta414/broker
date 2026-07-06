@@ -244,7 +244,29 @@ c.update = function(name,jsondata){
     // Chart neu rendern
     c.charts[name].update();
 }
-c.getPerName = async function(name){
+c.add = function(name,jsondata){
+    let timestamps = jsondata.chart.result[0].timestamp;
+    let prices = jsondata.chart.result[0].indicators.quote[0].low
+    let data = timestamps.map((ts, i) => ({
+      date: new Date(ts * 1000),
+      price: prices[i]
+    })).filter(d => d.price !== null);
+    
+    const labels = data.map(d => d.date.toLocaleTimeString());
+    const values = data.map(d => d.price);
+    
+    
+    //let lineval = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyin:null)
+    //let lineout = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyout:null)
+    // Bestehende Daten im Chart ersetzen
+    //c.charts[name].data.labels = labels;
+	let ind = c.charts[name].data.datasets.length
+    c.charts[name].data.datasets[ind] = {...c.charts[name].data.datasets[0]}
+	c.charts[name].data.datasets[ind].data = values;
+    // Chart neu rendern
+    c.charts[name].update();
+}
+c.getPerName = async function(name,add){
 	sym = await fetch("https://query1.finance.yahoo.com/v1/finance/search?q="+name).then(d=>d.json()).then(d=>{let arr=d.quotes.filter(el=>el.exchange=='GER');arr=(arr.length>0)?arr:d.quotes;return arr[0].symbol})//.then(d=>d.quotes.filter(el=>el.exchange=='GER')[0].symbol)
 	c.link="https://query1.finance.yahoo.com/v8/finance/chart/"+sym+"?"
 	for(n in params){
@@ -252,6 +274,10 @@ c.getPerName = async function(name){
 	}
 	jsd = await fetch(c.link).then(d=>d.json())
 	//c.buildContainer("test2",document.body)
-	c.update("test",jsd)
+	if(add){
+		c.update("test",jsd)
+	}else{
+		c.add("test",jsd)
+	}
 }
 
