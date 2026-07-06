@@ -1,5 +1,5 @@
 //https://query1.finance.yahoo.com/v8/finance/chart/RHM.DE?interval=1m
-console.log("======= 04 ========")
+console.log("======= 05 ========")
 var predata,pre;
 
 params = {
@@ -7,7 +7,7 @@ params = {
 	interval:"1m",
 }
 
-names = ['Rheinmetall','RWE','Hensoldt','Renk',"Nordex","NVIDIA","Siemens","Siemens energy"]
+names = ['Rheinmetall','RWE','Hensoldt','Renk',"Nordex","NVIDIA","Siemens","Siemens energy","IONQ",'Novo Nordisk','IonQ Inc.','D-Wave Quantum','ThyssenKrupp','Intel','SUPER MICRO','TESLA','Palantir Technologies','Broadcom','AMD','Micron Technology','Bayer','Deutsche Telekom','CROWDSTRIKE','KION GROUP AG','Schaeffler']
 
 init = function(jsondata){
 	//document.querySelector(".json-formatter-container").style.display = "none"
