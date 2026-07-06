@@ -1,5 +1,5 @@
 //https://query1.finance.yahoo.com/v8/finance/chart/RHM.DE?interval=1m
-console.log("======= 26 ========")
+console.log("======= 27 ========")
 var predata,pre;
 
 params = {
@@ -279,6 +279,7 @@ c.add = function(name,jsondata){
     c.charts[name].data.datasets[ind] = {...c.charts[name].data.datasets[0]}
 	c.charts[name].data.datasets[ind].data = data2;//vals;//values;
 	c.charts[name].data.datasets[ind].label = longname;
+	c.charts[name].data.datasets[ind].borderColor = colors.get(ind)
 	c.charts[name].data.datasets[ind].yAxisID= 'y'+ind
     // Chart neu rendern
     c.charts[name].update();
