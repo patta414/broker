@@ -1,12 +1,12 @@
 //https://query1.finance.yahoo.com/v8/finance/chart/RHM.DE?interval=1m
-console.log("======= 05 ========")
+console.log("======= 06 ========")
 var predata,pre;
 
 params = {
 	range:"1d",
 	interval:"1m",
 }
-
+localStorage.setItem("add",false)
 names = ['Rheinmetall','RWE','Hensoldt','Renk',"Nordex","NVIDIA","Siemens","Siemens energy","IONQ",'Novo Nordisk','IonQ Inc.','D-Wave Quantum','ThyssenKrupp','Intel','SUPER MICRO','TESLA','Palantir Technologies','Broadcom','AMD','Micron Technology','Bayer','Deutsche Telekom','CROWDSTRIKE','KION GROUP AG','Schaeffler']
 
 init = function(jsondata){
@@ -274,10 +274,12 @@ c.getPerName = async function(name,add){
 	}
 	jsd = await fetch(c.link).then(d=>d.json())
 	//c.buildContainer("test2",document.body)
-	if(add){
-		c.update("test",jsd)
-	}else{
+	if(add || JSON.parse(localStorage.getItem("add"))){
 		c.add("test",jsd)
+		
+	}else{
+		c.update("test",jsd)
 	}
+	localStorage.setItem("add",false)
 }
 
