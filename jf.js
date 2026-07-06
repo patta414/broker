@@ -66,6 +66,7 @@ build = function(jsondata) {
 
     svg.append("g").call(yAxis);
 
+	
     svg.append("path")
       .datum(data)
       .attr("class", "line")
