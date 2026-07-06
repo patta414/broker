@@ -1,5 +1,5 @@
 //https://query1.finance.yahoo.com/v8/finance/chart/RHM.DE?interval=1m
-console.log("======= 21 ========")
+console.log("======= 23 ========")
 var predata,pre;
 
 params = {
@@ -225,11 +225,14 @@ c.update = function(name,jsondata){
       date: new Date(ts * 1000),
       price: prices[i]
     })).filter(d => d.price !== null);
-    
+    let data2 = timestamps.map((ts, i) => ({
+      x:  funDatum.formatSQLDateTime(new Date(ts * 1000)),
+      y: prices[i]
+    }))
     const labels = data.map(d => funDatum.formatSQLDateTime(d.date));
     const values = data.map(d => d.price);
 
-	c.charts.options = {...initopt};
+	c.charts[name].options = {...initopt};
 	c.charts[name].data.datasets = [{
           label: 'LEER',
           data: [],
@@ -241,10 +244,10 @@ c.update = function(name,jsondata){
     //let lineval = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyin:null)
     //let lineout = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyout:null)
     // Bestehende Daten im Chart ersetzen
-	c.charts.test.options.scales["y"].title.text= longname;
+	c.charts[name].options.scales["y"].title.text= longname;
 	
     c.charts[name].data.labels = labels;
-    c.charts[name].data.datasets[0].data = values;
+    c.charts[name].data.datasets[0].data = data2;//values;
 	c.charts[name].data.datasets[0].label = longname;
     // Chart neu rendern
     c.charts[name].update();
@@ -257,6 +260,10 @@ c.add = function(name,jsondata){
       date: new Date(ts * 1000),
       price: prices[i]
     })).filter(d => d.price !== null);
+	 let data2 = timestamps.map((ts, i) => ({
+      x:  funDatum.formatSQLDateTime(new Date(ts * 1000)),
+      y: prices[i]
+    }))
     const labels = data.map(d => funDatum.formatSQLDateTime(d.date));//d.date.toLocaleTimeString());
     const values = data.map(d => d.price);
 
@@ -274,7 +281,7 @@ c.add = function(name,jsondata){
 	c.charts[name].options.scales["y"+ind] = {...initopt.scales.y}
 	c.charts[name].options.scales["y"+ind].title.text= longname;
     c.charts[name].data.datasets[ind] = {...c.charts[name].data.datasets[0]}
-	c.charts[name].data.datasets[ind].data = vals;//values;
+	c.charts[name].data.datasets[ind].data = data2;//vals;//values;
 	c.charts[name].data.datasets[ind].label = longname;
 	c.charts[name].data.datasets[ind].yAxisID= 'y'+ind
     // Chart neu rendern
