@@ -1,5 +1,5 @@
 //https://query1.finance.yahoo.com/v8/finance/chart/RHM.DE?interval=1m
-console.log("======= 10 ========")
+console.log("======= 11 ========")
 var predata,pre;
 
 params = {
@@ -226,7 +226,7 @@ c.update = function(name,jsondata){
     const labels = data.map(d => d.date.toLocaleTimeString());
     const values = data.map(d => d.price);
 
-	c.charts.options = initopt;
+	c.charts.options = {...initopt};
     
     //let lineval = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyin:null)
     //let lineout = neueDaten.map(d => (tra.trades[name])?tra.trades[name].buyout:null)
@@ -246,7 +246,6 @@ c.add = function(name,jsondata){
       date: new Date(ts * 1000),
       price: prices[i]
     })).filter(d => d.price !== null);
-    
     const labels = data.map(d => d.date.toLocaleTimeString());
     const values = data.map(d => d.price);
     
@@ -256,7 +255,7 @@ c.add = function(name,jsondata){
     // Bestehende Daten im Chart ersetzen
     //c.charts[name].data.labels = labels;
 	let ind = c.charts[name].data.datasets.length
-	c.charts.test.options.scales["y"+ind] = {...c.charts.test.options.scales["y"]}
+	c.charts.test.options.scales["y"+ind] = {...initopt.scales.y}
 	c.charts.test.options.scales["y"+ind].title.text= longname;
     c.charts[name].data.datasets[ind] = {...c.charts[name].data.datasets[0]}
 	c.charts[name].data.datasets[ind].data = values;
