@@ -1,5 +1,5 @@
 //https://query1.finance.yahoo.com/v8/finance/chart/RHM.DE?interval=1m
-console.log("======= 09 ========")
+console.log("======= 10 ========")
 var predata,pre;
 
 params = {
@@ -200,7 +200,7 @@ c.buildChart = function(name,data){
     chartData = {
         labels: data.map(d => d.date.toLocaleTimeString()),
         datasets: [{
-          label: longname,
+          label: 'LEER',
           data: data.map(d => d.price),
           borderColor: 'rgb(75, 192, 192)',
           tension: 0.1
