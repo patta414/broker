@@ -1,5 +1,5 @@
 //https://query1.finance.yahoo.com/v8/finance/chart/RHM.DE?interval=1m
-console.log("======= 24 ========")
+console.log("======= 25 ========")
 var predata,pre;
 
 params = {
@@ -228,7 +228,7 @@ c.update = function(name,jsondata){
     let data2 = timestamps.map((ts, i) => ({
       x:  funDatum.formatSQLDateTime(new Date(ts * 1000)),
       y: prices[i]
-    }))
+    })).filter(d => d.price !== null);
     const labels = data.map(d => funDatum.formatSQLDateTime(d.date));
     const values = data.map(d => d.price);
 
@@ -263,7 +263,7 @@ c.add = function(name,jsondata){
 	 let data2 = timestamps.map((ts, i) => ({
       x:  funDatum.formatSQLDateTime(new Date(ts * 1000)),
       y: prices[i]
-    }))
+    })).filter(d => d.price !== null);
     const labels = data.map(d => funDatum.formatSQLDateTime(d.date));//d.date.toLocaleTimeString());
     const values = data.map(d => d.price);
 
