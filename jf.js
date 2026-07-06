@@ -1,5 +1,5 @@
 //https://query1.finance.yahoo.com/v8/finance/chart/RHM.DE?interval=1m
-console.log("======= 18 ========")
+console.log("======= 19 ========")
 var predata,pre;
 
 params = {
@@ -299,7 +299,7 @@ initopt = {
     }
 initdatas = [{
           label: 'LEER',
-          data: data.map(d => d.price),
+          data: null,
           borderColor: 'rgb(75, 192, 192)',
           tension: 0.1
         }]
