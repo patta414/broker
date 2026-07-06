@@ -1,5 +1,5 @@
 //https://query1.finance.yahoo.com/v8/finance/chart/RHM.DE?interval=1m
-console.log("======= 11 ========")
+console.log("======= 12 ========")
 var predata,pre;
 
 params = {
@@ -175,6 +175,8 @@ c.buildButtons=function(){
 	cont = funAddHtmlE(ocont,"div");
 	funAddHtmlE(cont,"input","","wkntxt");
 	funAddHtmlE(cont,"button","get","wkntxt_btn",null,{click:()=>{let str = document.getElementById("wkntxt").value;c.getPerName(str)}});
+	funAddHtmlE(cont,"button","add","wkntxt_btn2",null,{click:()=>{let str = document.getElementById("wkntxt").value;c.getPerName(str,true)}});
+	funAddHtmlE(cont,"button","add next","add_btn",null,{click:()=>{localStorage.setItem("add",true)}});
 	funAddHtmlE(cont,"br");
 names.forEach(n=>{
     funAddHtmlE(cont,"button",n,n,{onclick:"c.getPerName('"+n+"')"})
