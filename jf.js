@@ -1,5 +1,5 @@
 //https://query1.finance.yahoo.com/v8/finance/chart/RHM.DE?interval=1m
-console.log("======= 12 ========")
+console.log("======= 13 ========")
 var predata,pre;
 
 params = {
@@ -237,6 +237,7 @@ c.update = function(name,jsondata){
 	
     c.charts[name].data.labels = labels;
     c.charts[name].data.datasets[0].data = values;
+	c.charts[name].data.datasets[0].label = longname;
     // Chart neu rendern
     c.charts[name].update();
 }
@@ -257,10 +258,12 @@ c.add = function(name,jsondata){
     // Bestehende Daten im Chart ersetzen
     //c.charts[name].data.labels = labels;
 	let ind = c.charts[name].data.datasets.length
-	c.charts.test.options.scales["y"+ind] = {...initopt.scales.y}
-	c.charts.test.options.scales["y"+ind].title.text= longname;
+	c.charts[name].options.scales["y"+ind] = {...initopt.scales.y}
+	c.charts[name].options.scales["y"+ind].title.text= longname;
     c.charts[name].data.datasets[ind] = {...c.charts[name].data.datasets[0]}
 	c.charts[name].data.datasets[ind].data = values;
+	c.charts[name].data.datasets[ind].label = longname;
+	c.charts[name].data.datasets[ind].yAxisID= 'y'+ind
     // Chart neu rendern
     c.charts[name].update();
 }
